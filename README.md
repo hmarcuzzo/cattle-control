@@ -42,7 +42,7 @@
 
 ## Como executar
 
-* A [documentação de referência](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/) inclui [instruções de instalação](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-installing-spring-boot) detalhadas, bem como um [guia de primeiros](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application) que irá auxiliar na [execução](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application-run) do projeto .
+* A [documentação de referência](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/) inclui [instruções de instalação](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-installing-spring-boot) detalhadas, bem como um [guia de primeiros passos](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application) que irá auxiliar na [execução](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application-run) do projeto .
 
 
 ## Desenvolvedores
