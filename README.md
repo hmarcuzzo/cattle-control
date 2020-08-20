@@ -47,8 +47,8 @@
 
 ## Desenvolvedores
 
-* Matheus Batistela - matheushenriquebatistela@gmail.com
-* Henrique Marcuzzo - henrique.souza.m06@gmail.com
+* Matheus Batistela - [![Gmail Badge](https://img.shields.io/badge/-matheushenriquebatistela@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:matheushenriquebatistela@gmail.com)](mailto:matheushenriquebatistela@gmail.com)
+* Henrique Marcuzzo - [![Gmail Badge](https://img.shields.io/badge/-henrique.souza.m06@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:henrique.souza.m06@gmail.com)](mailto:henrique.souza.m06@gmail.com)
 
 ## License
 
