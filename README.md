@@ -39,7 +39,7 @@
 * Gerenciar Vendas/Compras
 * Calcular o peso médio do gado
 * Calcular a estimativa de lucro
-* 
+
 ## Como executar
 
 * A [documentação de referência](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/) inclui [instruções de instalação](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-installing-spring-boot) detalhadas, bem como um [guia de primeiros](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application) que irá auxiliar na [execução](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application-run) do projeto .
