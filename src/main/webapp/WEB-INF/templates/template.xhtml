@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+ 
+<h:head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Projeto Exemplo SprinbgBoot + JSF"/>
+    <meta name="author" content="Reginaldo Ré"/>
+    
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+    <h:outputStylesheet name="font-awesome/5.5.0/css/all-jsf.css" library="webjars" />
+ 
+    <title>Projeto Exemplo SprinbgBoot + JSF</title>
+</h:head>
+
+<h:body>
+	<div id="basic_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+	<ui:insert name="head">
+		XXX
+    </ui:insert>
+    </div>
+
+	<p:menubar>
+		<f:facet name="options">
+            <p:link href="/j_spring_security_logout" value="Logout">
+
+            </p:link>
+        </f:facet>
+	</p:menubar>
+    <ui:insert name="menu">
+        XXX
+    </ui:insert>
+
+    <ui:insert name="body">
+        XXX
+    </ui:insert>
+
+
+    <ui:insert name="footer">
+	<div id="basic_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+    	<a href="https://github.com/">
+            Copyright (C) 2019 - Universidade Tecnológica Federal do Paraná - Campo Mourão
+    	</a>	
+    </div>
+        
+    </ui:insert>
+  </h:body> 
+</html>
