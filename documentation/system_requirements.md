@@ -6,7 +6,7 @@
 
 ## Funcionalidades
 
-* Cadastrar dados sensíveis dos bovinos
+* Gerenciar dados sensíveis dos bovinos
     * Identificação (brinco)
     * Vacinação
     * Peso
@@ -15,13 +15,27 @@
     * Anotações
     * Exames
     * Despesas
-* Cadastrar Fazendas/Pastagens
-* Cadastrar Compradores, Fornecedores e Transportadores
-* Cadastrar Vendas
+* Gerenciar Fazendas
+    * Identificação (ID)
+    * Nome da fazenda
+    * Localização
+    * Proprietário
+    * Descrição
+* Gerenciar Compradores, Fornecedores e Transportadores
+    * Identificação (ID)
+    * Tipo (Comprador, Fornecedor ou Transportador)
+    * Telefone para contato
+    * E-mail
+* Gerenciar Vendas/Compras
+    * Identificação (ID)
+    * Comprador/Fornecedor
+    * Bovinos
+    * Valor
+    * Data 
+    * Forma de pagamento
+    * Condições de pagamento
+    * Local de envio/compra
+    * Informações adicionais
 * Calcular o peso médio do gado
 * Calcular a estimativa de venda
 
-
-- Quebrar as estórias
-- Ver o que agrega mais valor ao product owner
-- Quais os testes de aceitação (própria estórias) 
