@@ -117,3 +117,4 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,maven,code-java,java-web
+.vscode/

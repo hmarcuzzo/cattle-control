@@ -6,21 +6,27 @@
 
 ## Funcionalidades
 
-* Gerenciar dados sensíveis dos bovinos
-    * Identificação (brinco)
-    * Vacinação
-    * Peso
-    * Valorização
-    * Pastagam localizada
-    * Anotações
-    * Exames
-    * Despesas
+* Gerenciar Pessoas
+    * Definir o tipo de pessoa (PF/PJ) 
+    * Identificação (CPF/CNPJ)
+    * Nome da pessoa ou entidade
+    * Meios de contato
+    * Descrição
 * Gerenciar Fazendas
     * Identificação (ID)
     * Nome da fazenda
     * Localização
     * Proprietário
     * Descrição
+* Gerenciar dados sensíveis dos bovinos
+    * Identificação (brinco)
+    * Vacinação
+    * Peso
+    * Valor
+    * Pastagam localizada
+    * Anotações
+    * Exames
+    * Despesas
 * Gerenciar Compradores, Fornecedores e Transportadores
     * Identificação (ID)
     * Tipo (Comprador, Fornecedor ou Transportador)

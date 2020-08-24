@@ -1,0 +1,20 @@
+# Diary
+Todas as reuniões do projeto serão adicionadas neste arquivo.
+
+## 2020-08-24
+### Assuntos
+- Transformar as funcionalidades em épicos
+- Quebrar o épico em histórias de usuários menores
+- Decompor as histórias selecionadas em tarefas do github
+    - Se necessário, decompor em sub-tarefas usando github tasks list e utilizar planing poker
+- Escolher e iniciar o desenvolvimento das tarefas da sprint;
+
+### O que deveria ser feito
+- Nenhuma atividade até o momento
+
+### O que será feito
+- Modelo relacional do banco de dados (Henrique)
+- 
+
+### Dificuldades
+- Nenhuma
