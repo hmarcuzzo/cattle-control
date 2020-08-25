@@ -14,7 +14,8 @@ Todas as reuniões do projeto serão adicionadas neste arquivo.
 
 ### O que será feito
 - Modelo relacional do banco de dados (Henrique)
-- 
+- Fazer template do site (Matheus)
 
 ### Dificuldades
-- Nenhuma
+- Não conseguimos dividir as grandes histórias de usuários em e histórias melhores
+- Não conseguimor criar as issues no Zenhub
