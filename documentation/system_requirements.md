@@ -23,9 +23,7 @@
     * Vacinação
     * Peso
     * Valor
-    * Pastagam localizada
     * Anotações
-    * Exames
     * Despesas
 * Gerenciar Compradores, Fornecedores e Transportadores
     * Identificação (ID)

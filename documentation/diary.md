@@ -1,6 +1,21 @@
 # Diary
 Todas as reuniões do projeto serão adicionadas neste arquivo.
 
+## 2020-08-26
+### Assuntos
+- Como integrar o CSS com o Prime Faces
+- Admin Faces como alternativa ao Prime Faces
+
+### O que deveria ser feito
+- Modelo relacional do banco de dados (Henrique)
+- Fazer template do site (Matheus)
+
+### O que será feito
+- Template do site e da view de Pessoas (Henrique e Matheus)
+
+### Dificuldades
+- Erro ao tentar fazer o template do site (Matheus)
+
 ## 2020-08-24
 ### Assuntos
 - Transformar as funcionalidades em épicos
