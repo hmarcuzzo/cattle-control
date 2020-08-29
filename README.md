@@ -54,7 +54,7 @@ ou
 mvn spring-boot:run
 ```
 
-### Acessando aplicação
+### Acessando a aplicação
 
 Após a inicialização, é possível acessar a página atraves do link http://localhost:8080/admin-starter
 
