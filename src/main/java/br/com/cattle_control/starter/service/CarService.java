@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.github.adminfaces.starter.service;
+package br.com.cattle_control.starter.service;
 
-import com.github.adminfaces.starter.infra.model.Filter;
-import com.github.adminfaces.starter.infra.model.SortOrder;
-import com.github.adminfaces.starter.model.Car;
+import br.com.cattle_control.starter.infra.model.Filter;
+import br.com.cattle_control.starter.infra.model.SortOrder;
+import br.com.cattle_control.starter.model.Car;
 import com.github.adminfaces.template.exception.BusinessException;
 
 import javax.inject.Inject;

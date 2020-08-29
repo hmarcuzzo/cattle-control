@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.github.adminfaces.starter.bean;
+package br.com.cattle_control.starter.bean;
 
-import com.github.adminfaces.starter.model.Car;
-import com.github.adminfaces.starter.service.CarService;
+import br.com.cattle_control.starter.model.Car;
+import br.com.cattle_control.starter.service.CarService;
 import javax.faces.view.ViewScoped;
 import org.omnifaces.util.Faces;
 
@@ -14,7 +14,7 @@ import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 
-import static com.github.adminfaces.starter.util.Utils.addDetailMessage;
+import static br.com.cattle_control.starter.util.Utils.addDetailMessage;
 import static com.github.adminfaces.template.util.Assert.has;
 
 /**

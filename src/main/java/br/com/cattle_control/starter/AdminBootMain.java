@@ -14,26 +14,20 @@
  * limitations under the License.
  */
 
-package com.github.adminfaces.starter;
+package br.com.cattle_control.starter;
 
-import com.github.adminfaces.starter.model.Car;
-import com.github.adminfaces.starter.util.Utils;
-import java.util.List;
-import javax.inject.Inject;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.SpringApplication;
 
-/**
+ /**
  * @author rmpestano
  */
-@SpringBootApplication
-public class AdminBootApplication {
-	@Inject
-	private Utils utils;
+public class AdminBootMain {
 
-    @Bean
-    public List<Car> getCars() {
-        return utils.getCars();
-    }
-	
+	protected AdminBootMain() {
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(AdminBootApplication.class, args);
+	}
+
 }

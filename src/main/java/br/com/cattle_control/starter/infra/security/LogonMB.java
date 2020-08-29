@@ -1,4 +1,4 @@
-package com.github.adminfaces.starter.infra.security;
+package br.com.cattle_control.starter.infra.security;
 
 import com.github.adminfaces.template.session.AdminSession;
 import org.omnifaces.util.Faces;
@@ -10,7 +10,7 @@ import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 
-import static com.github.adminfaces.starter.util.Utils.addDetailMessage;
+import static br.com.cattle_control.starter.util.Utils.addDetailMessage;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

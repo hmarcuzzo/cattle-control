@@ -1,4 +1,4 @@
-package com.github.adminfaces.starter.infra.model;
+package br.com.cattle_control.starter.infra.model;
 
 
 import java.io.Serializable;

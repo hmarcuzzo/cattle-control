@@ -1,6 +1,6 @@
-package com.github.adminfaces.starter.util;
+package br.com.cattle_control.starter.util;
 
-import com.github.adminfaces.starter.model.Car;
+import br.com.cattle_control.starter.model.Car;
 import org.omnifaces.util.Messages;
 
 import javax.annotation.PostConstruct;

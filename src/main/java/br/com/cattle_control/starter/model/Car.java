@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.github.adminfaces.starter.model;
+package br.com.cattle_control.starter.model;
 
 import java.io.Serializable;
 

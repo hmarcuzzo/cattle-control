@@ -1,8 +1,8 @@
-package com.github.adminfaces.starter.bean;
+package br.com.cattle_control.starter.bean;
 
-import com.github.adminfaces.starter.infra.model.Filter;
-import com.github.adminfaces.starter.model.Car;
-import com.github.adminfaces.starter.service.CarService;
+import br.com.cattle_control.starter.infra.model.Filter;
+import br.com.cattle_control.starter.model.Car;
+import br.com.cattle_control.starter.service.CarService;
 import com.github.adminfaces.template.exception.BusinessException;
 import javax.faces.view.ViewScoped;
 import org.primefaces.model.LazyDataModel;
@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import static com.github.adminfaces.starter.util.Utils.addDetailMessage;
+import static br.com.cattle_control.starter.util.Utils.addDetailMessage;
 
 /**
  * Created by rmpestano on 12/02/17.
@@ -44,11 +44,11 @@ public class CarListMB implements Serializable {
             public List<Car> load(int first, int pageSize,
                                   String sortField, SortOrder sortOrder,
                                   Map<String, Object> filters) {
-                com.github.adminfaces.starter.infra.model.SortOrder order = null;
+                br.com.cattle_control.starter.infra.model.SortOrder order = null;
                 if (sortOrder != null) {
-                    order = sortOrder.equals(SortOrder.ASCENDING) ? com.github.adminfaces.starter.infra.model.SortOrder.ASCENDING
-                            : sortOrder.equals(SortOrder.DESCENDING) ? com.github.adminfaces.starter.infra.model.SortOrder.DESCENDING
-                            : com.github.adminfaces.starter.infra.model.SortOrder.UNSORTED;
+                    order = sortOrder.equals(SortOrder.ASCENDING) ? br.com.cattle_control.starter.infra.model.SortOrder.ASCENDING
+                            : sortOrder.equals(SortOrder.DESCENDING) ? br.com.cattle_control.starter.infra.model.SortOrder.DESCENDING
+                            : br.com.cattle_control.starter.infra.model.SortOrder.UNSORTED;
                 }
                 filter.setFirst(first).setPageSize(pageSize)
                         .setSortField(sortField).setSortOrder(order)
