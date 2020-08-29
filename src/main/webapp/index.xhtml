@@ -1,106 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                template="/WEB-INF/templates/template.xhtml">
-             
-	<ui:define name="head">
-		<div class="box box-solid box-info">
-			Um cabeçalho
-		</div>
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="#{layoutMB.template}">
+
+    <ui:define name="head-end">
+        <ui:param name="renderBreadCrumb" value="false"/>
     </ui:define>
 
+    <ui:define name="title">
+        <h2 class="align-center">
+            Welcome to the <span class="text-aqua"> <i><a href="https://github.com/adminfaces/admin-starter-springboot"
+                                                          target="_blank"
+                                                          style="text-transform: none;text-decoration: none"> AdminFaces SpringBoot Starter</a></i></span> Project!
+            <br/>
+            <small>Integrating <p:link value="Primefaces" href="http://primefaces.org"/>, <p:link value="Bootstrap"
+                                                                                                  href="http://getbootstrap.com/"/> and
+                <p:link value="Admin LTE" href="https://almsaeedstudio.com/themes/AdminLTE/index2.html/"/> into your
+                <p:link value="JSF" href="https://javaserverfaces.java.net/"/> application.
+            </small>
+        </h2>
 
-    <ui:define name="menu">
-		<p:tabMenu activeIndex="#{param.indice}">
-		    <p:menuitem value="Inserir Arquivos" outcome="index.xhtml" icon="pi pi-star">
-		        <f:param name="indice" value="0" />
-		    </p:menuitem>
-		    <p:menuitem value="Ver Arquivos" outcome="index.xhtml" icon="pi pi-search">
-		        <f:param name="indice" value="1" />
-		    </p:menuitem>
-		</p:tabMenu>
     </ui:define>
 
-    <ui:define name="body">    
-	    <h:form id="formInserir" rendered="#{param.indice==0 || empty param.indice}" enctype="multipart/form-data"> 
-	    	<p:focus context="formInserir"/>
-	    	
-	    	<p:growl id="growl" showDetail="true"/> 
-
-		    <p:panel id="upload" header="Upload de Arquivos" style="margin-bottom:20px">
-		        <h:panelGrid columns="3" cellpadding="5">
-		 
-			        <p:outputLabel value="Nome:"/>
-			    	<p:inputText id="inputNome" value="#{dataFileView.nome}" required="true" label="Nome"/>
-			    	<p:message for="inputNome" />   
-			    	
-			    	<p:outputLabel value="Descrição: " for="inputDescricao" />
-			    	<h:panelGroup>
-			    		<p:inputTextarea id="inputDescricao" value="#{dataFileView.descricao}" rows="5" cols="100" counter="outputDisplay" maxlength="1000" counterTemplate="{0} caracteres restantes." autoResize="false" />
-			 			<p:message for="inputDescricao" />
-			 			<br />
-			 			<h:outputText id="outputDisplay" />	
-			 		</h:panelGroup>
-			 		<br />
-			 		
-					<h:outputText />
-			 		<p:fileUpload id="inputArquivo" value="#{dataFileView.arquivoUpload}" 
-			 		              label="Escolher" skinSimple="true" 
-			 		              mode="simple" auto="true" immediate="true"
-			 		              chooseIcon="fa fa-upload" />
-    				<br />
-    				<br />
-			 		
-			 		<br />
-		    		<p:commandButton value="Salvar" action="#{dataFileView.create()}" 
-	                                     ajax="false" icon="fa fa-save">
-                    </p:commandButton>
-		        </h:panelGrid>
-		    </p:panel>
-	    </h:form>
-    
-   		<h:form id="formListar"  rendered="#{param.indice==1}"  enctype="multipart/form-data"> 
-	    	<p:panel id="listar" header="Arquivos existentes" style="margin-bottom:20px">
-	    		<p:dataTable id="listaDeArquivos" var="umArquivoDeDados" 
-	    		             value="#{dataFileView.listarTodosArquivosDeDados()}">
-	    			<p:column headerText="Id">
-	            		<h:outputText value="#{umArquivoDeDados.id}" />
-	        		</p:column>
-	        		<p:column headerText="Nome">
-	            		<h:outputText value="#{umArquivoDeDados.nome}" />
-	        		</p:column>
-	       			<p:column headerText="Descrição">
-	            		<h:outputText value="#{umArquivoDeDados.descricao}" />
-	        		</p:column>	
-	        		<p:column style="width:42px;text-align: center">
-	        			<!-- Duas maneiras diferentes de interagir com o back-end -->
-						<p:commandButton rendered="#{dataFileView.hasArquivoAnexo(umArquivoDeDados)}" 
-						                 update=":detalhesArquivo" oncomplete="PF('arquivoDialog').show()" 
-						                 icon="fa fa-search" title="Detalhes">
-	                		<f:setPropertyActionListener value="#{umArquivoDeDados.id}" 
-	                		                             target="#{dataFileView.idArquivoSelecionado}" />
-	            		</p:commandButton>
-	            		<p:commandButton rendered="#{dataFileView.hasArquivoAnexo(umArquivoDeDados)}" 
-	            		                 ajax="false" icon="fa fa-download" title="Download" >
-	            					<p:fileDownload value="#{dataFileView.downloadArquivoAnexo(umArquivoDeDados)}" />
-	            		</p:commandButton>
-		        	</p:column>	
-	    		</p:dataTable>
-	    	</p:panel> 
-   	    </h:form>  
-   	    
-  	    <p:dialog header="Detalhes Arquivo" widgetVar="arquivoDialog" showEffect="fade" hideEffect="fade" resizable="false">
-	        <p:outputPanel id="detalhesArquivo" style="text-align:center;">
-	        	<p:panelGrid  columns="2" columnClasses="label,value" >
-	        		<h:outputText value="Nome arquivo:" />
-                	<h:outputText value="#{dataFileView.nomeArquivoAnexo}"  />	
-        			<h:outputText value="Tamanho arquivo:" />
-                	<h:outputText value="#{dataFileView.tamanhoArquivoAnexo}"  />	
-                </p:panelGrid>               
-	        </p:outputPanel>
-	    </p:dialog>
-    </ui:define>    
 
 </ui:composition>
