@@ -34,3 +34,19 @@ Todas as reuniões do projeto serão adicionadas neste arquivo.
 ### Dificuldades
 - Não conseguimos dividir as grandes histórias de usuários em e histórias melhores
 - Não conseguimor criar as issues no Zenhub
+
+## 2020-08-30
+### Assuntos
+- Estrutura do back-end
+- Utilizar lombok + h2 ou java puro
+- Definido utilizar lombok + h2 
+
+### O que deveria ser feito
+- Modelo relacional do banco de dados (Henrique)
+- Fazer template do site (Matheus)
+
+### O que será feito
+- Camada de serviços (Matheus e Henrique)
+
+### Dificuldades
+- Decedir a estrutura do back-end
