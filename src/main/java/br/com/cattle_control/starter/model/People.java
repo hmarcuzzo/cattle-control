@@ -2,7 +2,6 @@ package br.com.cattle_control.starter.model;
 
 import java.io.Serializable;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,20 +11,23 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.persistence.Entity;
-// import java.util.Set;
+
 
 @Entity
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "People")
 public class People implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "People_ID")
-    private int id;
+    private Long id;
 
     @Column(name = "People_Name")
     @NotEmpty(message = "*Por favor forneça o nome")
@@ -56,6 +58,37 @@ public class People implements Serializable {
 
     @Column(name = "People_Deleted")
     private Boolean deleted;
+
+    @Builder 
+	public People(
+            Long id,
+            String name,
+			String email,
+			int type,
+			String idType,
+			String phone,
+			String info,
+			Boolean deleted) {
+		
+    	
+    	People instance = new People();
+    	
+    	instance.setId(id);
+    	instance.setEmail(email);
+    	instance.setName(name);
+        instance.setIdType(idType);
+        instance.setType(type);
+    	instance.setPhone(phone);
+    	instance.setInfo(info);
+    	instance.setDeleted(deleted);
+    }
+    
+    
+
+
+   
+
+
 
     // @OneToMany
     // @JoinTable(name = "People_Role", joinColumns = @JoinColumn(name = "People_ID"), inverseJoinColumns = @JoinColumn(name = "Role_ID"))

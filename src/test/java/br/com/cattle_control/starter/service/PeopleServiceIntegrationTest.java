@@ -1,4 +1,4 @@
-package com.github.adminfaces.starter.service;
+package br.com.cattle_control.starter.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,6 +20,7 @@ import br.com.cattle_control.starter.exception.AnyPersistenceException;
 import br.com.cattle_control.starter.exception.EntityAlreadyExistsException;
 import br.com.cattle_control.starter.service.PeopleService;
 
+@SpringBootTest
 public class PeopleServiceIntegrationTest {
     
     @Autowired

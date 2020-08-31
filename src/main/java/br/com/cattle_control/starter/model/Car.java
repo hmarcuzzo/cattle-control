@@ -11,7 +11,11 @@ import java.io.Serializable;
  */
 public class Car implements Serializable, Comparable<Car> {
 
-    private Integer id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
     private String model;
     private String name;
     private Double price;
