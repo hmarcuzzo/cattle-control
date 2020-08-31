@@ -27,7 +27,7 @@ public class People implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "People_ID")
-    private Long id;
+    private Integer id;
 
     @Column(name = "People_Name")
     @NotEmpty(message = "*Por favor forneça o nome")
@@ -60,8 +60,8 @@ public class People implements Serializable {
     private Boolean deleted;
 
     @Builder 
-	public People(
-            Long id,
+	public static People create (
+            Integer id,
             String name,
 			String email,
 			int type,
@@ -80,15 +80,10 @@ public class People implements Serializable {
         instance.setType(type);
     	instance.setPhone(phone);
     	instance.setInfo(info);
-    	instance.setDeleted(deleted);
+        instance.setDeleted(deleted);
+        
+        return instance;
     }
-    
-    
-
-
-   
-
-
 
     // @OneToMany
     // @JoinTable(name = "People_Role", joinColumns = @JoinColumn(name = "People_ID"), inverseJoinColumns = @JoinColumn(name = "Role_ID"))
