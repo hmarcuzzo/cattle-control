@@ -74,10 +74,16 @@
                         </div>
                     </div> 
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad">
-                        <p:outputLabel for="radio" value="Tipo de Pessoa"/>
-                        <p:selectOneRadio id="radio" value="#{radioMB.city2}" layout="responsive" columns="2">
-                            <f:selectItems value="#{radioMB.citie}" var="c" itemLabel="#{c}" itemValue="#{c}"/>
-                        </p:selectOneRadio>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel for="console" value="Tipo de pessoa:"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:selectOneRadio id="console" value="#{peopleFormMB.type}" unselectable="true">
+                                <f:selectItem itemLabel="Física" itemValue="1" />
+                                <f:selectItem itemLabel="Jurídica" itemValue="2" />
+                            </p:selectOneRadio>
+                        </div>
+                      
                     </div>
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad"> 
                         <div class="ui-sm-12 ui-g-11">

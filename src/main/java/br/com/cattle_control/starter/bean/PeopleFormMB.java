@@ -114,7 +114,7 @@ public class PeopleFormMB implements Serializable {
         this.people = People.builder()
                             .name(people.getName())
                             .email(people.getEmail())
-                            .type(1)
+                            .type(people.getType())
                             .idType(people.getIdType())
                             .phone(people.getPhone())
                             .info(people.getInfo())
@@ -164,7 +164,7 @@ public class PeopleFormMB implements Serializable {
         }
 
         addDetailMessage(msg);
-        clear();
+        // clear();
     }
 
     public void clear() {
