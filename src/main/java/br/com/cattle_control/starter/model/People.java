@@ -30,7 +30,7 @@ public class People implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "People_ID")
-    private Integer id;
+    private Long id;
 
     @Column(name = "People_Name")
     @NotEmpty(message = "*Por favor forneça o nome")
@@ -64,13 +64,13 @@ public class People implements Serializable {
 
     @Builder 
 	public static People create (
-            Integer id,
-            String name,
-			String email,
+            Long    id,
+            String  name,
+			String  email,
 			Integer type,
-			String idType,
-			String phone,
-			String info,
+			String  idType,
+			String  phone,
+			String  info,
 			Boolean deleted) {
 		
     	
