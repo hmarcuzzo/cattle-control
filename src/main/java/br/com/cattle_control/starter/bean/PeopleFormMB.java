@@ -50,7 +50,7 @@ public class PeopleFormMB implements Serializable {
     private People people = new People();
 
     // Delegação de Getters and Setters das propriedades de people que serão usadas na tela
-    public Long getId() {
+    public Integer getId() {
         return people.getId();
     }
 
@@ -82,6 +82,31 @@ public class PeopleFormMB implements Serializable {
         return people.getDeleted();
     }
 
+    public void setName(String name){
+        people.setName(name);
+    }
+
+    public void setEmail(String email){
+        people.setEmail(email);
+    }
+
+    public void setType(Integer type){
+        people.setType(type);
+    }
+
+
+    public void setIdType(String idType){
+        people.setIdType(idType);
+    }
+
+    public void setPhone(String phone){
+        people.setPhone(phone);
+    }
+    
+    public void setInfo(String info){
+        people.setInfo(info);
+    }
+
 
 
     // Ações disponibilizadas na tela
@@ -89,7 +114,7 @@ public class PeopleFormMB implements Serializable {
         this.people = People.builder()
                             .name(people.getName())
                             .email(people.getEmail())
-                            .type(people.getType())
+                            .type(1)
                             .idType(people.getIdType())
                             .phone(people.getPhone())
                             .info(people.getInfo())
@@ -139,6 +164,7 @@ public class PeopleFormMB implements Serializable {
         }
 
         addDetailMessage(msg);
+        clear();
     }
 
     public void clear() {
