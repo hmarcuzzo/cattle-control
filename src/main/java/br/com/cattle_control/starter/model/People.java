@@ -7,9 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.persistence.Entity;
 
 
@@ -38,8 +41,8 @@ public class People implements Serializable {
     private String email;
 
     @Column(name = "People_Type")
-    @NotEmpty(message = "*Por favor defina o tipo")
-    private int type;
+    @NotNull(message = "*Por favor defina o tipo")
+    private Integer type;
 
     @Column(name = "People_ID_Type")
     @Length(min = 11, max= 14, message = "*Por favor forneça todos os dígitos do CPF")
@@ -64,7 +67,7 @@ public class People implements Serializable {
             Integer id,
             String name,
 			String email,
-			int type,
+			Integer type,
 			String idType,
 			String phone,
 			String info,
