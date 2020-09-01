@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import lombok.RequiredArgsConstructor;
+
+// import org.aspectj.weaver.ast.And;
 import org.springframework.stereotype.Service;
 
 import br.com.cattle_control.starter.model.People;
@@ -22,7 +24,7 @@ public class PeopleService implements ICRUDService<People>{
         return List.copyOf(peopleRepository.findAll());
     }
 
-    public People readById(Long anId) throws EntityNotFoundException {
+    public People readById(Integer anId) throws EntityNotFoundException {
         return peopleRepository.findById(anId).orElseThrow(EntityNotFoundException::new);
     }
 
@@ -43,11 +45,21 @@ public class PeopleService implements ICRUDService<People>{
         }
     }
 
-    @Override
-	public void update(People entity) {
-		// TODO Implementação obrigatório por causa da interface ICRUDService
+
+	public People update(People entity) throws EntityAlreadyExistsException, AnyPersistenceException {
+		if (peopleRepository
+        		.findAll()
+        		.stream()
+        		.anyMatch(currentPeople -> currentPeople.getIdType().equals(entity.getIdType()) && !currentPeople.getId().equals(entity.getId()))) {
+            throw new EntityAlreadyExistsException();
+        }
 		
-		
+		try {
+            return peopleRepository.save(entity);
+
+        } catch (Exception e) {
+            throw new AnyPersistenceException();
+        }
 	}
 
 	@Override

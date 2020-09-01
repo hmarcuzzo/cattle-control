@@ -13,12 +13,13 @@ import java.util.stream.IntStream;
 import javax.inject.Named;
 
 /**
- * Created by rmpestano on 07/02/17.
- */
+* Created by rmpestano on 07/02/17.
+*/
 @Named
 @ApplicationScoped
 public class Utils implements Serializable {
-
+    
+    private static final long serialVersionUID = 1L;
     private List<Car> cars;
 
 

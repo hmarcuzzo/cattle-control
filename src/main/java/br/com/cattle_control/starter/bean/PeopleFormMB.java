@@ -4,7 +4,7 @@ package br.com.cattle_control.starter.bean;
 // import javax.faces.view.ViewScoped;
 import org.omnifaces.util.Faces;
 
-
+import java.io.Console;
 // import javax.inject.Inject;
 // import javax.inject.Named;
 import java.io.IOException;
@@ -46,8 +46,9 @@ public class PeopleFormMB implements Serializable {
 
     @Autowired
     private final PeopleService peopleService;
-    
+
     private People people = new People();
+    
 
     // Delegação de Getters and Setters das propriedades de people que serão usadas na tela
     public Integer getId() {
@@ -111,7 +112,9 @@ public class PeopleFormMB implements Serializable {
 
     // Ações disponibilizadas na tela
     public void save() {
+        System.out.println("Hey there! I am here!");
         this.people = People.builder()
+                            .id(people.getId())
                             .name(people.getName())
                             .email(people.getEmail())
                             .type(people.getType())
@@ -121,13 +124,13 @@ public class PeopleFormMB implements Serializable {
                             .deleted(false)
         					.build();
         
-        FacesContext.getCurrentInstance()
-			.getExternalContext()
-			.getFlash()
-            .setKeepMessages(true);
+        // FacesContext.getCurrentInstance()
+		// 	.getExternalContext()
+		// 	.getFlash()
+        //     .setKeepMessages(true);
             
         String msg;
-        
+        System.out.println("Valor do ID: " + people.getId());
         try {
             if (people.getId() == null) {
                 peopleService.create(this.people);
@@ -172,15 +175,15 @@ public class PeopleFormMB implements Serializable {
     }
 
     public void remove() throws IOException {
-        if (has(people) && has(people.getId())) {
-            people.setDeleted(true);
-            peopleService.update(people);
+        // if (has(people) && has(people.getId())) {
+        //     people.setDeleted(true);
+        //     peopleService.update(people);
 
-            addDetailMessage("A Pessoa " + people.getName() + " foi removida com sucesso");
+        //     addDetailMessage("A Pessoa " + people.getName() + " foi removida com sucesso");
 
-            Faces.getFlash().setKeepMessages(true);
-            Faces.redirect("car-list.jsf");
-        }
+        //     Faces.getFlash().setKeepMessages(true);
+        //     Faces.redirect("car-list.jsf");
+        // }
     }
 
     
@@ -189,4 +192,6 @@ public class PeopleFormMB implements Serializable {
     public boolean isNew() {
         return people == null || people.getId() == null;
     }
+
+    
 }

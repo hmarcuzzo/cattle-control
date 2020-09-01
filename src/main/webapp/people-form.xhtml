@@ -6,8 +6,8 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <!-- <f:viewParam name="id" value="#{peopleFormMB.id}" converter="javax.faces.Long"/> -->
-            <!-- <f:event type="preRenderView" listener="#{carFormMB.init}"/> -->
+            <!-- <f:viewParam name="existID" value="#{peopleFormMB.id}" converter="javax.faces.Long"/> -->
+            <!-- <f:event type="preRenderView" listener="#{peopleFormMB.init}"/> -->
         </f:metadata>
         <ui:param name="renderAsterisks" value="true"/>
     </ui:define>
@@ -75,7 +75,7 @@
                     </div> 
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad">
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel for="console" value="Tipo de pessoa:"/>
+                            <p:outputLabel for="console" value="Tipo de pessoa *"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
                             <p:selectOneRadio id="console" value="#{peopleFormMB.type}" unselectable="true">
@@ -87,7 +87,7 @@
                     </div>
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad"> 
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Número do CPF/CNPJ" for="inptIdType"/>
+                            <p:outputLabel value="Número do CPF/CNPJ *" for="inptIdType"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
                             <p:inputMask id="inptIdType" mask="999.999.999-99" value="#{peopleFormMB.idType}" required="true"/>
@@ -98,7 +98,7 @@
                     </div>     
                     <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Nome Completo" for="inptName"/>
+                            <p:outputLabel value="Nome Completo *" for="inptName"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
                             <p:inputText id="inptName" value="#{peopleFormMB.name}" required="true"/>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel for="inptPhone" value="Telefone"/>
+                            <p:outputLabel for="inptPhone" value="Telefone *"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
                             <p:inputMask id="inptPhone" mask="+99 (99) 999999999" value="#{peopleFormMB.phone}" required="true"/>

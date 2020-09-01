@@ -9,7 +9,7 @@ public interface ICRUDService<T> {
     
     public List<T> readAll();
     public T create(T entity) throws EntityAlreadyExistsException, AnyPersistenceException;
-    public T readById(Long anId);
-    public void update(T entity);
+    public T readById(Integer anId);
+    public T update(T entity) throws EntityAlreadyExistsException, AnyPersistenceException;
     public void delete(Long anId);
 }
