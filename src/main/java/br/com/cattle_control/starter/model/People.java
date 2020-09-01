@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import edu.umd.cs.findbugs.annotations.NonNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

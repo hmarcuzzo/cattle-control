@@ -15,7 +15,7 @@
         Formulário de pessoas
     </ui:define>
     <ui:define name="body">
-        <adm:breadcrumb title="#{empty peopleFormMB.id ? 'New Car' : 'Car '.concat(peopleFormMB.id)}" link="car-form.xhtml?id=#{peopleFormMB.id}"/>
+        <adm:breadcrumb title="#{empty peopleFormMB.id ? 'New People' : 'People '.concat(peopleFormMB.id)}" link="people-form.xhtml?id=#{peopleFormMB.id}"/>
         <h:form id="form" prependId="false">
             <p:focus context="@form"/>
             <p:panel styleClass="box-primary card">
@@ -28,7 +28,7 @@
                                      update="@form" rendered="#{peopleFormMB.isNew()}" resetValues="true"/>
                     <p:spacer width="5" rendered="#{not peopleFormMB.isNew()}"/>
 
-                    <p:commandButton value="Deletar" action="#{carFormMB.remove}" process="@this"
+                    <p:commandButton value="Deletar" action="#{peopleFormMB.remove}" process="@this"
                                      rendered="#{not peopleFormMB.isNew()}" icon="fa fa-trash"
                                      styleClass="btn-danger">
                         <f:setPropertyActionListener value="true"
@@ -47,7 +47,7 @@
                     <p:menuitem value="Resetar" action="#{peopleFormMB.clear}"
                                 process="@this" update="@form" rendered="#{peopleFormMB.isNew()}"
                                 resetValues="true" icon="fa fa-refresh"/>
-                    <p:menuitem value="Deletar" action="#{carFormMB.remove}" process="@this"
+                    <p:menuitem value="Deletar" action="#{peopleFormMB.remove}" process="@this"
                                 rendered="#{not peopleFormMB.isNew()}" icon="fa fa-trash">
                         <f:setPropertyActionListener value="true"
                                                      target="#{facesContext.externalContext.flash.keepMessages}"/>
@@ -75,10 +75,10 @@
                         </div>
                     </div> 
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad">
-                        <p:outputLabel for="typePerson" value="Tipo de Pessoa"/>
-                        <p:selectManyCheckbox id="typePerson" value="#{checkboxMB.selectedCities2}" layout="responsive" columns="2">
-                            <f:selectItems itemLabel="Física" value="#{checkboxMB.cities}" var="type" itemValue="#{type}"/>
-                        </p:selectManyCheckbox>
+                        <p:outputLabel for="radio" value="Tipo de Pessoa"/>
+                        <p:selectOneRadio id="radio" value="#{radioMB.city2}" layout="responsive" columns="2">
+                            <f:selectItems value="#{radioMB.cities}" var="c" itemLabel="#{c}" itemValue="#{c}"/>
+                        </p:selectOneRadio>
                     </div>
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad"> 
                         <div class="ui-sm-12 ui-g-11">
@@ -144,7 +144,7 @@
                         <p:menuitem value="Resetar" action="#{peopleFormMB.clear}"
                                     process="@this" update="@form" rendered="#{peopleFormMB.isNew()}"
                                     resetValues="true" icon="fa fa-refresh"/>
-                        <p:menuitem value="Deletar" action="#{carFormMB.remove}" process="@this"
+                        <p:menuitem value="Deletar" action="#{peopleFormMB.remove}" process="@this"
                                     rendered="#{not peopleFormMB.isNew()}" icon="fa fa-trash">
                             <f:setPropertyActionListener value="true"
                                                          target="#{facesContext.externalContext.flash.keepMessages}"/>

@@ -1,24 +1,24 @@
 package br.com.cattle_control.starter.bean;
 
 
-import javax.faces.view.ViewScoped;
+// import javax.faces.view.ViewScoped;
 import org.omnifaces.util.Faces;
 
 
-import javax.inject.Inject;
-import javax.inject.Named;
+// import javax.inject.Inject;
+// import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 
-import java.util.List;
-import javax.faces.application.FacesMessage;
+// import java.util.List;
+// import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 
 import lombok.RequiredArgsConstructor;
 	
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
+// import org.primefaces.model.DefaultStreamedContent;
+// import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
@@ -31,17 +31,23 @@ import br.com.cattle_control.starter.service.PeopleService;
 import static br.com.cattle_control.starter.util.Utils.addDetailMessage;
 import static com.github.adminfaces.template.util.Assert.has;
 
+/**
+* @autor Henrique Marcuzzo, Matheus Batistela
+*/
 
 @Component
 @RequestScope
 @RequiredArgsConstructor
 public class PeopleFormMB implements Serializable {
     
-    private People people = new People();
     
+
+    private static final long serialVersionUID = 1L;
+
     @Autowired
     private final PeopleService peopleService;
-
+    
+    private People people = new People();
 
     // Delegação de Getters and Setters das propriedades de people que serão usadas na tela
     public Long getId() {
@@ -137,6 +143,18 @@ public class PeopleFormMB implements Serializable {
 
     public void clear() {
         people = new People();
+    }
+
+    public void remove() throws IOException {
+        if (has(people) && has(people.getId())) {
+            people.setDeleted(true);
+            peopleService.update(people);
+
+            addDetailMessage("A Pessoa " + people.getName() + " foi removida com sucesso");
+
+            Faces.getFlash().setKeepMessages(true);
+            Faces.redirect("car-list.jsf");
+        }
     }
 
     

@@ -1,6 +1,6 @@
 package br.com.cattle_control.starter.service;
 
-import java.net.URLConnection;
+// import java.net.URLConnection;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
