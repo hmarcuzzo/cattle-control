@@ -52,22 +52,12 @@ public class PeopleServiceIntegrationTest {
         // assertThat(people.getId()).isEqualTo(1);
         peopleService.create(people);
 
-        // people = People.builder()
-        //                     .name("Henrique")
-        //                     .email("henrique@hotmail.com")
-        //                     .type(1)
-        //                     .idType("41199288888")
-        //                     .phone("17991524608")
-        //                     .info("Olá Mundo!")
-        //                     .deleted(false)
-        //                     .build();
-
         // people.setName("João");
-        people.setDeleted(true);
+        // people.setDeleted(true);
 
 
         // peopleService.create(people);
-        peopleService.update(people);
+        peopleService.readAll().get(0).setDeleted(true);
         // peopleService.delete(people.getId());
 
         assertThat(peopleService.readAll().get(0).getDeleted()).isEqualTo(true);

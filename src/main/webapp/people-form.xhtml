@@ -6,8 +6,7 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="id" value="#{carFormMB.id}" converter="javax.faces.Long"/>
-            <!-- use view action if you are in a Java EE 7 server: <f:viewAction action="#{carFormMB.init()}"/>-->
+            <f:viewParam name="id" value="#{peopleFormMB.id}" converter="javax.faces.Long"/>
             <f:event type="preRenderView" listener="#{carFormMB.init}"/>
         </f:metadata>
         <ui:param name="renderAsterisks" value="true"/>
@@ -16,21 +15,21 @@
         Formulário de pessoas
     </ui:define>
     <ui:define name="body">
-        <adm:breadcrumb title="#{empty carFormMB.id ? 'New Car' : 'Car '.concat(carFormMB.id)}" link="car-form.xhtml?id=#{carFormMB.id}"/>
+        <adm:breadcrumb title="#{empty peopleFormMB.id ? 'New Car' : 'Car '.concat(peopleFormMB.id)}" link="car-form.xhtml?id=#{peopleFormMB.id}"/>
         <h:form id="form" prependId="false">
             <p:focus context="@form"/>
             <p:panel styleClass="box-primary card">
                 <div id="main-buttons" class="hidden-sm hidden-xs">
-                    <p:commandButton value="Salvar" action="#{carFormMB.save}" update="@form"
+                    <p:commandButton value="Salvar" action="#{peopleFormMB.save}" update="@form"
                                      icon="fa fa-check" styleClass="btn-primary"/>
-                    <p:spacer width="5" rendered="#{carFormMB.isNew()}"/>
-                    <p:commandButton value="Limpar" action="#{carFormMB.clear}" process="@this"
+                    <p:spacer width="5" rendered="#{peopleFormMB.isNew()}"/>
+                    <p:commandButton value="Limpar" action="#{peopleFormMB.clear}" process="@this"
                                      icon="fa fa-refresh" styleClass="btn-success"
-                                     update="@form" rendered="#{carFormMB.isNew()}" resetValues="true"/>
-                    <p:spacer width="5" rendered="#{not carFormMB.isNew()}"/>
+                                     update="@form" rendered="#{peopleFormMB.isNew()}" resetValues="true"/>
+                    <p:spacer width="5" rendered="#{not peopleFormMB.isNew()}"/>
 
                     <p:commandButton value="Deletar" action="#{carFormMB.remove}" process="@this"
-                                     rendered="#{not carFormMB.isNew()}" icon="fa fa-trash"
+                                     rendered="#{not peopleFormMB.isNew()}" icon="fa fa-trash"
                                      styleClass="btn-danger">
                         <f:setPropertyActionListener value="true"
                                                      target="#{facesContext.externalContext.flash.keepMessages}"/>
@@ -42,14 +41,14 @@
                                      process="@this"
                                      icon="fa fa-reply"/>
                 </div>
-                <p:splitButton value="Salvar" action="#{carFormMB.save}" update="@form"
+                <p:splitButton value="Salvar" action="#{peopleFormMB.save}" update="@form"
                                icon="fa fa-check"
                                styleClass="hidden-md hidden-lg btn-primary">
-                    <p:menuitem value="Resetar" action="#{carFormMB.clear}"
-                                process="@this" update="@form" rendered="#{carFormMB.isNew()}"
+                    <p:menuitem value="Resetar" action="#{peopleFormMB.clear}"
+                                process="@this" update="@form" rendered="#{peopleFormMB.isNew()}"
                                 resetValues="true" icon="fa fa-refresh"/>
                     <p:menuitem value="Deletar" action="#{carFormMB.remove}" process="@this"
-                                rendered="#{not carFormMB.isNew()}" icon="fa fa-trash">
+                                rendered="#{not peopleFormMB.isNew()}" icon="fa fa-trash">
                         <f:setPropertyActionListener value="true"
                                                      target="#{facesContext.externalContext.flash.keepMessages}"/>
                         <p:confirm header="Confirmation" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
@@ -68,7 +67,7 @@
                             <p:outputLabel for="id" value="ID"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:inputText id="id" value="#{carFormMB.car.id}" readonly="true" 
+                            <p:inputText id="id" value="#{peopleFormMB.id}" readonly="true" 
                                 styleClass="form-control ui-state-disabled" style="width: 100%"/>
                             <span class="help-block">
                                     <p:message for="id"/>
@@ -83,21 +82,21 @@
                     </div>
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad"> 
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Model" for="inptModel"/>
+                            <p:outputLabel value="Número do CPF/CNPJ" for="inptIdType"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:inputText id="inptModel" value="#{carFormMB.car.model}" required="true"/>
+                            <p:inputMask id="inptIdType" mask="999.999.999-99" value="#{peopleFormMB.idType}" required="true"/>
                             <span class="help-block"> 
-                                <p:message for="inptModel"/>
+                                <p:message for="inptIdType"/>
                             </span>
                         </div>
                     </div>     
                     <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Name" for="inptName"/>
+                            <p:outputLabel value="Nome Completo" for="inptName"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:inputText id="inptName" value="#{carFormMB.car.name}" required="true"/>
+                            <p:inputText id="inptName" value="#{peopleFormMB.name}" required="true"/>
                             <span class="help-block"> 
                                 <p:message for="inptName"/>
                             </span>
@@ -105,26 +104,48 @@
                     </div>     
                     <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Price" for="inptPrice"/>
+                            <p:outputLabel value="Email" for="inptEmail"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:inputNumber id="inptPrice" value="#{carFormMB.car.price}" required="true"/>
+                            <p:inputText id="inptEmail" value="#{peopleFormMB.email}"/>
                             <span class="help-block"> 
-                                <p:message for="inptPrice"/>
+                                <p:message for="inptEmail"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel for="inptPhone" value="Telefone"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputMask id="inptPhone" mask="+99 (99) 999999999" value="#{peopleFormMB.phone}" required="true"/>
+                            <span class="help-block"> 
+                                <p:message for="inptPhone"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel for="inptInfo" value="Informações"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputTextarea id="inptInfo" value="#{peopleFormMB.info}"/>
+                            <span class="help-block"> 
+                                <p:message for="inptInfo"/>
                             </span>
                         </div>
                     </div>
                 </div>
                 <h:panelGroup id="footer" layout="block" styleClass="hidden-sm hidden-md hidden-lg">
                     <hr/>
-                    <p:splitButton value="Salvar" action="#{carFormMB.save}" update="@form"
+                    <p:splitButton value="Salvar" action="#{peopleFormMB.save}" update="@form"
                                    icon="fa fa-check"
                                    styleClass="hidden-md hidden-lg btn-primary">
-                        <p:menuitem value="Resetar" action="#{carFormMB.clear}"
-                                    process="@this" update="@form" rendered="#{carFormMB.isNew()}"
+                        <p:menuitem value="Resetar" action="#{peopleFormMB.clear}"
+                                    process="@this" update="@form" rendered="#{peopleFormMB.isNew()}"
                                     resetValues="true" icon="fa fa-refresh"/>
                         <p:menuitem value="Deletar" action="#{carFormMB.remove}" process="@this"
-                                    rendered="#{not carFormMB.isNew()}" icon="fa fa-trash">
+                                    rendered="#{not peopleFormMB.isNew()}" icon="fa fa-trash">
                             <f:setPropertyActionListener value="true"
                                                          target="#{facesContext.externalContext.flash.keepMessages}"/>
                             <p:confirm header="Confirmation" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
