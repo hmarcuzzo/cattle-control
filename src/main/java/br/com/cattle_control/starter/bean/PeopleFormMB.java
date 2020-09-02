@@ -4,7 +4,7 @@ package br.com.cattle_control.starter.bean;
 import org.omnifaces.util.Faces;
 
 
-// import java.io.IOException;
+import java.io.IOException;
 
 // import java.util.List;
 // import javax.faces.application.FacesMessage;
@@ -113,8 +113,6 @@ public class PeopleFormMB {
 
     // Ações disponibilizadas na tela
     public void save() {
-        System.out.println("Valor do ID: " + getId());
-        System.out.println("Valor do Nome: " + getName());
         this.people = People.builder()
                             .id(getId())
                             .name(getName())
@@ -154,13 +152,14 @@ public class PeopleFormMB {
         people = new People();
     }
 
-    public void remove() {
+    public void remove() throws IOException{
         String msg;
+        System.out.println("Valor do ID: " + getId());
         if (has(getId())) {
             this.people = peopleService.readById(getId());
-            
+            System.out.println("Valor do Nome: " + getName());
             try {
-                people.setDeleted(true);
+                setDeleted(true);
                 peopleService.update(people);
                 
                 msg = "A Pessoa " + getName() + " foi removida com sucesso";
@@ -171,11 +170,11 @@ public class PeopleFormMB {
             } catch(final EntityAlreadyExistsException e) {
                 msg = "Erro inesperado!";
             }
-
+            
             addDetailMessage(msg);
-
+            
             Faces.getFlash().setKeepMessages(true);
-            // Faces.redirect("people-list.jsf");
+            Faces.redirect("people-list.jsf");
         }
     }
 

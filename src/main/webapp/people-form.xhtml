@@ -6,7 +6,7 @@
 
     <!-- <ui:define name="metadata"> -->
         <!-- <f:metadata> -->
-            <!-- <f:viewParam name="ExistId" value="#{peopleFormMB.id}" converter="javax.faces.Long"/> -->
+            <!-- <f:viewParam name="ExistID" value="#{peopleFormMB.id}"/> -->
             <!-- <f:event type="preRenderView" listener="#{peopleFormMB.init}"/> -->
         <!-- </f:metadata> -->
         <!-- <ui:param name="renderAsterisks" value="true"/>  -->
@@ -59,20 +59,9 @@
                                 icon="fa fa-reply"/>
                 </p:splitButton>
 
-
                 <div class="ui-g ui-fluid">
-                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"> 
-                        <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel for="id" value="ID"/>
-                        </div>
-                        <div class="ui-sm-12 ui-g-11">
-                            <p:inputText id="id" value="#{peopleFormMB.id}" readonly="true" 
-                                styleClass="form-control ui-state-disabled" style="width: 100%"/>
-                            <span class="help-block">
-                                <p:message for="id"/>
-                            </span>
-                        </div>
-                    </div>
+                    <!-- <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div> -->
+
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad">
                         <div class="ui-sm-12 ui-g-11">
                             <p:outputLabel for="inptType" value="Tipo de pessoa *"/>
@@ -83,19 +72,23 @@
                                 <f:selectItem itemLabel="Jurídica" itemValue="2" />
                             </p:selectOneRadio>
                         </div>
-                      
                     </div>
+
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad"> 
-                        <div class="ui-sm-12 ui-g-11">
+                        <div class="ui-sm-12 ui-g-10">
                             <p:outputLabel value="Número do CPF/CNPJ *" for="inptIdType"/>
                         </div>
-                        <div class="ui-sm-12 ui-g-11">
+                        <div class="ui-sm-12 ui-g-10">
                             <p:inputMask id="inptIdType" mask="999.999.999-99" value="#{peopleFormMB.idType}" required="true"/>
                             <span class="help-block"> 
                                 <p:message for="inptIdType"/>
                             </span>
                         </div>
-                    </div>     
+                    </div>    
+                    
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+                    <!-- <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div> -->
+
                     <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
                             <p:outputLabel value="Nome Completo *" for="inptName"/>
@@ -106,29 +99,38 @@
                                 <p:message for="inptName"/>
                             </span>
                         </div>
-                    </div>     
-                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
-                        <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Email" for="inptEmail"/>
-                        </div>
-                        <div class="ui-sm-12 ui-g-11">
-                            <p:inputText id="inptEmail" value="#{peopleFormMB.email}"/>
-                            <span class="help-block"> 
-                                <p:message for="inptEmail"/>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
-                        <div class="ui-sm-12 ui-g-11">
+                    </div>  
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+
+                    <div class="ui-sm-2 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-2 ui-g-10">
                             <p:outputLabel for="inptPhone" value="Telefone *"/>
                         </div>
-                        <div class="ui-sm-12 ui-g-11">
+                        <div class="ui-sm-2 ui-g-10">
                             <p:inputMask id="inptPhone" mask="+99 (99) 99999-9999" value="#{peopleFormMB.phone}" required="true"/>
                             <span class="help-block"> 
                                 <p:message for="inptPhone"/>
                             </span>
                         </div>
                     </div>
+
+                    <div class="ui-sm-8 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-8 ui-g-10">
+                            <p:outputLabel value="Email" for="inptEmail"/>
+                        </div>
+                        <div class="ui-sm-8 ui-g-10">
+                            <p:inputText id="inptEmail" value="#{peopleFormMB.email}"/>
+                            <span class="help-block"> 
+                                <p:message for="inptEmail"/>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+                    <!-- <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div> -->
+
                     <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
                             <p:outputLabel for="inptInfo" value="Informações"/>
@@ -137,6 +139,19 @@
                             <p:inputTextarea id="inptInfo" value="#{peopleFormMB.info}"/>
                             <span class="help-block"> 
                                 <p:message for="inptInfo"/>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"> 
+                        <div class="ui-sm-12 ui-g-11">
+                            <!-- <p:outputLabel for="id" value="ID"/> -->
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputText id="id" value="#{peopleFormMB.id}"
+                            styleClass="form-control ui-state-disabled" style="width: 100%" readonly="readonly" type="hidden"/>
+                            <span class="help-block">
+                                <p:message for="id"/>
                             </span>
                         </div>
                     </div>
@@ -153,7 +168,7 @@
                                     rendered="#{not peopleFormMB.isNew()}" icon="fa fa-trash">
                             <f:setPropertyActionListener value="true"
                                                          target="#{facesContext.externalContext.flash.keepMessages}"/>
-                            <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
+                            <p:confirm header="Confirmação" icon="ui-icon-danger" message="Você tem certeza? Esta ação não pode ser desfeita."/>
                         </p:menuitem>
                         <p:separator/>
                         <p:menuitem value="Voltar" action="people-list?faces-redirect=true"
