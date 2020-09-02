@@ -1,19 +1,16 @@
 package br.com.cattle_control.starter.bean;
 
 
-// import javax.faces.view.ViewScoped;
 import org.omnifaces.util.Faces;
 
-import java.io.Console;
-// import javax.inject.Inject;
-// import javax.inject.Named;
-import java.io.IOException;
-import java.io.Serializable;
+
+// import java.io.IOException;
 
 // import java.util.List;
 // import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+// import javax.faces.context.FacesContext;
 
+// import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import lombok.RequiredArgsConstructor;
 	
@@ -38,11 +35,7 @@ import static com.github.adminfaces.template.util.Assert.has;
 @Component
 @RequestScope
 @RequiredArgsConstructor
-public class PeopleFormMB implements Serializable {
-    
-    
-
-    private static final long serialVersionUID = 1L;
+public class PeopleFormMB {
 
     @Autowired
     private final PeopleService peopleService;
@@ -83,6 +76,10 @@ public class PeopleFormMB implements Serializable {
         return people.getDeleted();
     }
 
+    public void setId(Integer id){
+        people.setId(id);
+    }
+
     public void setName(String name){
         people.setName(name);
     }
@@ -108,65 +105,48 @@ public class PeopleFormMB implements Serializable {
         people.setInfo(info);
     }
 
+    public void setDeleted(Boolean deleted) {
+        people.setDeleted(deleted);
+    }
+
 
 
     // Ações disponibilizadas na tela
     public void save() {
-        System.out.println("Hey there! I am here!");
+        System.out.println("Valor do ID: " + getId());
+        System.out.println("Valor do Nome: " + getName());
         this.people = People.builder()
-                            .id(people.getId())
-                            .name(people.getName())
-                            .email(people.getEmail())
-                            .type(people.getType())
-                            .idType(people.getIdType())
-                            .phone(people.getPhone())
-                            .info(people.getInfo())
+                            .id(getId())
+                            .name(getName())
+                            .email(getEmail())
+                            .type(getType())
+                            .idType(getIdType())
+                            .phone(getPhone())
+                            .info(getInfo())
                             .deleted(false)
         					.build();
-        
-        // FacesContext.getCurrentInstance()
-		// 	.getExternalContext()
-		// 	.getFlash()
-        //     .setKeepMessages(true);
-            
+               
         String msg;
-        System.out.println("Valor do ID: " + people.getId());
         try {
-            if (people.getId() == null) {
+            if (getId() == null) {
                 peopleService.create(this.people);
-                msg = "A pessoa " + people.getName() + " foi criada com sucesso!";
+                msg = "A pessoa " + getName() + " foi criada com sucesso!";
             } else {
                 peopleService.update(this.people);
-                msg = "A pessoa " + people.getName() + " foi atualizada com sucesso!";
+                msg = "A pessoa " + getName() + " foi atualizada com sucesso!";
             }
 
-            // FacesContext.getCurrentInstance()
-            //             .addDetailMessage("ola")
-            // 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
-            // 												"Info", 
-            // 												String.format("Pessoa [%s] criada com sucesso!", 
-            // 												this.people.getName())));  
-            
-            // return "index.xhtml?faces-redirect=true";
         } catch (final EntityAlreadyExistsException e) {
-            // FacesContext.getCurrentInstance()
-            // 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-            // 												"Erro", 
-            // 												"Já existe um arquivo com esse nome!"));
-            // return "index.xhtml?indice=1";
-            msg = "A pessoa " + people.getName() + " já existe no Banco de Dados!";
+            msg = "Uma pessoa com o CPF/CNPJ " + getIdType() + " já existe no Banco de Dados!";
 
         } catch (final AnyPersistenceException e) {
-            // FacesContext.getCurrentInstance()
-            // 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-            // 												"Erro", 
-            // 												"Erro na gravação dos dados!"));
-            // return "index.xhtml";
-
             msg = "Erro na gravação dos dados!";
+
         }
 
         addDetailMessage(msg);
+        // Faces.getFlash().setKeepMessages(true);
+        // Faces.redirect("people-form.xhtml?id=#{peopleFormMB.id}");
         // clear();
     }
 
@@ -174,23 +154,36 @@ public class PeopleFormMB implements Serializable {
         people = new People();
     }
 
-    public void remove() throws IOException {
-        // if (has(people) && has(people.getId())) {
-        //     people.setDeleted(true);
-        //     peopleService.update(people);
+    public void remove() {
+        String msg;
+        if (has(getId())) {
+            this.people = peopleService.readById(getId());
+            
+            try {
+                people.setDeleted(true);
+                peopleService.update(people);
+                
+                msg = "A Pessoa " + getName() + " foi removida com sucesso";
 
-        //     addDetailMessage("A Pessoa " + people.getName() + " foi removida com sucesso");
+            } catch (final AnyPersistenceException e) {
+                msg = "Erro na gravação dos dados!";
 
-        //     Faces.getFlash().setKeepMessages(true);
-        //     Faces.redirect("car-list.jsf");
-        // }
+            } catch(final EntityAlreadyExistsException e) {
+                msg = "Erro inesperado!";
+            }
+
+            addDetailMessage(msg);
+
+            Faces.getFlash().setKeepMessages(true);
+            // Faces.redirect("people-list.jsf");
+        }
     }
 
     
 
     // Funções auxiliares
     public boolean isNew() {
-        return people == null || people.getId() == null;
+        return people == null || getId() == null;
     }
 
     

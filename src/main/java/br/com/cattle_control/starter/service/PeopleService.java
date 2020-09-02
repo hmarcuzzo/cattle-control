@@ -1,13 +1,11 @@
 package br.com.cattle_control.starter.service;
 
-// import java.net.URLConnection;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
-// import org.aspectj.weaver.ast.And;
 import org.springframework.stereotype.Service;
 
 import br.com.cattle_control.starter.model.People;

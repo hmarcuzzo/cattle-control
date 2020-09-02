@@ -54,12 +54,20 @@ public class PeopleServiceIntegrationTest {
 
         // people.setName("João");
         // people.setDeleted(true);
+        people = People.builder()
+                            .name("Henrique Souza")
+                            .email("henrique@hotmail.com")
+                            .type(1)
+                            .idType("41199288888")
+                            .phone("17991524608")
+                            .info("Olá Mundo!")
+                            .deleted(false)
+                            .build();
 
-
-        // peopleService.create(people);
-        peopleService.readAll().get(0).setDeleted(true);
+        peopleService.update(people);
+        // peopleService.readAll().get(0).setDeleted(true);
         // peopleService.delete(people.getId());
 
-        assertThat(peopleService.readAll().get(0).getDeleted()).isEqualTo(true);
+        assertThat(peopleService.readAll().get(0).getName()).isEqualTo("Henrique");
     }
 }
