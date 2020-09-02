@@ -1,4 +1,4 @@
-package br.com.cattle_control.starter.bean;
+package br.com.cattle_control.starter.view;
 
 import javax.faces.view.ViewScoped;
 import org.omnifaces.util.Faces;
@@ -14,7 +14,6 @@ import java.util.Map;
 // import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.annotation.PostConstruct;
-
 
 
 import lombok.RequiredArgsConstructor;
@@ -35,12 +34,10 @@ import br.com.cattle_control.starter.infra.model.Filter;
 import com.github.adminfaces.template.exception.BusinessException;
 
 
-
-
 import static br.com.cattle_control.starter.util.Utils.addDetailMessage;
 import static com.github.adminfaces.template.util.Assert.has;
 
-public class PeopleListMB implements Serializable {
+public class PeopleListView implements Serializable {
     
     
 }

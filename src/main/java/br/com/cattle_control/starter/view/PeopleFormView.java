@@ -1,4 +1,4 @@
-package br.com.cattle_control.starter.bean;
+package br.com.cattle_control.starter.view;
 
 
 import org.omnifaces.util.Faces;
@@ -35,7 +35,7 @@ import static com.github.adminfaces.template.util.Assert.has;
 @Component
 @RequestScope
 @RequiredArgsConstructor
-public class PeopleFormMB {
+public class PeopleFormView {
 
     @Autowired
     private final PeopleService peopleService;
