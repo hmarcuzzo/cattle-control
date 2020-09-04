@@ -133,11 +133,11 @@
 
 
 
-        <p:dialog header="Pessoas Selecionadas" widgetVar="selectedCars" height="250"
+        <p:dialog header="Pessoas Selecionadas" widgetVar="selectedPeoples" height="250"
                   width="400" responsive="true" styleClass="box-success">
-            <p:dataList id="selectedCarsList" value="#{carListMB.selectedCars}" var="car"
+            <p:dataList id="selectedCarsList" value="#{peopleListView.selectedPeoples}" var="people"
                         type="definition">
-                ID: #{car.id} - Name: #{car.name} - Model: #{car.model}
+                CPF/CNPJ: #{people.id} - Nome: #{people.name} - Telefone: #{people.phone}
             </p:dataList>
         </p:dialog>
 
