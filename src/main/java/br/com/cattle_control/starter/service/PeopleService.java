@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.github.adminfaces.template.exception.BusinessException;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -18,11 +20,19 @@ import br.com.cattle_control.starter.repository.PeopleRepository;
 public class PeopleService implements ICRUDService<People>{
     private final PeopleRepository peopleRepository;
 
-    public List<People> readAll() {
+    public List<People> readAll() { // need to fix
         return List.copyOf(peopleRepository.findAll());
     }
 
-    public People readById(Integer anId) throws EntityNotFoundException {
+    public List<String> getIDsType(String query) {
+        return null;
+    }
+
+    public List<String> getNames(String query) {
+        return null;
+    }
+
+    public People readById(Integer anId) throws EntityNotFoundException { // need to fix
         return peopleRepository.findById(anId).orElseThrow(EntityNotFoundException::new);
     }
 
@@ -30,7 +40,8 @@ public class PeopleService implements ICRUDService<People>{
 
         if (peopleRepository
         		.findAll()
-        		.stream()
+                .stream()
+                .filter(currentPeople -> currentPeople.getDeleted().equals(false))
         		.anyMatch(currentPeople -> currentPeople.getIdType().equals(anPeople.getIdType()))) {
             throw new EntityAlreadyExistsException();
         }
@@ -47,8 +58,9 @@ public class PeopleService implements ICRUDService<People>{
 	public People update(People entity) throws EntityAlreadyExistsException, AnyPersistenceException {
 		if (peopleRepository
         		.findAll()
-        		.stream()
-        		.anyMatch(currentPeople -> currentPeople.getIdType().equals(entity.getIdType()) && !currentPeople.getId().equals(entity.getId()))) {
+                .stream()
+                .filter(currentPeople -> currentPeople.getDeleted().equals(false) && !currentPeople.getId().equals(entity.getId()))
+        		.anyMatch(currentPeople -> currentPeople.getIdType().equals(entity.getIdType()))) {
             throw new EntityAlreadyExistsException();
         }
 		
@@ -63,6 +75,14 @@ public class PeopleService implements ICRUDService<People>{
 	@Override
 	public void delete(Long anId) {
 		// TODO Implementação obrigatório por causa da interface ICRUDService	
-	}
+    }
+
+    public People findByIdType(String idType) {
+        return peopleRepository.findAll()
+                .stream()
+                .filter(currentPeople -> currentPeople.getIdType().equals(idType) && currentPeople.getDeleted().equals(false))
+                .findFirst()
+                .orElseThrow(() -> new BusinessException("Pessoa com CPF/CNPJ " + idType + " não encontrada"));
+    }
 
 }

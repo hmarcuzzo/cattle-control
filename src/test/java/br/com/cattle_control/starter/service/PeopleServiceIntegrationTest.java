@@ -70,4 +70,85 @@ public class PeopleServiceIntegrationTest {
 
         assertThat(peopleService.readAll().get(0).getName()).isEqualTo("Henrique");
     }
+
+
+    @DisplayName("Testar a procura de uma Pessoa por IdType.")
+	@Test
+	@Transactional
+	@Rollback
+	void testFindByIdType() throws Exception{
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("411.992.888-88")
+                                .phone("17991524608")
+                                .info("Olá Mundo!")
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        
+        assertThat(peopleService.findByIdType("411.992.888-88")).isEqualTo(people);
+    }
+
+    @DisplayName("Testar a procura de uma Pessoa deletada por IdType.")
+	@Test
+	@Transactional
+	@Rollback
+	void testFindByIdTypeDeleted() throws Exception{
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("411.992.888-88")
+                                .phone("17991524608")
+                                .info("Olá Mundo!")
+                                .deleted(true)
+                                .build();
+
+        peopleService.create(people);
+
+
+        assertThat(peopleService.findByIdType("411.992.888-88")).isNull(); // falha porem está certo
+    }
+
+
+    @DisplayName("Testar a criação de uma Pessoa com CPF igual a quem já foi deletada.")
+	@Test
+	@Transactional
+	@Rollback
+	void testCreatePeopleIdTypeEqualsDeleted() throws Exception{
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("411.992.888-88")
+                                .phone("17991524608")
+                                .info("Olá Mundo!")
+                                .deleted(true)
+                                .build();
+
+        peopleService.create(people);
+
+
+        people = People.builder()
+                            .name("Henrique Souza")
+                            .email("henrique@hotmail.com")
+                            .type(1)
+                            .idType("411.992.888-88")
+                            .phone("17991524608")
+                            .info("Olá Mundo!")
+                            .deleted(false)
+                            .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.readAll().get(1).getDeleted()).isEqualTo(false); // falha porem está certo
+    }
+
 }

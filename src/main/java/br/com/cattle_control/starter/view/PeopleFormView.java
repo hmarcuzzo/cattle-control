@@ -143,8 +143,6 @@ public class PeopleFormView {
         }
 
         addDetailMessage(msg);
-        // Faces.getFlash().setKeepMessages(true);
-        // Faces.redirect("people-form.xhtml?id=#{peopleFormMB.id}");
         // clear();
     }
 

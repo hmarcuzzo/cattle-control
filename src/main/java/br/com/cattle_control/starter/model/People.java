@@ -5,6 +5,9 @@ import java.io.Serializable;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 
@@ -29,15 +32,8 @@ public class People implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "People_ID")
+    // @OnDelete(action = OnDeleteAction.CASCADE)
     private Integer id;
-
-    @Column(name = "People_Name")
-    @NotEmpty(message = "*Por favor forneça o nome")
-    private String name;
-
-    @Column(name = "People_Email")
-    @Email(message = "*Por favor forneça um e-mail válido")
-    private String email;
 
     @Column(name = "People_Type")
     @NotNull(message = "*Por favor defina o tipo")
@@ -48,11 +44,18 @@ public class People implements Serializable {
     @NotEmpty(message = "*Por favor forneça um CPF")
     private String idType;
 
+    @Column(name = "People_Name")
+    @NotEmpty(message = "*Por favor forneça o nome")
+    private String name;
 
     @Column(name = "People_Phone")
     @NotEmpty(message = "*Por favor forneça o telefone")
     @Length(min = 10, max= 25, message = "*Por favor forneça todos os dígitos do telefone")
     private String phone;
+
+    @Column(name = "People_Email")
+    @Email(message = "*Por favor forneça um e-mail válido")
+    private String email;
 
     @Column(name = "People_Info")
     @Length(min = 0, max= 1000, message = "*A descrição deve ter no máximo 1000 caracteres")
@@ -63,12 +66,12 @@ public class People implements Serializable {
 
     @Builder 
 	public static People create (
-            Integer    id,
-            String  name,
-			String  email,
+            Integer id,
 			Integer type,
 			String  idType,
+            String  name,
 			String  phone,
+			String  email,
 			String  info,
 			Boolean deleted) {
 		
@@ -76,11 +79,11 @@ public class People implements Serializable {
     	People instance = new People();
     	
     	instance.setId(id);
-    	instance.setEmail(email);
-    	instance.setName(name);
-        instance.setIdType(idType);
         instance.setType(type);
+        instance.setIdType(idType);
+    	instance.setName(name);
     	instance.setPhone(phone);
+    	instance.setEmail(email);
     	instance.setInfo(info);
         instance.setDeleted(deleted);
         
