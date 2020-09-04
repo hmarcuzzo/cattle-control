@@ -1,6 +1,7 @@
 package br.com.cattle_control.starter.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -22,18 +23,37 @@ public class PeopleService implements ICRUDService<People>{
 
     public List<People> readAll() { // need to fix
         return List.copyOf(peopleRepository.findAll());
+        // return List.copyOf(peopleRepository
+        //                                 .findAll()
+        //                                 .stream()
+        //                                 .filter(currentPeople -> currentPeople.getDeleted().equals(false)));
     }
 
     public List<String> getIDsType(String query) {
-        return null;
+        return peopleRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false))
+                            .map(People::getIdType)
+                            .collect(Collectors.toList());
     }
 
     public List<String> getNames(String query) {
-        return null;
+        return peopleRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentPeople -> currentPeople.getName().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false))
+                            .map(People::getName)
+                            .collect(Collectors.toList());
     }
 
     public People readById(Integer anId) throws EntityNotFoundException { // need to fix
-        return peopleRepository.findById(anId).orElseThrow(EntityNotFoundException::new);
+        return peopleRepository
+        .findAll()
+        .stream()
+        .filter(currentPeople -> currentPeople.getDeleted().equals(false) && currentPeople.getId().equals(anId))
+        .findFirst()
+        .orElseThrow(EntityNotFoundException::new);
     }
 
     public People create(People anPeople) throws EntityAlreadyExistsException, AnyPersistenceException {

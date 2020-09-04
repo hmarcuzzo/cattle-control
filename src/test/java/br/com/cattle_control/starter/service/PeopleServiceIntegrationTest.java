@@ -134,8 +134,7 @@ public class PeopleServiceIntegrationTest {
                                 .build();
 
         peopleService.create(people);
-
-
+        
         people = People.builder()
                             .name("Henrique Souza")
                             .email("henrique@hotmail.com")
@@ -148,7 +147,50 @@ public class PeopleServiceIntegrationTest {
 
         peopleService.create(people);
 
-        assertThat(peopleService.readAll().get(1).getDeleted()).isEqualTo(false); // falha porem está certo
+        assertThat(peopleService.readAll().get(1).getDeleted()).isEqualTo(false);
+    }
+
+
+    @DisplayName("Testar a procura por IDsType existentes.")
+	@Test
+	@Transactional
+	@Rollback
+	void testGetIDsType() throws Exception{
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("411.992.888-88")
+                                .phone("17991524608")
+                                .info("Olá Mundo!")
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getIDsType("411").get(0)).isEqualTo("411.992.888-88");
+    }
+
+    @DisplayName("Testar a procura por Nomes existentes.")
+	@Test
+	@Transactional
+	@Rollback
+	void testGetNames() throws Exception{
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("411.992.888-88")
+                                .phone("17991524608")
+                                .info("Olá Mundo!")
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getNames("hen").get(0)).isEqualTo("Henrique");
     }
 
 }

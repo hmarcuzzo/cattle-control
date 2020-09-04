@@ -153,4 +153,8 @@ public class PeopleListView {
         List<String> result = peopleService.getNames(query);
         return result;
     }
+
+    public List<People> listAllPeople() {
+        return peopleService.readAll();
+    }
 }
