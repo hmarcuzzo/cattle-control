@@ -36,21 +36,21 @@ public class People implements Serializable {
     private Integer id;
 
     @Column(name = "People_Type")
-    @NotNull(message = "*Por favor defina o tipo")
+    // @NotNull(message = "*Por favor defina o tipo")
     private Integer type;
 
     @Column(name = "People_ID_Type")
-    @Length(min = 11, max= 14, message = "*Por favor forneça todos os dígitos do CPF")
-    @NotEmpty(message = "*Por favor forneça um CPF")
+    // @Length(min = 11, max= 14, message = "*Por favor forneça todos os dígitos do CPF")
+    // @NotEmpty(message = "*Por favor forneça um CPF")
     private String idType;
 
     @Column(name = "People_Name")
-    @NotEmpty(message = "*Por favor forneça o nome")
+    // @NotEmpty(message = "*Por favor forneça o nome")
     private String name;
 
     @Column(name = "People_Phone")
-    @NotEmpty(message = "*Por favor forneça o telefone")
-    @Length(min = 10, max= 25, message = "*Por favor forneça todos os dígitos do telefone")
+    // @NotEmpty(message = "*Por favor forneça o telefone")
+    // @Length(min = 10, max= 25, message = "*Por favor forneça todos os dígitos do telefone")
     private String phone;
 
     @Column(name = "People_Email")

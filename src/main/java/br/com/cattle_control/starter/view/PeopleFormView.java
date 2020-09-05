@@ -40,7 +40,23 @@ public class PeopleFormView {
     @Autowired
     private final PeopleService peopleService;
 
+    private Integer ExistID;
+
     private People people = new People();
+
+    public void init() {
+        if(Faces.isAjaxRequest()){
+           return;
+        }
+        if (ExistID != null) {
+            System.out.println("Estou aqui2!");
+            people = peopleService.readById(ExistID);
+        } 
+        // else {
+        //     System.out.println("Estou aqui3!");
+        //     people = new People();
+        // }
+    }
     
 
     // Delegação de Getters and Setters das propriedades de people que serão usadas na tela
@@ -150,9 +166,9 @@ public class PeopleFormView {
         people = new People();
     }
 
-    public void remove() throws IOException{
+    public void delete() throws IOException{
         String msg;
-        System.out.println("Valor do ID: " + getId());
+        System.out.println("Valor do ID Delete: " + getId());
         if (has(getId())) {
             this.people = peopleService.readById(getId());
             System.out.println("Valor do Nome: " + getName());

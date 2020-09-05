@@ -51,8 +51,7 @@
                         <p:menuitem value="Ver selecionados" update="@(.ui-dialog)"
                                     oncomplete="PF('selectedPeoples').show()"
                                     disabled="#{empty peopleListView.selectedPeoples or peopleListView.selectedPeoples.size() == 0}"
-                                    icon="fa fa-search"
-                        />
+                                    icon="fa fa-search"/>
                     </p:splitButton>
 
                     <p:separator/>
@@ -87,11 +86,12 @@
                             #{p.type==1?'Física':'Jurídica'}
                         </p:column>
 
-                        <!-- <p:column headerText="CPF/CNPJ" filterBy="#{p.idType}" sortBy="#{p.idType}" filterMatchMode="contains">
+                        <p:column headerText="CPF/CNPJ" filterBy="#{p.idType}" sortBy="#{p.idType}" filterMatchMode="contains">
                             <f:facet name="filter">
                                 <p:autoComplete value="#{peopleListView.filter.entity.idType}" forceSelection="true"
                                                 minQueryLength="2" queryDelay="500"
                                                 completeMethod="#{peopleListView.completeIdType}" maxResults="10">
+                                    <p:inputMask mask="999.999.999-99"/>
                                     <p:ajax event="itemSelect" process="@this" update="@none"
                                             oncomplete="PF('peoplesTable').filter()"/>
                                 </p:autoComplete>
@@ -99,9 +99,9 @@
                              <p:link value="#{p.idType}" outcome="people-form.xhtml" >
                                 <f:param name="id" value="#{p.id}"/>
                             </p:link>
-                        </p:column> -->
+                        </p:column>
 
-                        <!-- <p:column headerText="Nome" sortBy="#{p.name}" filterBy="#{p.name}">
+                        <p:column headerText="Nome" sortBy="#{p.name}" filterBy="#{p.name}">
                             <f:facet name="filter">
                                 <p:autoComplete value="#{peopleListView.filter.entity.name}" forceSelection="true"
                                                 minQueryLength="2" queryDelay="500"
@@ -111,16 +111,16 @@
                                 </p:autoComplete>
                             </f:facet>
                             #{p.name}
-                        </p:column> -->
+                        </p:column>
 
-                        <!-- <p:column headerText="Telefone" sortBy="#{p.phone}" filterBy="#{p.phone}">
+                        <p:column headerText="Telefone" sortBy="#{p.phone}" filterBy="#{p.phone}">
                             <f:facet name="filter">
                                 <p:inputText value="#{peopleListView.filter.entity.phone}">
                                     <p:ajax process="@this" update="@none" oncomplete="PF('peoplesTable').filter()"/>
                                 </p:inputText>
                             </f:facet>
                             #{p.phone}
-                        </p:column> -->
+                        </p:column>
 
                         <p:column headerText="Email" sortBy="#{p.email}" filterBy="#{p.email}">
                             <f:facet name="filter">
