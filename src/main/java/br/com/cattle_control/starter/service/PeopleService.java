@@ -21,12 +21,12 @@ import br.com.cattle_control.starter.repository.PeopleRepository;
 public class PeopleService implements ICRUDService<People>{
     private final PeopleRepository peopleRepository;
 
-    public List<People> readAll() { // need to fix
-        return List.copyOf(peopleRepository.findAll());
-        // return List.copyOf(peopleRepository
-        //                                 .findAll()
-        //                                 .stream()
-        //                                 .filter(currentPeople -> currentPeople.getDeleted().equals(false)));
+    public List<People> readAll() {
+        return peopleRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentPeople -> currentPeople.getDeleted().equals(false))
+                            .collect(Collectors.toList());
     }
 
     public List<String> getIDsType(String query) {
@@ -47,7 +47,7 @@ public class PeopleService implements ICRUDService<People>{
                             .collect(Collectors.toList());
     }
 
-    public People readById(Integer anId) throws EntityNotFoundException { // need to fix
+    public People readById(Integer anId) throws EntityNotFoundException {
         return peopleRepository
         .findAll()
         .stream()

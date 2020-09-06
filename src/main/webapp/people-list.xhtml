@@ -29,8 +29,7 @@
                         <p:spacer width="5"/>
                         <p:commandButton value="Deletar Selecionados" icon="fa fa-trash" styleClass="btn-danger"
                                          action="#{peopleListView.delete}"
-                                         disabled="#{empty peopleListView.selectedPeoples or peopleListView.selectedPeoples.size() == 0}"
-                                         process="@this" update="@form">
+                                         update="@form">
                             <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
                         </p:commandButton>
                         <p:spacer width="5"/>
@@ -86,7 +85,7 @@
                             #{p.type==1?'Física':'Jurídica'}
                         </p:column>
 
-                        <p:column headerText="CPF/CNPJ" filterBy="#{p.idType}" sortBy="#{p.idType}" filterMatchMode="contains">
+                        <p:column headerText="CPF/CNPJ"> <!-- filterBy="#{p.idType}" sortBy="#{p.idType}" filterMatchMode="contains"> -->
                             <f:facet name="filter">
                                 <p:autoComplete value="#{peopleListView.filter.entity.idType}" forceSelection="true"
                                                 minQueryLength="2" queryDelay="500"
@@ -101,7 +100,7 @@
                             </p:link>
                         </p:column>
 
-                        <p:column headerText="Nome" sortBy="#{p.name}" filterBy="#{p.name}">
+                        <p:column headerText="Nome"> <!-- sortBy="#{p.name}" filterBy="#{p.name}"> -->
                             <f:facet name="filter">
                                 <p:autoComplete value="#{peopleListView.filter.entity.name}" forceSelection="true"
                                                 minQueryLength="2" queryDelay="500"
@@ -113,21 +112,21 @@
                             #{p.name}
                         </p:column>
 
-                        <p:column headerText="Telefone" sortBy="#{p.phone}" filterBy="#{p.phone}">
-                            <f:facet name="filter">
+                        <p:column headerText="Telefone"> <!-- sortBy="#{p.phone}" filterBy="#{p.phone}"> -->
+                            <!-- <f:facet name="filter">
                                 <p:inputText value="#{peopleListView.filter.entity.phone}">
                                     <p:ajax process="@this" update="@none" oncomplete="PF('peoplesTable').filter()"/>
                                 </p:inputText>
-                            </f:facet>
+                            </f:facet> -->
                             #{p.phone}
                         </p:column>
 
-                        <p:column headerText="Email" sortBy="#{p.email}" filterBy="#{p.email}">
-                            <f:facet name="filter">
+                        <p:column headerText="Email"> <!-- sortBy="#{p.email}" filterBy="#{p.email}"> -->
+                            <!-- <f:facet name="filter">
                                 <p:inputText value="#{peopleListView.filter.entity.email}">
                                     <p:ajax process="@this" update="@none" oncomplete="PF('peoplesTable').filter()"/>
                                 </p:inputText>
-                            </f:facet>
+                            </f:facet> -->
                             #{p.email}
                         </p:column>
 

@@ -1,10 +1,10 @@
 package br.com.cattle_control.starter.view;
 
-
 import org.omnifaces.util.Faces;
 
-
 import java.io.IOException;
+
+import com.github.adminfaces.template.exception.BusinessException;
 
 // import java.util.List;
 // import javax.faces.application.FacesMessage;
@@ -168,10 +168,8 @@ public class PeopleFormView {
 
     public void delete() throws IOException{
         String msg;
-        System.out.println("Valor do ID Delete: " + getId());
         if (has(getId())) {
             this.people = peopleService.readById(getId());
-            System.out.println("Valor do Nome: " + getName());
             try {
                 setDeleted(true);
                 peopleService.update(people);
@@ -189,6 +187,8 @@ public class PeopleFormView {
             
             Faces.getFlash().setKeepMessages(true);
             Faces.redirect("people-list.jsf");
+        } else {
+            throw new BusinessException("Não existe ninguém para ser deletado!");
         }
     }
 

@@ -26,12 +26,11 @@
 
                     <p:commandButton value="Limpar" action="#{peopleFormView.clear}" process="@this"
                                      icon="fa fa-refresh" styleClass="btn-success"
-                                     update="@form" rendered="#{peopleFormView.isNew()}" resetValues="true"/>
-                    <p:spacer width="5" rendered="#{not peopleFormView.isNew()}"/>
-
-                    <p:commandButton value="Deletar" action="#{peopleFormView.delete}" process="@this"
-                                     rendered="#{not peopleFormView.isNew()}" icon="fa fa-trash" styleClass="btn-danger">
-                                     <f:setPropertyActionListener value="true" target="#{facesContext.externalContext.flash.keepMessages}"/>
+                                     update="@form" resetValues="true" rendered="#{peopleFormView.isNew()}"/>
+                    <p:spacer width="5"/>
+                    
+                    <p:commandButton value="Deletar" action="#{peopleFormView.delete}" update="@form"
+                                        icon="fa fa-trash" styleClass="btn-danger">
                         <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
                     </p:commandButton>
                     <p:spacer width="5"/>
@@ -67,7 +66,7 @@
                             <p:outputLabel for="inptType" value="Tipo de pessoa *"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:selectOneRadio id="inptType" value="#{peopleFormView.type}" unselectable="true">
+                            <p:selectOneRadio id="inptType" value="#{peopleFormView.type}" unselectable="true" required="true">
                                 <f:selectItem itemLabel="Física" itemValue="1" />
                                 <f:selectItem itemLabel="Jurídica" itemValue="2" />
                             </p:selectOneRadio>

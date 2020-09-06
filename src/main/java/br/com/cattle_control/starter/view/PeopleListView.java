@@ -50,7 +50,7 @@ public class PeopleListView {
 
     Filter<People> filter = new Filter<>(new People());
 
-    List<People> selectedPeoples;    //cars selected in checkbox column
+    List<People> selectedPeoples;    //peoples selected in checkbox column
 
     List<People> filteredValue;     // datatable filteredValue attribute (column filters)
 
@@ -98,36 +98,40 @@ public class PeopleListView {
 
     // Ações disponibilizadas na tela
     public void delete() {
-        System.out.println("Estou aqui!");
         int numPeoples = 0;
         String msg = "";
-        for (People selectedPeople : selectedPeoples) {
-            
+        if (!selectedPeoples.isEmpty()) {
+            for (People selectedPeople : selectedPeoples) {
+                
 
-            try {
-                numPeoples++;
-                selectedPeople.setDeleted(true);
-                peopleService.update(selectedPeople);
-
-            } catch (final EntityAlreadyExistsException e) {
-                msg = "Erro inesperado!";
-                break;
-
-            } catch (final AnyPersistenceException e) {
-                msg = "Erro na gravação dos dados!";
-                break;
-
+                try {
+                    numPeoples++;
+                    selectedPeople.setDeleted(true);
+                    peopleService.update(selectedPeople);
+    
+                } catch (final EntityAlreadyExistsException e) {
+                    msg = "Erro inesperado!";
+                    break;
+    
+                } catch (final AnyPersistenceException e) {
+                    msg = "Erro na gravação dos dados!";
+                    break;
+    
+                }
+    
+    
             }
-
-
-        }
-
-        selectedPeoples.clear();
-        if (msg == "") {
-            addDetailMessage(numPeoples + " pessoas foram deletadas com sucesso!");
+    
+            selectedPeoples.clear();
+            if (msg == "") {
+                addDetailMessage(numPeoples + " pessoas foram deletadas com sucesso!");
+            } else {
+                addDetailMessage(msg + " Apenas " + numPeoples + " pessoas foram deletadas com sucesso!");
+            }
         } else {
-            addDetailMessage(msg + " Apenas " + numPeoples + " pessoas foram deletadas com sucesso!");
+            throw new BusinessException("Selecione alguém para ser deletado!");
         }
+        
     }
 
     public void findPeopleByIdType(String idType) {
