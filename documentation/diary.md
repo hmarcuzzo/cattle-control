@@ -1,6 +1,21 @@
 # Diary
 Todas as reuniões do projeto serão adicionadas neste arquivo.
 
+## 2020-09-08
+### Assuntos
+- Como pegar o token da URL no momento da edição de pessoas
+
+### O que deveria ser feito
+- Template do site e da view de Pessoas (Henrique e Matheus)
+
+### O que será feito
+- Obter token via URL, na edição de pessoas (Matheus)
+- Histórias de usuário (Henrique e Matheus)
+- Definir Próxima Sprint (Henrique e Matheus)
+
+### Dificuldades
+- Obter token via URL, na edição de pessoas
+
 ## 2020-08-26
 ### Assuntos
 - Como integrar o CSS com o Prime Faces
