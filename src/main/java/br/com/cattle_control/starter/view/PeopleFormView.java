@@ -3,19 +3,14 @@ package br.com.cattle_control.starter.view;
 import org.omnifaces.util.Faces;
 
 import java.io.IOException;
+import java.util.Map;
+
+import javax.faces.context.FacesContext;
 
 import com.github.adminfaces.template.exception.BusinessException;
 
-// import java.util.List;
-// import javax.faces.application.FacesMessage;
-// import javax.faces.context.FacesContext;
-
-// import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-
 import lombok.RequiredArgsConstructor;
-	
-// import org.primefaces.model.DefaultStreamedContent;
-// import org.primefaces.model.StreamedContent;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
@@ -40,22 +35,23 @@ public class PeopleFormView {
     @Autowired
     private final PeopleService peopleService;
 
-    private Integer ExistID;
-
     private People people = new People();
 
+    FacesContext context = FacesContext.getCurrentInstance();
+    Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
+    String personId = paramMap.get("id");
+
     public void init() {
+
         if(Faces.isAjaxRequest()){
            return;
         }
-        if (ExistID != null) {
-            System.out.println("Estou aqui2!");
-            people = peopleService.readById(ExistID);
+        if (personId != null) {
+
+            int id = Integer.parseInt(personId); 
+            people = peopleService.readById(id);
         } 
-        // else {
-        //     System.out.println("Estou aqui3!");
-        //     people = new People();
-        // }
+
     }
     
 
@@ -159,7 +155,6 @@ public class PeopleFormView {
         }
 
         addDetailMessage(msg);
-        // clear();
     }
 
     public void clear() {
