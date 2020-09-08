@@ -1,15 +1,14 @@
 package br.com.cattle_control.starter.util;
 
-import br.com.cattle_control.starter.model.Car;
 import org.omnifaces.util.Messages;
 
-import javax.annotation.PostConstruct;
+// import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
+// import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
 import java.io.Serializable;
-import java.util.*;
-import java.util.stream.IntStream;
+// import java.util.*;
+// import java.util.stream.IntStream;
 import javax.inject.Named;
 
 /**
@@ -20,19 +19,19 @@ import javax.inject.Named;
 public class Utils implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    private List<Car> cars;
+    // private List<Car> cars;
 
 
-    @PostConstruct
-    public void init() {
-        cars = new ArrayList<>();
-        IntStream.rangeClosed(1, 50)
-                .forEach(i -> cars.add(create(i)));
-    }
+    // @PostConstruct
+    // public void init() {
+    //     cars = new ArrayList<>();
+    //     IntStream.rangeClosed(1, 50)
+    //             .forEach(i -> cars.add(create(i)));
+    // }
 
-    private static Car create(int i) {
-        return new Car(i).model("model " + i).name("name" + i).price(Double.valueOf(i));
-    }
+    // private static Car create(int i) {
+    //     return new Car(i).model("model " + i).name("name" + i).price(Double.valueOf(i));
+    // }
 
     public static void addDetailMessage(String message) {
         addDetailMessage(message, null);
@@ -47,9 +46,9 @@ public class Utils implements Serializable {
         Messages.add(null, facesMessage);
     }
 
-    @Produces
-    public List<Car> getCars() {
-        return cars;
-    }
+    // @Produces
+    // public List<Car> getCars() {
+    //     return cars;
+    // }
 
 }
