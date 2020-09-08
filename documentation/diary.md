@@ -16,6 +16,37 @@ Todas as reuniões do projeto serão adicionadas neste arquivo.
 ### Dificuldades
 - Obter token via URL, na edição de pessoas
 
+
+## 2020-08-31
+### Assuntos
+- Coreeção dos testes JUnit (Camada de serviço)
+- Começo da implementção da conexão com o front-end
+### O que deveria ser feito
+- Camada de serviços (Matheus e Henrique)
+### O que será feito
+- Conexão do front-end com o back-end
+
+### Dificuldades
+- Corrigir falhas do JUnit4 para o JUnit5
+
+
+## 2020-08-30
+### Assuntos
+- Estrutura do back-end
+- Utilizar lombok + h2 ou java puro
+- Definido utilizar lombok + h2 
+
+### O que deveria ser feito
+- Modelo relacional do banco de dados (Henrique)
+- Fazer template do site (Matheus)
+
+### O que será feito
+- Camada de serviços (Matheus e Henrique)
+
+### Dificuldades
+- Decedir a estrutura do back-end (Matheus e Henrique)
+
+
 ## 2020-08-26
 ### Assuntos
 - Como integrar o CSS com o Prime Faces
@@ -30,6 +61,7 @@ Todas as reuniões do projeto serão adicionadas neste arquivo.
 
 ### Dificuldades
 - Erro ao tentar fazer o template do site (Matheus)
+
 
 ## 2020-08-24
 ### Assuntos
@@ -49,3 +81,4 @@ Todas as reuniões do projeto serão adicionadas neste arquivo.
 ### Dificuldades
 - Não conseguimos dividir as grandes histórias de usuários em e histórias melhores
 - Não conseguimor criar as issues no Zenhub
+
