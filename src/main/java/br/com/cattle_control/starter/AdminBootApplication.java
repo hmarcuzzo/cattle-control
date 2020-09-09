@@ -16,24 +16,12 @@
 
 package br.com.cattle_control.starter;
 
-import br.com.cattle_control.starter.model.Car;
-import br.com.cattle_control.starter.util.Utils;
-import java.util.List;
-import javax.inject.Inject;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 /**
  * @author rmpestano
  */
 @SpringBootApplication
 public class AdminBootApplication {
-	@Inject
-	private Utils utils;
-
-    @Bean
-    public List<Car> getCars() {
-        return utils.getCars();
-    }
 	
 }

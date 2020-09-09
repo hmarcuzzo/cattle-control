@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:adm="http://github.com/adminfaces"
+                template="#{layoutMB.template}">
+
+    <ui:define name="metadata">
+        <ui:param name="title" value="Lista de pessoas"/> <!-- Automatic create breadCrumb and page title when param 'title' is provided. --> 
+        <style type="text/css">
+            .ui-datatable .ui-datatable-header {
+                text-align: right !important;
+            }
+
+        </style>
+    </ui:define>
+
+    <ui:define name="description">
+        Ache pessoas por Nome ou CPF/CNPJ
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div id="main-buttons" class="hidden-sm hidden-xs">
+                        <p:commandButton action="people-form?faces-redirect=true" icon="fa fa-plus"
+                                         value="Novo" styleClass="btn-primary"/>
+                        <p:spacer width="5"/>
+                        <p:commandButton value="Deletar Selecionados" icon="fa fa-trash" styleClass="btn-danger"
+                                         action="#{peopleListView.delete}"
+                                         update="@form">
+                            <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
+                        </p:commandButton>
+                        <p:spacer width="5"/>
+                        <p:commandButton value="Ver selecionados" update="@(.ui-dialog)" styleClass="btn-info"
+                                         disabled="#{empty peopleListView.selectedPeoples or peopleListView.selectedPeoples.size() == 0}"
+                                         oncomplete="PF('selectedPeoples').show()" icon="fa fa-search"/>
+                    </div>
+
+                    <p:splitButton value="Novo" action="people-form?faces-redirect=true"
+                                   icon="fa fa-plus"
+                                   styleClass="hidden-md hidden-lg btn-primary">
+                        <p:menuitem value="Deletar Selecionados" action="#{peopleListView.delete}"
+                                    process="@this" update="@form"
+                                    disabled="#{empty peopleListView.selectedPeoples or peopleListView.selectedPeoples.size() == 0}"
+                                    icon="fa fa-trash">
+                            <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
+                        </p:menuitem>
+                        <p:menuitem value="Ver selecionados" update="@(.ui-dialog)"
+                                    oncomplete="PF('selectedPeoples').show()"
+                                    disabled="#{empty peopleListView.selectedPeoples or peopleListView.selectedPeoples.size() == 0}"
+                                    icon="fa fa-search"/>
+                    </p:splitButton>
+
+                    <p:separator/>
+                    <p:dataTable widgetVar="peoplesTable" var="p" value="#{peopleListView.listAllPeople()}" rows="10"
+                                 rowKey="#{p.id}" lazy="true" paginator="true"
+                                 filteredValue="#{peopleListView.filteredValue}"
+                                 paginatorPosition="bottom" selection="#{peopleListView.selectedPeoples}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {JumpToPageDropdown}"
+                                 currentPageReportTemplate="[ {startRecord} to {endRecord} of {totalRecords} ]"
+                                 rowsPerPageTemplate="5,10,15,20,30">
+
+                        <p:ajax event="rowSelectCheckbox" update="@(.ui-button, .ui-confirm-dialog)"/>
+                        <p:ajax event="rowUnselectCheckbox" update="@(.ui-button, .ui-confirm-dialog)"/>
+                        <p:ajax event="rowSelect" update="@(.ui-button, .ui-confirm-dialog)"/>
+                        <p:ajax event="rowUnselect" update="@(.ui-button, .ui-confirm-dialog)"/>
+                        <p:ajax event="toggleSelect" update="@(.ui-button, .ui-confirm-dialog)"/>
+
+                        <f:facet name="header">
+                            Procure pessoas por CPF/CNPJ: <p:inputMask id="inptIdType" mask="999.999.999-99" value="#{peopleListView.idType}"/>
+                            <p:spacer height="5"/>
+                            <p:commandButton id="brFind"
+                                             value="Procurar"
+                                             action="#{peopleListView.findPeopleByIdType(peopleListView.idType)}"
+                                             process="@form"
+                                             update="@form"
+                                             styleClass="btn-flat bg-black btn-states"
+                                             partialSubmit="true"/>
+                        </f:facet>
+                        <p:column selectionMode="multiple" width="4%" styleClass="align-center"/>
+
+                        <p:column headerText="Tipo de Pessoa">
+                            #{p.type==1?'Física':'Jurídica'}
+                        </p:column>
+
+                        <p:column headerText="CPF/CNPJ"> <!-- filterBy="#{p.idType}" sortBy="#{p.idType}" filterMatchMode="contains"> -->
+                            <f:facet name="filter">
+                                <p:autoComplete value="#{peopleListView.filter.entity.idType}" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{peopleListView.completeIdType}" maxResults="10">
+                                    <p:inputMask mask="999.999.999-99"/>
+                                    <p:ajax event="itemSelect" process="@this" update="@none"
+                                            oncomplete="PF('peoplesTable').filter()"/>
+                                </p:autoComplete>
+                            </f:facet>
+                             <p:link value="#{p.idType}" outcome="people-form.xhtml" >
+                                <f:param name="id" value="#{p.id}"/>
+                            </p:link>
+                        </p:column>
+
+                        <p:column headerText="Nome"> <!-- sortBy="#{p.name}" filterBy="#{p.name}"> -->
+                            <f:facet name="filter">
+                                <p:autoComplete value="#{peopleListView.filter.entity.name}" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{peopleListView.completeName}" maxResults="10">
+                                    <p:ajax event="itemSelect" process="@this" update="@none"
+                                            oncomplete="PF('peoplesTable').filter()"/>
+                                </p:autoComplete>
+                            </f:facet>
+                            #{p.name}
+                        </p:column>
+
+                        <p:column headerText="Telefone"> <!-- sortBy="#{p.phone}" filterBy="#{p.phone}"> -->
+                            <!-- <f:facet name="filter">
+                                <p:inputText value="#{peopleListView.filter.entity.phone}">
+                                    <p:ajax process="@this" update="@none" oncomplete="PF('peoplesTable').filter()"/>
+                                </p:inputText>
+                            </f:facet> -->
+                            #{p.phone}
+                        </p:column>
+
+                        <p:column headerText="Email"> <!-- sortBy="#{p.email}" filterBy="#{p.email}"> -->
+                            <!-- <f:facet name="filter">
+                                <p:inputText value="#{peopleListView.filter.entity.email}">
+                                    <p:ajax process="@this" update="@none" oncomplete="PF('peoplesTable').filter()"/>
+                                </p:inputText>
+                            </f:facet> -->
+                            #{p.email}
+                        </p:column>
+
+                        <p:column headerText="Informações">
+                            #{p.info}
+                        </p:column>
+                        
+                    </p:dataTable>
+                </div>
+            </div>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger box-solid">
+                <p:commandButton value="Sim" type="button" styleClass="btn-material btn-primary ui-confirmdialog-yes"
+                                 icon="fa fa-check"/>
+                <p:commandButton value="Não" type="button" styleClass="btn-material btn-danger ui-confirmdialog-no"
+                                 icon="fa fa-close"/>
+            </p:confirmDialog>
+        </h:form>
+
+
+
+        <p:dialog header="Pessoas Selecionadas" widgetVar="selectedPeoples" height="250"
+                  width="800" responsive="true" styleClass="box-success">
+            <p:dataList id="selectedPeoplesList" value="#{peopleListView.selectedPeoples}" var="people" type="definition">
+                Pessoa: #{people.type==1?'Física':'Jurídica'} - CPF/CNPJ: #{people.idType} - Nome: #{people.name} - Telefone: #{people.phone} - Email: #{people.email}
+            </p:dataList>
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>
