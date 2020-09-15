@@ -19,7 +19,7 @@ import br.com.cattle_control.starter.repository.PeopleRepository;
 
 @Service
 @RequiredArgsConstructor
-public class PeopleService implements ICRUDService<People>{
+public class PeopleService implements ICRUDService<People> {
     private final PeopleRepository peopleRepository;
 
     public List<People> readAll() {
