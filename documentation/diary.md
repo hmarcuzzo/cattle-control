@@ -1,6 +1,17 @@
 # Diary
 Todas as reuniões do projeto serão adicionadas neste arquivo.
 
+## 2020-09-14
+### Assuntos
+- Divisão das tarefas 
+
+### O que deveria ser feito
+- Refatoração do modelo relacional do banco de dados (Henrique)
+- Inicialização do CRUD de Local (Henrique)
+- Inicialização do CRUD de Fazenda (Matheus e Henrique)
+### O que será feito
+- CRUD fazendas 
+- Utils (Inserção de dados teste no banco)
 
 ## 2020-09-10
 ### Assuntos
@@ -14,7 +25,6 @@ Todas as reuniões do projeto serão adicionadas neste arquivo.
 - Refatoração do modelo relacional do banco de dados (Henrique)
 - Inicialização do CRUD de Local (Henrique)
 - Inicialização do CRUD de Fazenda (Matheus)
-
 
 
 ## 2020-09-08
