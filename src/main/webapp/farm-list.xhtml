@@ -91,6 +91,9 @@
                                             oncomplete="PF('farmsTable').filter()"/>
                                 </p:autoComplete>
                             </f:facet>
+                            <p:link value="#{p.registerNumber}" outcome="farm-form.xhtml" >
+                                <f:param name="id" value="#{p.id}"/>
+                            </p:link>
                         </p:column>
 
                         <p:column headerText="Nome">
@@ -134,7 +137,7 @@
         <p:dialog header="Fazendas Selecionadas" widgetVar="selectedFarms" height="250"
                   width="800" responsive="true" styleClass="box-success">
             <p:dataList id="selectedFarmsList" value="#{farmListView.selectedFarms}" var="farm" type="definition">
-                Fazenda: Número de registro: #{farm.registerNumber} - Nome: #{farm.name} - Referência: #{farm.reference} - Número: #{farm.number}
+                Fazenda: Número de registro: #{farm.registerNumber} - Nome: #{farm.name} - Número: #{farm.number} - Referência: #{farm.reference}
             </p:dataList>
         </p:dialog>
 

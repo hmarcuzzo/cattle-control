@@ -8,11 +8,10 @@ import lombok.NoArgsConstructor;
 
 // import org.hibernate.annotations.OnDelete;
 // import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.validator.constraints.Length;
+// import org.hibernate.validator.constraints.Length;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 // import javax.validation.constraints.NotEmpty;
 // import javax.validation.constraints.NotNull;
 import javax.persistence.Entity;
@@ -56,11 +55,11 @@ public class Farm implements Serializable {
     @Builder 
 	public static Farm create (
             Integer id,
-			String registerNumber,
+			String  registerNumber,
             String  name,
 			String  info,
 			String  reference,
-			Integer  number,
+			Integer number,
 			Boolean deleted) {
 		
     	
