@@ -127,7 +127,6 @@ public class PeopleListView {
             throw new BusinessException("Coloque um CPF/CNPJ para procurar!");
         }
         selectedPeoples.add(peopleService.findByIdType(idType));
-        System.out.println(selectedPeoples);
     }
 
 
