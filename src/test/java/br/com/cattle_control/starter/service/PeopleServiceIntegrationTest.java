@@ -1,5 +1,7 @@
 package br.com.cattle_control.starter.service;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 // import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,12 +51,35 @@ public class PeopleServiceIntegrationTest {
                                 .info("Olá Mundo!")
                                 .deleted(false)
                                 .build();
-        // assertThat(people.getId()).isEqualTo(1);
+
         peopleService.create(people);
 
-        // people.setName("João");
-        // people.setDeleted(true);
+
+        assertThat(peopleService.readAll().get(0).getName()).isEqualTo("Henrique");
+    }
+
+    @DisplayName("Testar o update de uma Pessoa no BD.")
+	@Test
+	@Transactional
+	@Rollback
+	void testUpdate() throws Exception{
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("41199288888")
+                                .phone("17991524608")
+                                .info("Olá Mundo!")
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+        
+        Integer id = peopleService.findByIdType("41199288888").getId();
+        
         people = People.builder()
+                            .id(id)
                             .name("Henrique Souza")
                             .email("henrique@hotmail.com")
                             .type(1)
@@ -65,10 +90,9 @@ public class PeopleServiceIntegrationTest {
                             .build();
 
         peopleService.update(people);
-        // peopleService.readAll().get(0).setDeleted(true);
-        // peopleService.delete(people.getId());
 
-        assertThat(peopleService.readAll().get(0).getName()).isEqualTo("Henrique");
+
+        assertThat(peopleService.readAll().get(0).getName()).isEqualTo("Henrique Souza");
     }
 
 
@@ -113,7 +137,9 @@ public class PeopleServiceIntegrationTest {
         peopleService.create(people);
 
 
-        assertThat(peopleService.findByIdType("411.992.888-88")).isNull(); // falha porem está certo
+        assertThrows(com.github.adminfaces.template.exception.BusinessException.class, () -> {
+            peopleService.findByIdType("411.992.888-88");
+        });
     }
 
 
@@ -134,6 +160,7 @@ public class PeopleServiceIntegrationTest {
                                 .build();
 
         peopleService.create(people);
+
         
         people = People.builder()
                             .name("Henrique Souza")
@@ -147,7 +174,7 @@ public class PeopleServiceIntegrationTest {
 
         peopleService.create(people);
 
-        assertThat(peopleService.readAll().get(1).getDeleted()).isEqualTo(false);
+        assertThat(peopleService.readAll().get(0).getDeleted()).isEqualTo(false);
     }
 
 
