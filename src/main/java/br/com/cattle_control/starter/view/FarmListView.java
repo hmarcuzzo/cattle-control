@@ -134,12 +134,12 @@ public class FarmListView {
         filter = new Filter<Farm>(new Farm());
     }
 
-    public List<String> completeRegisterNumber(String query) { // TO DO
+    public List<String> completeRegisterNumber(String query) {
         List<String> result = farmService.getRegisterNumbers(query);
         return result;
     }
 
-    public List<String> completeName(String query) { // TO DO
+    public List<String> completeName(String query) {
         List<String> result = farmService.getNames(query);
         return result;
     }

@@ -1,5 +1,9 @@
 package br.com.cattle_control.starter.model;
 
+import br.com.cattle_control.starter.model.People;
+import br.com.cattle_control.starter.model.Place;
+
+
 import java.io.Serializable;
 
 import lombok.Builder;
@@ -52,6 +56,14 @@ public class Farm implements Serializable {
     @Column(name = "Farm_Deleted")
     private Boolean deleted;
 
+    @ManyToOne
+    @JoinColumn(name= "id_people")
+    private People people;
+
+    @ManyToOne
+    @JoinColumn(name= "id_place")
+    private Place place;
+
     @Builder 
 	public static Farm create (
             Integer id,
@@ -60,7 +72,9 @@ public class Farm implements Serializable {
 			String  info,
 			String  reference,
 			Integer number,
-			Boolean deleted) {
+            Boolean deleted,
+            People  people,
+            Place   place) {
 		
     	
     	Farm instance = new Farm();
@@ -72,6 +86,8 @@ public class Farm implements Serializable {
     	instance.setReference(reference);
     	instance.setNumber(number);
         instance.setDeleted(deleted);
+        instance.setPeople(people);
+        instance.setPlace(place);
         
         return instance;
     }

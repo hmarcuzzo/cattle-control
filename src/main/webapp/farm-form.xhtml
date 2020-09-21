@@ -76,7 +76,7 @@
                     <!-- <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div> -->
                     <!-- <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div> -->
 
-                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
                             <p:outputLabel value="Nome da fazenda *" for="inptName"/>
                         </div>
@@ -87,15 +87,62 @@
                             </span>
                         </div>
                     </div>  
-
-                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+                    
                     <!-- <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div> -->
 
-                    <div class="ui-sm-2 ui-g-3 ui-g-nopad">     
-                        <div class="ui-sm-2 ui-g-10">
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="CPF/CNPJ do Proprietário *" for="inptIdPeople"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:autoComplete id="inptIdPeople" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{farmFormView.completeIdType}" maxResults="10" 
+                                                value="#{farmFormView.idPeople}" required="true">
+                            </p:autoComplete>
+                            <!-- <p:inputMask id="inptIdPeople" mask="999.999.999-99" value="#{farmFormView.idPeople}" required="true"/> -->
+                            <span class="help-block"> 
+                                <p:message for="inptIdPeople"/>
+                            </span>
+                        </div>
+                    </div>  
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="CEP da cidade *" for="inptCep"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:autoComplete id="inptCep" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{farmFormView.completeCep}" maxResults="10" 
+                                                value="#{farmFormView.idPlace}" required="true">
+                            </p:autoComplete>
+                            <!-- <p:inputMask id="inptCep" mask="999.999.999-99" value="#{farmFormView.idPeople}" required="true"/> -->
+                            <span class="help-block"> 
+                                <p:message for="inptCep"/>
+                            </span>
+                        </div>
+                    </div>  
+
+                    <!-- <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="CEP da Cidade *" for="inptIdCity"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputMask id="inptIdCity" mask="999.999.999-99" value="#{farmFormView.idPeople}" required="true"/>
+                            <span class="help-block"> 
+                                <p:message for="inptIdCity"/>
+                            </span>
+                        </div>
+                    </div>   -->
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
                             <p:outputLabel for="inptReference" value="Referência *"/>
                         </div>
-                        <div class="ui-sm-2 ui-g-10">
+                        <div class="ui-sm-12 ui-g-11">
                             <p:inputText id="inptReference" value="#{farmFormView.reference}" required="true"/>
                             <span class="help-block"> 
                                 <p:message for="inptReference"/>
@@ -107,7 +154,7 @@
                         <div class="ui-sm-8 ui-g-10">
                             <p:outputLabel value="Numero" for="inptNumber"/>
                         </div>
-                        <div class="ui-sm-8 ui-g-10">
+                        <div class="ui-sm-12 ui-g-11">
                             <p:inputText id="inptNumber" value="#{farmFormView.number}"/>
                             <span class="help-block"> 
                                 <p:message for="inptNumber"/>

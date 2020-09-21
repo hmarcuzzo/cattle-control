@@ -137,4 +137,22 @@ public class PlaceServiceIntegrationTest  {
 
         assertThat(placeService.readAll().get(0).getDeleted()).isEqualTo(false);
     }
+
+
+    @DisplayName("Testar a procura por Ceps existentes.")
+	@Test
+	@Transactional
+	@Rollback
+	void testGetCeps() throws Exception{
+
+        Place place = Place.builder()
+                                .cep("15355-000")
+                                .city("Guzolândia")
+                                .deleted(false)
+                                .build();
+
+        placeService.create(place);
+
+        assertThat(placeService.getCeps("15").get(0)).isEqualTo("15355-000");
+    }
 }

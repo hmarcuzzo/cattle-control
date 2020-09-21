@@ -17,6 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import br.com.cattle_control.starter.model.Farm;
+import br.com.cattle_control.starter.model.People;
+import br.com.cattle_control.starter.model.Place;
+
 
 
 @ExtendWith(SpringExtension.class)
@@ -26,12 +29,51 @@ public class FarmServiceIntegrationTest {
     @Autowired
     FarmService farmService;
 
+    @Autowired
+    PeopleService peopleService;
+
+    @Autowired
+    PlaceService placeService;
+
+
+
+	@Transactional
+    @Rollback
+    People createPeople() throws Exception{
+        People people = People.builder()
+                                .name("Henrique Souza")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("411.992.888-88")
+                                .phone("17991524608")
+                                .info("Olá Mundo!")
+                                .deleted(false)
+                                .build();
+
+        return peopleService.create(people);
+    }
+
+    @Transactional
+    @Rollback
+    Place createPlace() throws Exception{
+        Place place = Place.builder()
+                                .cep("15355-000")
+                                .city("Guzolândia")
+                                .deleted(false)
+                                .build();
+
+        return placeService.create(place);
+    }
+
 
     @DisplayName("Testar a criação de uma Fazenda no BD.")
 	@Test
 	@Transactional
 	@Rollback
 	void testCreate() throws Exception{
+
+        People people = createPeople();
+        Place place = createPlace();
 
         Farm farm = Farm.builder()
                                 .registerNumber("9999999-9")
@@ -40,6 +82,8 @@ public class FarmServiceIntegrationTest {
                                 .reference("Ao lado da rua principal")
                                 .number(883)
                                 .deleted(false)
+                                .people(people)
+                                .place(place)
                                 .build();
 
         farmService.create(farm);
@@ -53,6 +97,8 @@ public class FarmServiceIntegrationTest {
 	@Transactional
 	@Rollback
 	void testFindByRegisterNumber() throws Exception{
+        People people = createPeople();
+        Place place = createPlace();
 
         Farm farm = Farm.builder()
                                 .registerNumber("9999999-9")
@@ -61,6 +107,8 @@ public class FarmServiceIntegrationTest {
                                 .reference("Ao lado da rua principal")
                                 .number(883)
                                 .deleted(false)
+                                .people(people)
+                                .place(place)
                                 .build();
 
         farmService.create(farm);
@@ -74,6 +122,8 @@ public class FarmServiceIntegrationTest {
 	@Transactional
 	@Rollback
 	void testUpdatePlace () throws Exception{
+        People people = createPeople();
+        Place place = createPlace();
 
         Farm farm = Farm.builder()
                                 .registerNumber("9999999-9")
@@ -82,6 +132,8 @@ public class FarmServiceIntegrationTest {
                                 .reference("Ao lado da rua principal")
                                 .number(883)
                                 .deleted(false)
+                                .people(people)
+                                .place(place)
                                 .build();
 
         farmService.create(farm);
@@ -96,6 +148,8 @@ public class FarmServiceIntegrationTest {
                             .reference("Ao lado da rua principal")
                             .number(883)
                             .deleted(false)
+                            .people(people)
+                            .place(place)
                             .build();
 
         farmService.update(farm);
@@ -110,6 +164,8 @@ public class FarmServiceIntegrationTest {
 	@Transactional
 	@Rollback
 	void testFindByRegisterNumberDeleted() throws Exception {
+        People people = createPeople();
+        Place place = createPlace();
 
         Farm farm = Farm.builder()
                                 .registerNumber("9999999-9")
@@ -118,6 +174,8 @@ public class FarmServiceIntegrationTest {
                                 .reference("Ao lado da rua principal")
                                 .number(883)
                                 .deleted(true)
+                                .people(people)
+                                .place(place)
                                 .build();
 
         farmService.create(farm);
@@ -129,11 +187,13 @@ public class FarmServiceIntegrationTest {
     }
 
 
-    @DisplayName("Testar a criação de um Local com CEP igual a quem já foi deletado.")
+    @DisplayName("Testar a criação de uma Fazenda com Número de Registro igual a quem já foi deletado.")
 	@Test
 	@Transactional
 	@Rollback
 	void testCreatePlaceCepEqualsDeleted() throws Exception{
+        People people = createPeople();
+        Place place = createPlace();
 
         Farm farm = Farm.builder()
                                 .registerNumber("9999999-9")
@@ -142,6 +202,8 @@ public class FarmServiceIntegrationTest {
                                 .reference("Ao lado da rua principal")
                                 .number(883)
                                 .deleted(true)
+                                .people(people)
+                                .place(place)
                                 .build();
 
         farmService.create(farm);
@@ -153,6 +215,8 @@ public class FarmServiceIntegrationTest {
                             .reference("Ao lado da rua principal")
                             .number(883)
                             .deleted(false)
+                            .people(people)
+                            .place(place)
                             .build();
 
         farmService.create(farm);
@@ -166,6 +230,8 @@ public class FarmServiceIntegrationTest {
 	@Transactional
 	@Rollback
 	void testGetRegisterNumbers() throws Exception{
+        People people = createPeople();
+        Place place = createPlace();
 
         Farm farm = Farm.builder()
                                 .registerNumber("9999999-9")
@@ -174,6 +240,8 @@ public class FarmServiceIntegrationTest {
                                 .reference("Ao lado da rua principal")
                                 .number(883)
                                 .deleted(false)
+                                .people(people)
+                                .place(place)
                                 .build();
 
         farmService.create(farm);
@@ -186,6 +254,8 @@ public class FarmServiceIntegrationTest {
 	@Transactional
 	@Rollback
 	void testGetNames() throws Exception{
+        People people = createPeople();
+        Place place = createPlace();
 
         Farm farm = Farm.builder()
                                 .registerNumber("9999999-9")
@@ -194,6 +264,8 @@ public class FarmServiceIntegrationTest {
                                 .reference("Ao lado da rua principal")
                                 .number(883)
                                 .deleted(false)
+                                .people(people)
+                                .place(place)
                                 .build();
 
         farmService.create(farm);

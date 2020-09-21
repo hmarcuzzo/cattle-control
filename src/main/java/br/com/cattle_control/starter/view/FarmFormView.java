@@ -4,6 +4,7 @@ import org.omnifaces.util.Faces;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.List;
 
 import javax.faces.context.FacesContext;
 
@@ -16,9 +17,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 import br.com.cattle_control.starter.model.Farm;
+import br.com.cattle_control.starter.model.People;
+import br.com.cattle_control.starter.model.Place;
 import br.com.cattle_control.starter.exception.AnyPersistenceException;
 import br.com.cattle_control.starter.exception.EntityAlreadyExistsException;
 import br.com.cattle_control.starter.service.FarmService;
+import br.com.cattle_control.starter.service.PeopleService;
+import br.com.cattle_control.starter.service.PlaceService;
+
 
 import static br.com.cattle_control.starter.util.Utils.addDetailMessage;
 import static com.github.adminfaces.template.util.Assert.has;
@@ -35,7 +41,15 @@ public class FarmFormView {
     @Autowired
     private final FarmService farmService;
 
+    @Autowired
+    private final PeopleService peopleService;
+
+    @Autowired
+    private final PlaceService placeService;
+
     private Farm farm = new Farm();
+    private String idPeople;
+    private String idPlace;
 
     FacesContext context = FacesContext.getCurrentInstance();
     Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
@@ -50,6 +64,9 @@ public class FarmFormView {
 
             int id = Integer.parseInt(farmId); 
             farm = farmService.readById(id);
+
+            this.idPeople = farm.getPeople().getIdType();
+            this.idPlace = farm.getPlace().getCep();
         } 
 
     }
@@ -84,6 +101,14 @@ public class FarmFormView {
         return farm.getDeleted();
     }
 
+    public String getIdPeople() {
+        return this.idPeople;
+    }
+
+    public String getIdPlace() {
+        return this.idPlace;
+    }
+
     public void setId(Integer id){
         farm.setId(id);
     }
@@ -112,10 +137,21 @@ public class FarmFormView {
         farm.setDeleted(deleted);
     }
 
+    public void setIdPeople(String idPeople) {
+        this.idPeople = idPeople;
+    }
+
+    public void setIdPlace(String idPlace) {
+        this.idPlace = idPlace;
+    }
+
 
 
     // Ações disponibilizadas na tela
     public void save() {
+        People people = peopleService.findByIdType(this.idPeople);
+        Place place = placeService.findByCep(this.idPlace);
+
         this.farm = Farm.builder()
                             .id(getId())
                             .name(getName())
@@ -124,6 +160,8 @@ public class FarmFormView {
                             .number(getNumber())
                             .info(getInfo())
                             .deleted(false)
+                            .people(people)
+                            .place(place)
         					.build();
                
         String msg;
@@ -182,6 +220,16 @@ public class FarmFormView {
     // Funções auxiliares
     public boolean isNew() {
         return farm == null || getId() == null;
+    }
+
+    public List<String> completeIdType(String query) {
+        List<String> result = peopleService.getIDsType(query);
+        return result;
+    }
+
+    public List<String> completeCep(String query) {
+        List<String> result = placeService.getCeps(query);
+        return result;
     }
 
     

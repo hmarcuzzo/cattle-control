@@ -108,12 +108,26 @@
                             #{p.name}
                         </p:column>
 
-                        <p:column headerText="Número">
-                            #{p.number}
+                        <p:column headerText="CPF/CNPJ Proprietário"> 
+                            <p:link value="#{p.people.idType}" outcome="people-form.xhtml" rendered = "#{p.people.deleted == false}">
+                                <f:param name="id" value="#{p.people.id}"/>
+                            </p:link>
+                            <h:outputText value="#{p.people.idType}" rendered = "#{p.people.deleted == true}"/>
+                        </p:column>
+
+                        <p:column headerText="CEP da Cidade"> 
+                            <p:link value="#{p.place.cep}" outcome="place-form.xhtml" rendered = "#{p.place.deleted == false}">
+                                <f:param name="id" value="#{p.place.id}"/>
+                            </p:link>
+                            <h:outputText value="#{p.place.cep}" rendered = "#{p.place.deleted == true}"/>
                         </p:column>
 
                         <p:column headerText="Referência"> 
                             #{p.reference}
+                        </p:column>
+
+                        <p:column headerText="Número">
+                            #{p.number}
                         </p:column>
 
                         <p:column headerText="Informações">
@@ -134,10 +148,10 @@
 
 
 
-        <p:dialog header="Fazendas Selecionadas" widgetVar="selectedFarms" height="250"
-                  width="800" responsive="true" styleClass="box-success">
+        <p:dialog header="Fazendas Selecionadas" widgetVar="selectedFarms" height="300"
+                  width="1100" responsive="true" styleClass="box-success">
             <p:dataList id="selectedFarmsList" value="#{farmListView.selectedFarms}" var="farm" type="definition">
-                Fazenda: Número de registro: #{farm.registerNumber} - Nome: #{farm.name} - Número: #{farm.number} - Referência: #{farm.reference}
+                Fazenda: Número de registro: #{farm.registerNumber} - Nome: #{farm.name} - Proprietário: #{farm.people.idType} - CEP: #{farm.place.cep} - Referência: #{farm.reference} - Número: #{farm.number}
             </p:dataList>
         </p:dialog>
 
