@@ -1,0 +1,602 @@
+[
+  {
+    "registerNumber": "4341922-6",
+    "name": "Biotica",
+    "reference": "Duryea Court",
+    "number": 7383
+  },
+  {
+    "registerNumber": "6401143-3",
+    "name": "Bitrex",
+    "reference": "Beaumont Street",
+    "number": 3182
+  },
+  {
+    "registerNumber": "4632750-0",
+    "name": "Eschoir",
+    "reference": "Lincoln Terrace",
+    "number": 1991
+  },
+  {
+    "registerNumber": "1140910-1",
+    "name": "Keengen",
+    "reference": "Atlantic Avenue",
+    "number": 3617
+  },
+  {
+    "registerNumber": "2427664-2",
+    "name": "Olympix",
+    "reference": "Louisiana Avenue",
+    "number": 6236
+  },
+  {
+    "registerNumber": "9592803-1",
+    "name": "Indexia",
+    "reference": "Oxford Street",
+    "number": 6342
+  },
+  {
+    "registerNumber": "8334876-6",
+    "name": "Earthpure",
+    "reference": "Roebling Street",
+    "number": 7750
+  },
+  {
+    "registerNumber": "7012606-1",
+    "name": "Gushkool",
+    "reference": "Hazel Court",
+    "number": 4266
+  },
+  {
+    "registerNumber": "8488344-7",
+    "name": "Talkalot",
+    "reference": "Ditmars Street",
+    "number": 7661
+  },
+  {
+    "registerNumber": "5630448-3",
+    "name": "Portica",
+    "reference": "Highland Boulevard",
+    "number": 3119
+  },
+  {
+    "registerNumber": "6574189-6",
+    "name": "Anivet",
+    "reference": "Highlawn Avenue",
+    "number": 4126
+  },
+  {
+    "registerNumber": "3033942-0",
+    "name": "Blanet",
+    "reference": "Bancroft Place",
+    "number": 7526
+  },
+  {
+    "registerNumber": "3057621-2",
+    "name": "Eventex",
+    "reference": "River Street",
+    "number": 4688
+  },
+  {
+    "registerNumber": "4239121-8",
+    "name": "Vortexaco",
+    "reference": "Bridge Street",
+    "number": 6403
+  },
+  {
+    "registerNumber": "3139476-1",
+    "name": "Lexicondo",
+    "reference": "Friel Place",
+    "number": 6596
+  },
+  {
+    "registerNumber": "1221082-7",
+    "name": "Gadtron",
+    "reference": "Glendale Court",
+    "number": 5506
+  },
+  {
+    "registerNumber": "2379326-0",
+    "name": "Geekus",
+    "reference": "Joval Court",
+    "number": 9904
+  },
+  {
+    "registerNumber": "3179427-9",
+    "name": "Cincyr",
+    "reference": "Erasmus Street",
+    "number": 7691
+  },
+  {
+    "registerNumber": "6958304-2",
+    "name": "Insectus",
+    "reference": "Seaview Court",
+    "number": 4573
+  },
+  {
+    "registerNumber": "1514543-3",
+    "name": "Entropix",
+    "reference": "Meserole Street",
+    "number": 2264
+  },
+  {
+    "registerNumber": "7841599-0",
+    "name": "Rubadub",
+    "reference": "Walker Court",
+    "number": 4454
+  },
+  {
+    "registerNumber": "6386009-8",
+    "name": "Avenetro",
+    "reference": "Gardner Avenue",
+    "number": 3436
+  },
+  {
+    "registerNumber": "6562470-5",
+    "name": "Zorromop",
+    "reference": "Jefferson Street",
+    "number": 6754
+  },
+  {
+    "registerNumber": "5620945-4",
+    "name": "Bleendot",
+    "reference": "Fleet Place",
+    "number": 4170
+  },
+  {
+    "registerNumber": "2506234-4",
+    "name": "Columella",
+    "reference": "Bartlett Place",
+    "number": 4307
+  },
+  {
+    "registerNumber": "8715103-5",
+    "name": "Nurali",
+    "reference": "Howard Alley",
+    "number": 5552
+  },
+  {
+    "registerNumber": "2525078-0",
+    "name": "Entality",
+    "reference": "Christopher Avenue",
+    "number": 7394
+  },
+  {
+    "registerNumber": "5117988-2",
+    "name": "Bicol",
+    "reference": "Dennett Place",
+    "number": 8173
+  },
+  {
+    "registerNumber": "7470656-1",
+    "name": "Isopop",
+    "reference": "Miami Court",
+    "number": 398
+  },
+  {
+    "registerNumber": "8952742-3",
+    "name": "Kengen",
+    "reference": "Bush Street",
+    "number": 7145
+  },
+  {
+    "registerNumber": "5935401-8",
+    "name": "Neocent",
+    "reference": "Clifford Place",
+    "number": 9546
+  },
+  {
+    "registerNumber": "2811241-1",
+    "name": "Qualitex",
+    "reference": "Campus Place",
+    "number": 936
+  },
+  {
+    "registerNumber": "3939568-6",
+    "name": "Musaphics",
+    "reference": "Gold Street",
+    "number": 549
+  },
+  {
+    "registerNumber": "8393058-4",
+    "name": "Bluegrain",
+    "reference": "Rose Street",
+    "number": 953
+  },
+  {
+    "registerNumber": "6518576-7",
+    "name": "Ovium",
+    "reference": "Bainbridge Street",
+    "number": 6644
+  },
+  {
+    "registerNumber": "5638219-8",
+    "name": "Speedbolt",
+    "reference": "Schaefer Street",
+    "number": 669
+  },
+  {
+    "registerNumber": "5531428-2",
+    "name": "Zork",
+    "reference": "Sutton Street",
+    "number": 1115
+  },
+  {
+    "registerNumber": "7052296-8",
+    "name": "Atgen",
+    "reference": "Girard Street",
+    "number": 9844
+  },
+  {
+    "registerNumber": "2586656-3",
+    "name": "Utara",
+    "reference": "Hanover Place",
+    "number": 2360
+  },
+  {
+    "registerNumber": "3517215-4",
+    "name": "Zanymax",
+    "reference": "Cleveland Street",
+    "number": 3820
+  },
+  {
+    "registerNumber": "3787015-6",
+    "name": "Inventure",
+    "reference": "Madison Place",
+    "number": 3697
+  },
+  {
+    "registerNumber": "7205141-8",
+    "name": "Electonic",
+    "reference": "Robert Street",
+    "number": 8937
+  },
+  {
+    "registerNumber": "8631418-2",
+    "name": "Sportan",
+    "reference": "Arlington Place",
+    "number": 7348
+  },
+  {
+    "registerNumber": "2556246-0",
+    "name": "Fangold",
+    "reference": "Lafayette Avenue",
+    "number": 5566
+  },
+  {
+    "registerNumber": "8930960-0",
+    "name": "Zialactic",
+    "reference": "Woods Place",
+    "number": 8638
+  },
+  {
+    "registerNumber": "5288814-7",
+    "name": "Toyletry",
+    "reference": "Roosevelt Place",
+    "number": 5348
+  },
+  {
+    "registerNumber": "5653539-8",
+    "name": "Prismatic",
+    "reference": "Miller Avenue",
+    "number": 3892
+  },
+  {
+    "registerNumber": "6912769-5",
+    "name": "Intergeek",
+    "reference": "Metrotech Courtr",
+    "number": 8694
+  },
+  {
+    "registerNumber": "1050828-6",
+    "name": "Biolive",
+    "reference": "Truxton Street",
+    "number": 5023
+  },
+  {
+    "registerNumber": "3801561-5",
+    "name": "Sloganaut",
+    "reference": "Bristol Street",
+    "number": 7389
+  },
+  {
+    "registerNumber": "5621945-4",
+    "name": "Macronaut",
+    "reference": "Halleck Street",
+    "number": 6705
+  },
+  {
+    "registerNumber": "8852408-6",
+    "name": "Zoxy",
+    "reference": "Vanderbilt Street",
+    "number": 5804
+  },
+  {
+    "registerNumber": "7012927-2",
+    "name": "Tourmania",
+    "reference": "Dahill Road",
+    "number": 985
+  },
+  {
+    "registerNumber": "4761474-4",
+    "name": "Terrasys",
+    "reference": "Driggs Avenue",
+    "number": 6303
+  },
+  {
+    "registerNumber": "9211622-8",
+    "name": "Earthwax",
+    "reference": "Miller Place",
+    "number": 2154
+  },
+  {
+    "registerNumber": "8385311-7",
+    "name": "Slambda",
+    "reference": "Alice Court",
+    "number": 4296
+  },
+  {
+    "registerNumber": "7703702-0",
+    "name": "Magneato",
+    "reference": "Jerome Street",
+    "number": 2188
+  },
+  {
+    "registerNumber": "4318755-2",
+    "name": "Vetron",
+    "reference": "Falmouth Street",
+    "number": 3268
+  },
+  {
+    "registerNumber": "6241497-1",
+    "name": "Valreda",
+    "reference": "Court Street",
+    "number": 1996
+  },
+  {
+    "registerNumber": "2303192-2",
+    "name": "Nitracyr",
+    "reference": "Vista Place",
+    "number": 2143
+  },
+  {
+    "registerNumber": "6792897-7",
+    "name": "Decratex",
+    "reference": "Montana Place",
+    "number": 5582
+  },
+  {
+    "registerNumber": "5000007-7",
+    "name": "Hairport",
+    "reference": "Aberdeen Street",
+    "number": 3865
+  },
+  {
+    "registerNumber": "3565821-2",
+    "name": "Artworlds",
+    "reference": "Java Street",
+    "number": 5673
+  },
+  {
+    "registerNumber": "7651193-2",
+    "name": "Xsports",
+    "reference": "Seba Avenue",
+    "number": 9860
+  },
+  {
+    "registerNumber": "1180510-9",
+    "name": "Prosure",
+    "reference": "Dekalb Avenue",
+    "number": 290
+  },
+  {
+    "registerNumber": "7221736-8",
+    "name": "Xylar",
+    "reference": "Clinton Avenue",
+    "number": 4562
+  },
+  {
+    "registerNumber": "7520583-7",
+    "name": "Rocklogic",
+    "reference": "Ovington Court",
+    "number": 4462
+  },
+  {
+    "registerNumber": "1536450-3",
+    "name": "Animalia",
+    "reference": "Celeste Court",
+    "number": 8822
+  },
+  {
+    "registerNumber": "2692990-8",
+    "name": "Interodeo",
+    "reference": "Cooper Street",
+    "number": 7752
+  },
+  {
+    "registerNumber": "4535777-1",
+    "name": "Magnemo",
+    "reference": "Ocean Avenue",
+    "number": 4223
+  },
+  {
+    "registerNumber": "8456715-2",
+    "name": "Comverges",
+    "reference": "Schenck Court",
+    "number": 4432
+  },
+  {
+    "registerNumber": "1083468-0",
+    "name": "Paragonia",
+    "reference": "Hegeman Avenue",
+    "number": 8326
+  },
+  {
+    "registerNumber": "5247889-4",
+    "name": "Accuprint",
+    "reference": "Dupont Street",
+    "number": 9946
+  },
+  {
+    "registerNumber": "5427509-5",
+    "name": "Medcom",
+    "reference": "Bushwick Place",
+    "number": 3983
+  },
+  {
+    "registerNumber": "4044110-5",
+    "name": "Skinserve",
+    "reference": "Oakland Place",
+    "number": 4411
+  },
+  {
+    "registerNumber": "2694674-8",
+    "name": "Savvy",
+    "reference": "Monroe Street",
+    "number": 6404
+  },
+  {
+    "registerNumber": "9127407-6",
+    "name": "Quarex",
+    "reference": "Hillel Place",
+    "number": 9475
+  },
+  {
+    "registerNumber": "8900082-8",
+    "name": "Corepan",
+    "reference": "Henry Street",
+    "number": 9867
+  },
+  {
+    "registerNumber": "8200295-5",
+    "name": "Kyagoro",
+    "reference": "Furman Street",
+    "number": 7583
+  },
+  {
+    "registerNumber": "4680960-4",
+    "name": "Quilch",
+    "reference": "Remsen Street",
+    "number": 2360
+  },
+  {
+    "registerNumber": "4025897-4",
+    "name": "Naxdis",
+    "reference": "Elizabeth Place",
+    "number": 2451
+  },
+  {
+    "registerNumber": "7761828-3",
+    "name": "Daisu",
+    "reference": "Court Square",
+    "number": 9738
+  },
+  {
+    "registerNumber": "5978656-2",
+    "name": "Protodyne",
+    "reference": "Middagh Street",
+    "number": 5367
+  },
+  {
+    "registerNumber": "1660866-2",
+    "name": "Firewax",
+    "reference": "Adelphi Street",
+    "number": 8488
+  },
+  {
+    "registerNumber": "3006126-8",
+    "name": "Comtrek",
+    "reference": "George Street",
+    "number": 9989
+  },
+  {
+    "registerNumber": "7479112-6",
+    "name": "Eplode",
+    "reference": "Stewart Street",
+    "number": 6494
+  },
+  {
+    "registerNumber": "3421498-6",
+    "name": "Limage",
+    "reference": "Schenck Street",
+    "number": 1696
+  },
+  {
+    "registerNumber": "1665843-1",
+    "name": "Bullzone",
+    "reference": "Wogan Terrace",
+    "number": 8658
+  },
+  {
+    "registerNumber": "5075599-8",
+    "name": "Paprikut",
+    "reference": "Vermont Court",
+    "number": 9987
+  },
+  {
+    "registerNumber": "6453148-8",
+    "name": "Repetwire",
+    "reference": "Oliver Street",
+    "number": 8285
+  },
+  {
+    "registerNumber": "1529588-4",
+    "name": "Syntac",
+    "reference": "Apollo Street",
+    "number": 1291
+  },
+  {
+    "registerNumber": "7337628-0",
+    "name": "Netplax",
+    "reference": "Dunham Place",
+    "number": 194
+  },
+  {
+    "registerNumber": "5063273-9",
+    "name": "Retrotex",
+    "reference": "Dover Street",
+    "number": 8444
+  },
+  {
+    "registerNumber": "4025768-6",
+    "name": "Zentia",
+    "reference": "Covert Street",
+    "number": 9508
+  },
+  {
+    "registerNumber": "1589962-8",
+    "name": "Isotrack",
+    "reference": "Meserole Avenue",
+    "number": 6883
+  },
+  {
+    "registerNumber": "4287141-5",
+    "name": "Medalert",
+    "reference": "Kent Avenue",
+    "number": 3942
+  },
+  {
+    "registerNumber": "5181422-7",
+    "name": "Geekmosis",
+    "reference": "Woodruff Avenue",
+    "number": 9355
+  },
+  {
+    "registerNumber": "9798412-9",
+    "name": "Fossiel",
+    "reference": "Stockholm Street",
+    "number": 8190
+  },
+  {
+    "registerNumber": "6445488-7",
+    "name": "Gogol",
+    "reference": "Goodwin Place",
+    "number": 4177
+  },
+  {
+    "registerNumber": "7403692-6",
+    "name": "Zenco",
+    "reference": "Strauss Street",
+    "number": 268
+  }
+]

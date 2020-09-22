@@ -1,0 +1,402 @@
+[
+  {
+    "city": "Lavalette",
+    "cep": "88387-283"
+  },
+  {
+    "city": "Nile",
+    "cep": "63176-760"
+  },
+  {
+    "city": "Cumberland",
+    "cep": "87307-323"
+  },
+  {
+    "city": "Bowmansville",
+    "cep": "47446-619"
+  },
+  {
+    "city": "Grapeview",
+    "cep": "41515-378"
+  },
+  {
+    "city": "Trail",
+    "cep": "92027-570"
+  },
+  {
+    "city": "Bluetown",
+    "cep": "99088-958"
+  },
+  {
+    "city": "Sandston",
+    "cep": "64464-327"
+  },
+  {
+    "city": "Waterford",
+    "cep": "96612-538"
+  },
+  {
+    "city": "Cloverdale",
+    "cep": "83386-290"
+  },
+  {
+    "city": "Hilltop",
+    "cep": "10024-253"
+  },
+  {
+    "city": "Chamberino",
+    "cep": "92654-551"
+  },
+  {
+    "city": "Ruckersville",
+    "cep": "43897-408"
+  },
+  {
+    "city": "Maxville",
+    "cep": "38112-164"
+  },
+  {
+    "city": "Sehili",
+    "cep": "97721-710"
+  },
+  {
+    "city": "Gilmore",
+    "cep": "80729-410"
+  },
+  {
+    "city": "Deltaville",
+    "cep": "27855-305"
+  },
+  {
+    "city": "Elliott",
+    "cep": "54546-548"
+  },
+  {
+    "city": "Emison",
+    "cep": "99327-484"
+  },
+  {
+    "city": "Wilsonia",
+    "cep": "30074-208"
+  },
+  {
+    "city": "Blandburg",
+    "cep": "39899-248"
+  },
+  {
+    "city": "Lowell",
+    "cep": "96364-945"
+  },
+  {
+    "city": "Kraemer",
+    "cep": "35599-860"
+  },
+  {
+    "city": "Vicksburg",
+    "cep": "68166-803"
+  },
+  {
+    "city": "Worton",
+    "cep": "29318-672"
+  },
+  {
+    "city": "Tecolotito",
+    "cep": "70460-874"
+  },
+  {
+    "city": "Delwood",
+    "cep": "42592-819"
+  },
+  {
+    "city": "Gambrills",
+    "cep": "97368-994"
+  },
+  {
+    "city": "Libertytown",
+    "cep": "37624-862"
+  },
+  {
+    "city": "Gibsonia",
+    "cep": "33298-847"
+  },
+  {
+    "city": "Carlton",
+    "cep": "21218-110"
+  },
+  {
+    "city": "Vowinckel",
+    "cep": "25419-289"
+  },
+  {
+    "city": "Greenbush",
+    "cep": "94463-441"
+  },
+  {
+    "city": "Rodanthe",
+    "cep": "22690-445"
+  },
+  {
+    "city": "Wyoming",
+    "cep": "72770-175"
+  },
+  {
+    "city": "Fulford",
+    "cep": "86373-311"
+  },
+  {
+    "city": "Riverton",
+    "cep": "88467-592"
+  },
+  {
+    "city": "Venice",
+    "cep": "97192-426"
+  },
+  {
+    "city": "Mathews",
+    "cep": "89051-155"
+  },
+  {
+    "city": "Canby",
+    "cep": "88589-299"
+  },
+  {
+    "city": "Vernon",
+    "cep": "73621-889"
+  },
+  {
+    "city": "Sabillasville",
+    "cep": "56424-662"
+  },
+  {
+    "city": "Collins",
+    "cep": "91009-527"
+  },
+  {
+    "city": "Magnolia",
+    "cep": "23319-621"
+  },
+  {
+    "city": "Goodville",
+    "cep": "85297-250"
+  },
+  {
+    "city": "Edmund",
+    "cep": "37393-741"
+  },
+  {
+    "city": "Troy",
+    "cep": "60909-157"
+  },
+  {
+    "city": "Hailesboro",
+    "cep": "70408-722"
+  },
+  {
+    "city": "Homeworth",
+    "cep": "45211-945"
+  },
+  {
+    "city": "Garberville",
+    "cep": "90530-313"
+  },
+  {
+    "city": "Cawood",
+    "cep": "90632-716"
+  },
+  {
+    "city": "Whitewater",
+    "cep": "98968-213"
+  },
+  {
+    "city": "Roland",
+    "cep": "46548-465"
+  },
+  {
+    "city": "Dunnavant",
+    "cep": "58196-287"
+  },
+  {
+    "city": "Kempton",
+    "cep": "53547-678"
+  },
+  {
+    "city": "Tibbie",
+    "cep": "39751-462"
+  },
+  {
+    "city": "Coalmont",
+    "cep": "63385-468"
+  },
+  {
+    "city": "Adelino",
+    "cep": "12752-916"
+  },
+  {
+    "city": "Marenisco",
+    "cep": "84919-900"
+  },
+  {
+    "city": "Teasdale",
+    "cep": "95213-122"
+  },
+  {
+    "city": "Tivoli",
+    "cep": "15454-541"
+  },
+  {
+    "city": "Henrietta",
+    "cep": "14154-221"
+  },
+  {
+    "city": "Rose",
+    "cep": "76330-122"
+  },
+  {
+    "city": "Farmington",
+    "cep": "34692-736"
+  },
+  {
+    "city": "Galesville",
+    "cep": "13091-882"
+  },
+  {
+    "city": "Grenelefe",
+    "cep": "74465-222"
+  },
+  {
+    "city": "Brazos",
+    "cep": "90782-973"
+  },
+  {
+    "city": "Disautel",
+    "cep": "11850-981"
+  },
+  {
+    "city": "Cherokee",
+    "cep": "59622-231"
+  },
+  {
+    "city": "Fowlerville",
+    "cep": "86888-323"
+  },
+  {
+    "city": "Abiquiu",
+    "cep": "94163-351"
+  },
+  {
+    "city": "Defiance",
+    "cep": "42392-710"
+  },
+  {
+    "city": "Boykin",
+    "cep": "50023-166"
+  },
+  {
+    "city": "Falconaire",
+    "cep": "94171-709"
+  },
+  {
+    "city": "Flintville",
+    "cep": "11625-840"
+  },
+  {
+    "city": "Hiwasse",
+    "cep": "53060-791"
+  },
+  {
+    "city": "Wright",
+    "cep": "45118-131"
+  },
+  {
+    "city": "Waiohinu",
+    "cep": "37571-354"
+  },
+  {
+    "city": "Savannah",
+    "cep": "42985-364"
+  },
+  {
+    "city": "Monument",
+    "cep": "92312-588"
+  },
+  {
+    "city": "Breinigsville",
+    "cep": "87039-540"
+  },
+  {
+    "city": "Leola",
+    "cep": "13541-788"
+  },
+  {
+    "city": "Smock",
+    "cep": "44018-465"
+  },
+  {
+    "city": "Ebro",
+    "cep": "26892-943"
+  },
+  {
+    "city": "Baker",
+    "cep": "18069-613"
+  },
+  {
+    "city": "Idledale",
+    "cep": "50828-569"
+  },
+  {
+    "city": "Falmouth",
+    "cep": "67330-961"
+  },
+  {
+    "city": "Kenmar",
+    "cep": "82527-578"
+  },
+  {
+    "city": "Hamilton",
+    "cep": "77180-898"
+  },
+  {
+    "city": "Muse",
+    "cep": "49899-187"
+  },
+  {
+    "city": "Utting",
+    "cep": "55549-129"
+  },
+  {
+    "city": "Newkirk",
+    "cep": "32487-580"
+  },
+  {
+    "city": "Boonville",
+    "cep": "11131-219"
+  },
+  {
+    "city": "Outlook",
+    "cep": "35052-150"
+  },
+  {
+    "city": "Fredericktown",
+    "cep": "17795-727"
+  },
+  {
+    "city": "Hillsboro",
+    "cep": "24311-330"
+  },
+  {
+    "city": "Wyano",
+    "cep": "48841-523"
+  },
+  {
+    "city": "Allamuchy",
+    "cep": "66659-220"
+  },
+  {
+    "city": "Frizzleburg",
+    "cep": "51056-496"
+  },
+  {
+    "city": "Suitland",
+    "cep": "45438-635"
+  }
+]
