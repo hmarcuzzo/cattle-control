@@ -44,8 +44,8 @@ public class FarmServiceIntegrationTest {
                                 .name("Henrique Souza")
                                 .email("henrique@hotmail.com")
                                 .type(1)
-                                .idType("411.992.888-88")
-                                .phone("17991524608")
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
                                 .info("Olá Mundo!")
                                 .deleted(false)
                                 .build();
@@ -57,8 +57,8 @@ public class FarmServiceIntegrationTest {
     @Rollback
     Place createPlace() throws Exception{
         Place place = Place.builder()
-                                .cep("15355-000")
-                                .city("Guzolândia")
+                                .cep("55555-000")
+                                .city("Testolândia")
                                 .deleted(false)
                                 .build();
 

@@ -33,14 +33,14 @@ public class PlaceServiceIntegrationTest  {
 	void testCreate() throws Exception{
 
         Place place = Place.builder()
-                                .cep("15355-000")
-                                .city("Guzolândia")
+                                .cep("55555-000")
+                                .city("Testolândia")
                                 .deleted(false)
                                 .build();
 
         placeService.create(place);
 
-        assertThat(placeService.readAll().get(0).getCity()).isEqualTo("Guzolândia");
+        assertThat(placeService.readAll().get(0).getCity()).isEqualTo("Testolândia");
     }
 
 
@@ -51,15 +51,15 @@ public class PlaceServiceIntegrationTest  {
 	void testFindByCep() throws Exception{
 
         Place place = Place.builder()
-                                .cep("15355-000")
-                                .city("Guzolândia")
+                                .cep("55555-000")
+                                .city("Testolândia")
                                 .deleted(false)
                                 .build();
 
         placeService.create(place);
 
         
-        assertThat(placeService.findByCep("15355-000")).isEqualTo(place);
+        assertThat(placeService.findByCep("55555-000")).isEqualTo(place);
     }
 
     @DisplayName("Testar o update de um Local no BD.")
@@ -69,18 +69,18 @@ public class PlaceServiceIntegrationTest  {
 	void testUpdatePlace () throws Exception{
 
         Place place = Place.builder()
-                                .cep("15355-000")
-                                .city("Guzolândia")
+                                .cep("55555-000")
+                                .city("Testolândia")
                                 .deleted(false)
                                 .build();
 
         placeService.create(place);
 
-        Integer id = placeService.findByCep("15355-000").getId();
+        Integer id = placeService.findByCep("55555-000").getId();
 
         place = Place.builder()
                             .id(id)
-                            .cep("15355-000")
+                            .cep("55555-000")
                             .city("Auriflama")
                             .deleted(false)
                             .build();
@@ -99,8 +99,8 @@ public class PlaceServiceIntegrationTest  {
 	void testFindByCepDeleted() throws Exception {
 
         Place place = Place.builder()
-                                .cep("15355-000")
-                                .city("Guzolândia")
+                                .cep("55555-000")
+                                .city("Testolândia")
                                 .deleted(true)
                                 .build();
 
@@ -108,7 +108,7 @@ public class PlaceServiceIntegrationTest  {
 
 
         assertThrows(com.github.adminfaces.template.exception.BusinessException.class, () -> {
-            placeService.findByCep("15355-000");
+            placeService.findByCep("55555-000");
         });
     }
 
@@ -120,15 +120,15 @@ public class PlaceServiceIntegrationTest  {
 	void testCreatePlaceCepEqualsDeleted() throws Exception{
 
         Place place = Place.builder()
-                                .cep("15355-000")
-                                .city("Guzolândia")
+                                .cep("55555-000")
+                                .city("Testolândia")
                                 .deleted(true)
                                 .build();
 
         placeService.create(place);
         
         place = Place.builder()
-                            .cep("15355-000")
+                            .cep("55555-000")
                             .city("Auriflama")
                             .deleted(false)
                             .build();
@@ -146,13 +146,13 @@ public class PlaceServiceIntegrationTest  {
 	void testGetCeps() throws Exception{
 
         Place place = Place.builder()
-                                .cep("15355-000")
-                                .city("Guzolândia")
+                                .cep("55555-000")
+                                .city("Testolândia")
                                 .deleted(false)
                                 .build();
 
         placeService.create(place);
 
-        assertThat(placeService.getCeps("15").get(0)).isEqualTo("15355-000");
+        assertThat(placeService.getCeps("55").get(0)).isEqualTo("55555-000");
     }
 }
