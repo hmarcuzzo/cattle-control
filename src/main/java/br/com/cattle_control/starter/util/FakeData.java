@@ -14,12 +14,8 @@ import org.springframework.stereotype.Component;
 
 import br.com.cattle_control.starter.exception.AnyPersistenceException;
 import br.com.cattle_control.starter.exception.EntityAlreadyExistsException;
-import br.com.cattle_control.starter.model.Farm;
-import br.com.cattle_control.starter.model.People;
-import br.com.cattle_control.starter.model.Place;
-import br.com.cattle_control.starter.service.FarmService;
-import br.com.cattle_control.starter.service.PeopleService;
-import br.com.cattle_control.starter.service.PlaceService;
+import br.com.cattle_control.starter.model.*;
+import br.com.cattle_control.starter.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
