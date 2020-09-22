@@ -47,7 +47,7 @@ public class PeopleServiceIntegrationTest {
                                 .email("henrique@hotmail.com")
                                 .type(1)
                                 .idType("41199288888")
-                                .phone("17991524608")
+                                .phone("18992686498")
                                 .info("Olá Mundo!")
                                 .deleted(false)
                                 .build();
@@ -69,7 +69,7 @@ public class PeopleServiceIntegrationTest {
                                 .email("henrique@hotmail.com")
                                 .type(1)
                                 .idType("41199288888")
-                                .phone("17991524608")
+                                .phone("18992686498")
                                 .info("Olá Mundo!")
                                 .deleted(false)
                                 .build();
@@ -84,7 +84,7 @@ public class PeopleServiceIntegrationTest {
                             .email("henrique@hotmail.com")
                             .type(1)
                             .idType("41199288888")
-                            .phone("17991524608")
+                            .phone("18992686498")
                             .info("Olá Mundo!")
                             .deleted(false)
                             .build();
@@ -106,8 +106,8 @@ public class PeopleServiceIntegrationTest {
                                 .name("Henrique")
                                 .email("henrique@hotmail.com")
                                 .type(1)
-                                .idType("411.992.888-88")
-                                .phone("17991524608")
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
                                 .info("Olá Mundo!")
                                 .deleted(false)
                                 .build();
@@ -115,7 +115,7 @@ public class PeopleServiceIntegrationTest {
         peopleService.create(people);
 
         
-        assertThat(peopleService.findByIdType("411.992.888-88")).isEqualTo(people);
+        assertThat(peopleService.findByIdType("888.888.888-88")).isEqualTo(people);
     }
 
     @DisplayName("Testar a procura de uma Pessoa deletada por IdType.")
@@ -128,8 +128,8 @@ public class PeopleServiceIntegrationTest {
                                 .name("Henrique")
                                 .email("henrique@hotmail.com")
                                 .type(1)
-                                .idType("411.992.888-88")
-                                .phone("17991524608")
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
                                 .info("Olá Mundo!")
                                 .deleted(true)
                                 .build();
@@ -138,7 +138,7 @@ public class PeopleServiceIntegrationTest {
 
 
         assertThrows(com.github.adminfaces.template.exception.BusinessException.class, () -> {
-            peopleService.findByIdType("411.992.888-88");
+            peopleService.findByIdType("888.888.888-88");
         });
     }
 
@@ -153,8 +153,8 @@ public class PeopleServiceIntegrationTest {
                                 .name("Henrique")
                                 .email("henrique@hotmail.com")
                                 .type(1)
-                                .idType("411.992.888-88")
-                                .phone("17991524608")
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
                                 .info("Olá Mundo!")
                                 .deleted(true)
                                 .build();
@@ -166,8 +166,8 @@ public class PeopleServiceIntegrationTest {
                             .name("Henrique Souza")
                             .email("henrique@hotmail.com")
                             .type(1)
-                            .idType("411.992.888-88")
-                            .phone("17991524608")
+                            .idType("888.888.888-88")
+                            .phone("18992686498")
                             .info("Olá Mundo!")
                             .deleted(false)
                             .build();
@@ -188,15 +188,15 @@ public class PeopleServiceIntegrationTest {
                                 .name("Henrique")
                                 .email("henrique@hotmail.com")
                                 .type(1)
-                                .idType("411.992.888-88")
-                                .phone("17991524608")
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
                                 .info("Olá Mundo!")
                                 .deleted(false)
                                 .build();
 
         peopleService.create(people);
 
-        assertThat(peopleService.getIDsType("411").get(0)).isEqualTo("411.992.888-88");
+        assertThat(peopleService.getIDsType("888").get(0)).isEqualTo("888.888.888-88");
     }
 
     @DisplayName("Testar a procura por Nomes existentes.")
@@ -209,8 +209,8 @@ public class PeopleServiceIntegrationTest {
                                 .name("Henrique")
                                 .email("henrique@hotmail.com")
                                 .type(1)
-                                .idType("411.992.888-88")
-                                .phone("17991524608")
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
                                 .info("Olá Mundo!")
                                 .deleted(false)
                                 .build();
