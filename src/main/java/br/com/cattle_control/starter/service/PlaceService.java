@@ -92,4 +92,14 @@ public class PlaceService implements ICRUDService<Place> {
                 .findFirst()
                 .orElseThrow(() -> new BusinessException("Local com CEP " + cep + " não encontrado"));
     }
+
+
+    public List<String> getCeps(String query) {
+        return placeRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentPlace -> currentPlace.getCep().toLowerCase().contains(query.toLowerCase()) && currentPlace.getDeleted().equals(false))
+                            .map(Place::getCep)
+                            .collect(Collectors.toList());
+    }
 }
