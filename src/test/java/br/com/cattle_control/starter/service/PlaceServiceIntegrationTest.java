@@ -40,7 +40,7 @@ public class PlaceServiceIntegrationTest  {
 
         placeService.create(place);
 
-        assertThat(placeService.readAll().get(0).getCity()).isEqualTo("Testolândia");
+        assertThat(placeService.findByCep("55555-000").getCity()).isEqualTo("Testolândia");
     }
 
 
@@ -88,7 +88,7 @@ public class PlaceServiceIntegrationTest  {
         placeService.update(place);
 
         
-        assertThat(placeService.readAll().get(0).getCity()).isEqualTo("Auriflama");
+        assertThat(placeService.findByCep("55555-000").getCity()).isEqualTo("Auriflama");
     }
 
 
@@ -153,6 +153,6 @@ public class PlaceServiceIntegrationTest  {
 
         placeService.create(place);
 
-        assertThat(placeService.getCeps("55").get(0)).isEqualTo("55555-000");
+        assertThat(placeService.getCeps("55555").get(0)).isEqualTo("55555-000");
     }
 }

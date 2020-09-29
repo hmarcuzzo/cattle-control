@@ -88,7 +88,7 @@ public class FarmServiceIntegrationTest {
 
         farmService.create(farm);
 
-        assertThat(farmService.readAll().get(0).getName()).isEqualTo("Fazenda Teste");
+        assertThat(farmService.findByRegisterNumber("9999999-9").getName()).isEqualTo("Fazenda Teste");
     }
 
 
@@ -155,7 +155,7 @@ public class FarmServiceIntegrationTest {
         farmService.update(farm);
 
         
-        assertThat(farmService.readAll().get(0).getName()).isEqualTo("Fazendinha");
+        assertThat(farmService.findByRegisterNumber("9999999-9").getName()).isEqualTo("Fazendinha");
     }
 
 
@@ -221,7 +221,7 @@ public class FarmServiceIntegrationTest {
 
         farmService.create(farm);
 
-        assertThat(farmService.readAll().get(0).getName()).isEqualTo("Fazendinha");
+        assertThat(farmService.findByRegisterNumber("9999999-9").getName()).isEqualTo("Fazendinha");
     }
 
 

@@ -55,7 +55,7 @@ public class PeopleServiceIntegrationTest {
         peopleService.create(people);
 
 
-        assertThat(peopleService.readAll().get(0).getName()).isEqualTo("Henrique");
+        assertThat(peopleService.findByIdType("41199288888").getName()).isEqualTo("Henrique");
     }
 
     @DisplayName("Testar o update de uma Pessoa no BD.")
@@ -92,7 +92,7 @@ public class PeopleServiceIntegrationTest {
         peopleService.update(people);
 
 
-        assertThat(peopleService.readAll().get(0).getName()).isEqualTo("Henrique Souza");
+        assertThat(peopleService.findByIdType("41199288888").getName()).isEqualTo("Henrique Souza");
     }
 
 
@@ -174,7 +174,7 @@ public class PeopleServiceIntegrationTest {
 
         peopleService.create(people);
 
-        assertThat(peopleService.readAll().get(0).getDeleted()).isEqualTo(false);
+        assertThat(peopleService.findByIdType("888.888.888-88").getDeleted()).isEqualTo(false);
     }
 
 
@@ -217,7 +217,7 @@ public class PeopleServiceIntegrationTest {
 
         peopleService.create(people);
 
-        assertThat(peopleService.getNames("hen").get(0)).isEqualTo("Henrique");
+        assertThat(peopleService.getNames("henri").get(0)).isEqualTo("Henrique");
     }
 
 }
