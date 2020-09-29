@@ -1,7 +1,7 @@
 package br.com.cattle_control.starter.model;
 
-import br.com.cattle_control.starter.model.People;
-import br.com.cattle_control.starter.model.Place;
+// import br.com.cattle_control.starter.model.People;
+// import br.com.cattle_control.starter.model.Place;
 
 
 import java.io.Serializable;
