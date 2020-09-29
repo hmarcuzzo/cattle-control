@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:adm="http://github.com/adminfaces"
+                template="#{layoutMB.template}">
+
+    <ui:define name="metadata">
+        <ui:param name="title" value="Lista de fazendas"/> <!-- Automatic create breadCrumb and page title when param 'title' is provided. --> 
+        <style type="text/css">
+            .ui-datatable .ui-datatable-header {
+                text-align: right !important;
+            }
+
+        </style>
+    </ui:define>
+
+    <ui:define name="description">
+        Ache fazendas por Nome ou Número de Registro
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div id="main-buttons" class="hidden-sm hidden-xs">
+                        <p:commandButton action="cattle-form?faces-redirect=true" icon="fa fa-plus"
+                                         value="Novo" styleClass="btn-primary"/>
+                        <p:spacer width="5"/>
+                        <p:commandButton value="Deletar Selecionados" icon="fa fa-trash" styleClass="btn-danger"
+                                         action="#{cattleListView.delete}"
+                                         update="@form">
+                            <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
+                        </p:commandButton>
+                        <p:spacer width="5"/>
+                        <p:commandButton value="Ver selecionados" update="@(.ui-dialog)" styleClass="btn-info"
+                                         disabled="#{empty cattleListView.selectedCattles or cattleListView.selectedCattles.size() == 0}"
+                                         oncomplete="PF('selectedCattles').show()" icon="fa fa-search"/>
+                    </div>
+
+                    <p:splitButton value="Novo" action="cattle-form?faces-redirect=true"
+                                   icon="fa fa-plus"
+                                   styleClass="hidden-md hidden-lg btn-primary">
+                        <p:menuitem value="Deletar Selecionados" action="#{cattleListView.delete}"
+                                    process="@this" update="@form"
+                                    disabled="#{empty cattleListView.selectedCattles or cattleListView.selectedCattles.size() == 0}"
+                                    icon="fa fa-trash">
+                            <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
+                        </p:menuitem>
+                        <p:menuitem value="Ver selecionados" update="@(.ui-dialog)"
+                                    oncomplete="PF('selectedCattles').show()"
+                                    disabled="#{empty cattleListView.selectedCattles or cattleListView.selectedCattles.size() == 0}"
+                                    icon="fa fa-search"/>
+                    </p:splitButton>
+
+                    <p:separator/>
+                    <p:dataTable widgetVar="cattlesTable" var="p" value="#{cattleListView.listAllCattle()}" rows="10"
+                                 rowKey="#{p.id}" lazy="true" paginator="true"
+                                 filteredValue="#{cattleListView.filteredValue}"
+                                 paginatorPosition="bottom" selection="#{cattleListView.selectedCattles}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {JumpToPageDropdown}"
+                                 currentPageReportTemplate="[ {startRecord} to {endRecord} of {totalRecords} ]"
+                                 rowsPerPageTemplate="5,10,15,20,30">
+
+                        <p:ajax event="rowSelectCheckbox" update="@(.ui-button, .ui-confirm-dialog)"/>
+                        <p:ajax event="rowUnselectCheckbox" update="@(.ui-button, .ui-confirm-dialog)"/>
+                        <p:ajax event="rowSelect" update="@(.ui-button, .ui-confirm-dialog)"/>
+                        <p:ajax event="rowUnselect" update="@(.ui-button, .ui-confirm-dialog)"/>
+                        <p:ajax event="toggleSelect" update="@(.ui-button, .ui-confirm-dialog)"/>
+
+                        <f:facet name="header">
+                            Procure bois pela numeração: <p:inputMask id="inptNumbering" mask="999999" value="#{cattleListView.numbering}"/>
+                            <p:spacer height="5"/>
+                            <p:commandButton id="brFind"
+                                             value="Procurar"
+                                             action="#{cattleListView.findCattleByNumbering(cattleListView.numbering)}"
+                                             process="@form"
+                                             update="@form"
+                                             styleClass="btn-flat bg-black btn-states"
+                                             partialSubmit="true"/>
+                        </f:facet>
+                        <p:column selectionMode="multiple" width="4%" styleClass="align-center"/>
+
+                        <p:column headerText="Númeração">
+                            <f:facet name="filter">
+                                <p:autoComplete value="#{cattleListView.filter.entity.numbering}" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{cattleListView.completeNumbering}" maxResults="10">
+                                    <p:inputMask mask="999999"/>
+                                    <p:ajax event="itemSelect" process="@this" update="@none"
+                                            oncomplete="PF('cattlesTable').filter()"/>
+                                </p:autoComplete>
+                            </f:facet>
+                            <p:link value="#{p.numbering}" outcome="cattle-form.xhtml" >
+                                <f:param name="id" value="#{p.id}"/>
+                            </p:link>
+                        </p:column>
+
+                        <p:column headerText="Peso">
+                            #{p.weight}
+                        </p:column>
+
+                        <p:column headerText="Preço"> 
+                            #{p.price}
+                        </p:column>
+
+
+                        <p:column headerText="Fazenda"> 
+                            <p:link value="#{p.farm.name}" outcome="farm-form.xhtml" rendered = "#{p.farm.deleted == false}">
+                                <f:param name="id" value="#{p.farm.id}"/>
+                            </p:link>
+                            <h:outputText value="#{p.farm.name}" rendered = "#{p.farm.deleted == true}"/>
+                        </p:column>
+
+                        <p:column headerText="Informações">
+                            #{p.info}
+                        </p:column>
+                        
+                    </p:dataTable>
+                </div>
+            </div>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger box-solid">
+                <p:commandButton value="Sim" type="button" styleClass="btn-material btn-primary ui-confirmdialog-yes"
+                                 icon="fa fa-check"/>
+                <p:commandButton value="Não" type="button" styleClass="btn-material btn-danger ui-confirmdialog-no"
+                                 icon="fa fa-close"/>
+            </p:confirmDialog>
+        </h:form>
+
+
+
+        <p:dialog header="Fazendas Selecionadas" widgetVar="selectedCattles" height="300"
+                  width="1100" responsive="true" styleClass="box-success">
+            <p:dataList id="selectedCattlesList" value="#{cattleListView.selectedCattles}" var="cattle" type="definition">
+                Boi: Numeração: #{cattle.numbering} - Peso: #{cattle.weight} - Preço: #{cattle.price} - Fazenda: #{cattle.farm.name}
+            </p:dataList>
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>
