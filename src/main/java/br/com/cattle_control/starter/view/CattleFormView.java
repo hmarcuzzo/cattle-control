@@ -70,15 +70,15 @@ public class CattleFormView {
         return cattle.getId();
     }
 
-    public Integer getNumbering() {
+    public String getNumbering() {
         return cattle.getNumbering();
     }
 
-    public Float getWeight() {
+    public double getWeight() {
         return cattle.getWeight();
     }
 
-    public Float getPrice() {
+    public double getPrice() {
         return cattle.getPrice();
     }
 
@@ -98,15 +98,15 @@ public class CattleFormView {
         cattle.setId(id);
     }
 
-    public void setNumbering(Integer numbering) {
+    public void setNumbering(String numbering) {
         cattle.setNumbering(numbering);
     }
 
-    public void setWeight(Float weight) {
+    public void setWeight(double weight) {
         cattle.setWeight(weight);
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(double price) {
         cattle.setPrice(price);
     }
 
@@ -142,14 +142,14 @@ public class CattleFormView {
         try {
             if (getId() == null) {
                 cattleService.create(this.cattle);
-                msg = "O boi " + (getNumbering()).toString() + " foi criada com sucesso!";
+                msg = "O boi " + getNumbering() + " foi criada com sucesso!";
             } else {
                 cattleService.update(this.cattle);
-                msg = "O boi " + (getNumbering()).toString() + " foi atualizado com sucesso!";
+                msg = "O boi " + getNumbering() + " foi atualizado com sucesso!";
             }
 
         } catch (final EntityAlreadyExistsException e) {
-            msg = "Um boi com a numeração " + (getNumbering()).toString() + " já existe no Banco de Dados!";
+            msg = "Um boi com a numeração " + getNumbering() + " já existe no Banco de Dados!";
 
         } catch (final AnyPersistenceException e) {
             msg = "Erro na gravação dos dados!";
@@ -171,7 +171,7 @@ public class CattleFormView {
                 setDeleted(true);
                 cattleService.update(cattle);
                 
-                msg = "O boi " + (getNumbering()).toString() + " foi removido com sucesso";
+                msg = "O boi " + getNumbering() + " foi removido com sucesso";
 
             } catch (final AnyPersistenceException e) {
                 msg = "Erro na gravação dos dados!";

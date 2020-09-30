@@ -29,13 +29,13 @@ public class Cattle implements Serializable {
     private Integer id;
 
     @Column(name = "Cattle_numbering")
-    private Integer numbering;
+    private String numbering;
 
     @Column(name = "Cattle_weight")
-    private Float weight;
+    private double weight;
 
     @Column(name = "Cattle_price")
-    private Float price;
+    private double price;
 
     @ManyToOne
     @JoinColumn(name= "Id_Farm")
@@ -51,9 +51,9 @@ public class Cattle implements Serializable {
     @Builder 
 	public static Cattle create (
             Integer id,
-			Integer numbering,
-			Float  weight,
-            Float price,
+			String numbering,
+			double  weight,
+            double price,
             Farm farm,
 			String  info,
 			Boolean deleted) {

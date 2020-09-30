@@ -55,7 +55,7 @@ public class CattleListView {
         return filteredValue;
     }
 
-    public Integer getNumbering() {
+    public String getNumbering() {
         return cattle.getNumbering(); 
     }
 
@@ -79,7 +79,7 @@ public class CattleListView {
         this.filter = filter;
     }
 
-    public void setNumbering(Integer numbering){
+    public void setNumbering(String numbering){
         cattle.setNumbering(numbering);
     }   
 
@@ -121,7 +121,7 @@ public class CattleListView {
         
     }
 
-    public void findCattleByNumbering(Integer numbering) {
+    public void findCattleByNumbering(String numbering) {
         if (numbering == null) {
             throw new BusinessException("Coloque uma numeração para procurar!");
         }
@@ -134,8 +134,8 @@ public class CattleListView {
         filter = new Filter<Cattle>(new Cattle());
     }
 
-    public List<Integer> completeRegisterNumber(Integer query) {
-        List<Integer> result = cattleService.getNumberings(query);
+    public List<String> completeRegisterNumber(String query) {
+        List<String> result = cattleService.getNumberings(query);
         return result;
     }
 

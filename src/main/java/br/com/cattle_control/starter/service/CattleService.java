@@ -30,11 +30,11 @@ public class CattleService implements ICRUDService<Cattle> {
                             .collect(Collectors.toList());
     }
 
-    public List<Integer> getNumberings(Integer query) {
+    public List<String> getNumberings(String query) {
         return cattleRepository
                             .findAll()
                             .stream()
-                            .filter(currentCattle -> currentCattle.getNumbering().equals(query) && currentCattle.getDeleted().equals(false))
+                            .filter(currentCattle -> (currentCattle.getNumbering()).toLowerCase().contains(query.toLowerCase()) && currentCattle.getDeleted().equals(false))
                             .map(Cattle::getNumbering)
                             .collect(Collectors.toList());
     }
@@ -90,12 +90,12 @@ public class CattleService implements ICRUDService<Cattle> {
 		// TODO Implementação obrigatório por causa da interface ICRUDService	
     }
 
-    public Cattle findByNumbering(Integer numbering) {
+    public Cattle findByNumbering(String numbering) {
         return cattleRepository.findAll()
                 .stream()
                 .filter(currentCattle -> currentCattle.getNumbering().equals(numbering) && currentCattle.getDeleted().equals(false))
                 .findFirst()
-                .orElseThrow(() -> new BusinessException("Fazenda com número de registro " + numbering + " não encontrada"));
+                .orElseThrow(() -> new BusinessException("Boi com numeração " + numbering + " não encontrado"));
     }
 
 }
