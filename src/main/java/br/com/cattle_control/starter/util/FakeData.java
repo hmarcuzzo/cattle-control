@@ -31,6 +31,9 @@ public class FakeData {
     @Autowired
     PlaceService placeService;
 
+    @Autowired
+    PaymentTypeService paymentTypeService;
+
     @EventListener
     public void appReady(ApplicationReadyEvent event) throws EntityAlreadyExistsException, AnyPersistenceException,
              IOException, ParseException {        
@@ -88,5 +91,20 @@ public class FakeData {
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException();
         }
+
+
+        String[] paymentTypes = {"Parcelado", "A vista", "Cheque", "Outros"};
+
+        for (String type : paymentTypes){
+            PaymentType paymentType = PaymentType.builder()
+            .type_name(type)
+            .deleted(false)
+            .build();
+    
+            paymentTypeService.create(paymentType);
+        }
+        
+
+      
     }    
 }
