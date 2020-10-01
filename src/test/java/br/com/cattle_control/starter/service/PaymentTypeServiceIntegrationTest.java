@@ -32,13 +32,13 @@ public class PaymentTypeServiceIntegrationTest {
 	void testCreate() throws Exception{
 
         PaymentType paymentType = PaymentType.builder()
-                                .type_name("Parcelado")
-                                .deleted(false)
-                                .build();
+                            .type_name("Teste")
+                            .deleted(false)
+                            .build();
 
         paymentTypeService.create(paymentType);
 
-        assertThat(paymentTypeService.findByPaymentTypeName("Parcelado").getPaymentType_name()).isEqualTo("Parcelado");
+        assertThat(paymentTypeService.findByPaymentTypeName("Teste")).isEqualTo(paymentType);
     }
 
     @DisplayName("Testar a procura de método de pagamento por Nome.")
@@ -48,14 +48,13 @@ public class PaymentTypeServiceIntegrationTest {
 	void testFindByPaymentTypeName() throws Exception{
 
         PaymentType paymentType = PaymentType.builder()
-                                .type_name("Parcelado")
-                                .deleted(false)
-                                .build();
+                            .type_name("Teste")
+                            .deleted(false)
+                            .build();
 
         paymentTypeService.create(paymentType);
-
         
-        assertThat(paymentTypeService.findByPaymentTypeName("Parcelado")).isEqualTo(paymentType);
+        assertThat(paymentTypeService.findByPaymentTypeName("Teste").getPaymentType_name()).isEqualTo("Teste");
     }
 
     @DisplayName("Testar a procura de método de pagamento por Nome com letras minusculas.")
@@ -65,14 +64,13 @@ public class PaymentTypeServiceIntegrationTest {
 	void testFindByPaymentTypeNameWithLowerCase() throws Exception{
 
         PaymentType paymentType = PaymentType.builder()
-                                .type_name("Parcelado")
-                                .deleted(false)
-                                .build();
+                            .type_name("Teste")
+                            .deleted(false)
+                            .build();
 
         paymentTypeService.create(paymentType);
-
-        
-        assertThat(paymentTypeService.findByPaymentTypeName("parcelado")).isEqualTo(paymentType);
+   
+        assertThat(paymentTypeService.findByPaymentTypeName("teste").getPaymentType_name()).isEqualTo("Teste");
     }
 
     @DisplayName("Testar a procura de método de pagamento por Nome com letras maisculas.")
@@ -80,16 +78,14 @@ public class PaymentTypeServiceIntegrationTest {
 	@Transactional
 	@Rollback
 	void testFindByPaymentTypeNameWithUpperCase() throws Exception{
-
         PaymentType paymentType = PaymentType.builder()
-                                .type_name("Parcelado")
-                                .deleted(false)
-                                .build();
+                            .type_name("Teste")
+                            .deleted(false)
+                            .build();
 
         paymentTypeService.create(paymentType);
-
-        
-        assertThat(paymentTypeService.findByPaymentTypeName("PARCELADO")).isEqualTo(paymentType);
+       
+        assertThat(paymentTypeService.findByPaymentTypeName("TESTE").getPaymentType_name()).isEqualTo("Teste");
     }
 
     @DisplayName("Testar o update de um método de pagamento no BD.")
@@ -99,24 +95,24 @@ public class PaymentTypeServiceIntegrationTest {
 	void testUpdatePaymentType () throws Exception{
 
         PaymentType paymentType = PaymentType.builder()
-                                .type_name("Parcelado")
-                                .deleted(false)
-                                .build();
+                            .type_name("Teste")
+                            .deleted(false)
+                            .build();
 
         paymentTypeService.create(paymentType);
-
-        Integer id = paymentTypeService.findByPaymentTypeName("Parcelado").getId();
+       
+        Integer id = paymentTypeService.findByPaymentTypeName("Teste").getId();
 
         paymentType = PaymentType.builder()
                             .id(id)
-                            .type_name("Cheque")
+                            .type_name("Teste2")
                             .deleted(false)
                             .build();
 
         paymentTypeService.update(paymentType);
 
         
-        assertThat(paymentTypeService.findByPaymentTypeName("Cheque")).isEqualTo(paymentType);
+        assertThat(paymentTypeService.findByPaymentTypeName("Teste2")).isEqualTo(paymentType);
     }
 
     @DisplayName("Testar a procura de um método de pagamento deletado por Nome.")
@@ -126,15 +122,14 @@ public class PaymentTypeServiceIntegrationTest {
 	void testFindByPaymentTypeNameDeleted() throws Exception {
 
         PaymentType paymentType = PaymentType.builder()
-                            .type_name("Cheque")
+                            .type_name("Teste")
                             .deleted(true)
                             .build();
 
         paymentTypeService.create(paymentType);
 
-
         assertThrows(com.github.adminfaces.template.exception.BusinessException.class, () -> {
-            paymentTypeService.findByPaymentTypeName("Cheque");
+            paymentTypeService.findByPaymentTypeName("Teste");
         });
     }
 
@@ -142,23 +137,23 @@ public class PaymentTypeServiceIntegrationTest {
 	@Test
 	@Transactional
 	@Rollback
-	void testCreatePlaceCepEqualsDeleted() throws Exception{
+	void testCreatePaymentTypeNameEqualsDeleted() throws Exception{
 
         PaymentType paymentType = PaymentType.builder()
-                            .type_name("Cheque")
+                            .type_name("Teste")
                             .deleted(true)
                             .build();
 
         paymentTypeService.create(paymentType);
         
         paymentType = PaymentType.builder()
-                    .type_name("Cheque")
+                    .type_name("Teste")
                     .deleted(false)
                     .build();
 
         paymentTypeService.create(paymentType);
 
-        assertThat(paymentTypeService.findByPaymentTypeName("Cheque")).isEqualTo(paymentType);
+        assertThat(paymentTypeService.findByPaymentTypeName("Teste")).isEqualTo(paymentType);
     }
 
 
@@ -167,15 +162,14 @@ public class PaymentTypeServiceIntegrationTest {
 	@Transactional
 	@Rollback
 	void testGetPaymentTypeNames() throws Exception{
-
         PaymentType paymentType = PaymentType.builder()
-                            .type_name("Cheque")
+                            .type_name("Teste")
                             .deleted(false)
                             .build();
 
         paymentTypeService.create(paymentType);
 
-        assertThat(paymentTypeService.getPaymentTypeNames("Che").get(0)).isEqualTo("Cheque");
+        assertThat(paymentTypeService.getPaymentTypeNames("Tes").get(0)).isEqualTo("Teste");
     }
 
     @DisplayName("Testar a procura por nome do método de pagamento existentes em UpperCase.")
@@ -185,13 +179,13 @@ public class PaymentTypeServiceIntegrationTest {
 	void testGetPaymentTypeNamesWithUpperCase() throws Exception{
 
         PaymentType paymentType = PaymentType.builder()
-                            .type_name("Cheque")
+                            .type_name("Teste")
                             .deleted(false)
                             .build();
 
         paymentTypeService.create(paymentType);
 
-        assertThat(paymentTypeService.getPaymentTypeNames("CHE").get(0)).isEqualTo("Cheque");
+        assertThat(paymentTypeService.getPaymentTypeNames("TES").get(0)).isEqualTo("Teste");
     }
 
     @DisplayName("Testar a procura por nome do método de pagamento existentes em LowerCase.")
@@ -201,13 +195,13 @@ public class PaymentTypeServiceIntegrationTest {
 	void testGetPaymentTypeNamesWithLowerCase() throws Exception{
 
         PaymentType paymentType = PaymentType.builder()
-                            .type_name("Cheque")
+                            .type_name("Teste")
                             .deleted(false)
                             .build();
 
         paymentTypeService.create(paymentType);
 
-        assertThat(paymentTypeService.getPaymentTypeNames("che").get(0)).isEqualTo("Cheque");
+        assertThat(paymentTypeService.getPaymentTypeNames("tes").get(0)).isEqualTo("Teste");
     }
 
 }
