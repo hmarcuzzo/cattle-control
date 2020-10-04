@@ -39,6 +39,33 @@ public class PeopleService implements ICRUDService<People> {
                             .collect(Collectors.toList());
     }
 
+    public List<String> getIDsTypeBuyer(String query) {
+        return peopleRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false))
+                            .map(People::getIdType)
+                            .collect(Collectors.toList());
+    }
+
+    public List<String> getIDsTypeSeller(String query) {
+        return peopleRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false))
+                            .map(People::getIdType)
+                            .collect(Collectors.toList());
+    }
+
+    public List<String> getIDsTypeDeliveryman(String query) {
+        return peopleRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false))
+                            .map(People::getIdType)
+                            .collect(Collectors.toList());
+    }
+
     public List<String> getNames(String query) {
         return peopleRepository
                             .findAll()

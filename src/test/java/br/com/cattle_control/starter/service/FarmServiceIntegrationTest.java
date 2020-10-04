@@ -88,7 +88,7 @@ public class FarmServiceIntegrationTest {
 
         farmService.create(farm);
 
-        assertThat(farmService.findByRegisterNumber("9999999-9").getName()).isEqualTo("Fazenda Teste");
+        assertThat(farmService.readById(farm.getId()).getName()).isEqualTo("Fazenda Teste");
     }
 
 

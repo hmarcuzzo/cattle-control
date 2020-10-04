@@ -31,6 +31,15 @@ public class PaymentTypeService implements ICRUDService<PaymentType> {
                             .collect(Collectors.toList());
     }
 
+    public List<String> readAllPaymentTypeName() {
+        return paymentTypeRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentPaymentType -> currentPaymentType.getDeleted().equals(false))
+                            .map(PaymentType::getPaymentType_name)
+                            .collect(Collectors.toList());
+    }
+
     public PaymentType readById(Integer anId) throws EntityNotFoundException {
         return paymentTypeRepository
         .findAll()

@@ -204,4 +204,14 @@ public class PaymentTypeServiceIntegrationTest {
         assertThat(paymentTypeService.getPaymentTypeNames("tes").get(0)).isEqualTo("Teste");
     }
 
+
+    @DisplayName("Testar a lista de todos os métodos de pagamento.")
+	@Test
+	@Transactional
+	@Rollback
+	void testReadAllPaymentTypeName() throws Exception{
+
+        assertThat(paymentTypeService.readAllPaymentTypeName().get(0)).isEqualTo("Parcelado");
+    }
+
 }
