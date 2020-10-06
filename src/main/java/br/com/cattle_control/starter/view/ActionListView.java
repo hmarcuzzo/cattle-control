@@ -3,7 +3,7 @@ package br.com.cattle_control.starter.view;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaBuilder.In;
+// import javax.persistence.criteria.CriteriaBuilder.In;
 
 import lombok.RequiredArgsConstructor;
 	

@@ -234,16 +234,7 @@ public class ActionFormView {
         People people_deliveryman = peopleService.findByIdType(this.idPeople_deliveryman);
 
         Place place = placeService.findByCep(this.idPlace);
-        PaymentType paymentType;
-
-        System.out.println("Estou aqui: " + this.idPaymentType + " -----------------------------");
-        if(this.idPaymentType != null){
-            paymentType = paymentTypeService.findByPaymentTypeName(this.idPaymentType);
-        }
-        else {
-            System.out.println("Estou aqui2");
-            paymentType = paymentTypeService.findByPaymentTypeName("Cheque");
-        }
+        setPayment_type(paymentTypeService.findByPaymentTypeName(this.idPaymentType));
 
         String dateFormat = getDate().substring(8, 10) + "/" + findNumericMonth(getDate().substring(4, 7)) + "/" + getDate().substring(26, 28);
         String deadlineFormat = getDeadline().substring(8, 10) + "/" + findNumericMonth(getDeadline().substring(4, 7)) + "/" + getDeadline().substring(26, 28);
@@ -256,7 +247,7 @@ public class ActionFormView {
                                     .amount(getAmount())
                                     .value(getValue())
                                     .date(dateFormat)
-                                    .payment_type(paymentType)
+                                    .payment_type(getPayment_type())
                                     .divided(getDivided())
                                     .deadline(deadlineFormat)
                                     .place(place)
@@ -344,10 +335,9 @@ public class ActionFormView {
         return result;
     }
 
-    public List<PaymentType> listAllPaymentTypes() {
-        List<PaymentType> result = paymentTypeService.readAll();
+    public List<String> listAllPaymentTypes() {
+        List<String> result = paymentTypeService.readAllPaymentTypeName();
 
-        System.out.println(result);
         return result;
     }
 

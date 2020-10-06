@@ -116,7 +116,7 @@
                             <p:outputLabel value="Quantidade *" for="inptAmount"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:spinner id="inptAmount" value="#{actionFormView.amount}" required="true"/>
+                            <p:spinner id="inptAmount" value="#{actionFormView.amount}" min="0" required="true"/>
                             <span class="help-block"> 
                                 <p:message for="inptAmount"/>
                             </span>
@@ -128,7 +128,7 @@
                             <p:outputLabel value="Valor Total *" for="inptValue"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:spinner id="inptValue" value="#{actionFormView.value}" required="true"/>
+                            <p:spinner id="inptValue" value="#{actionFormView.value}"  prefix="R$ " min="0.0" required="true"/>
                             <span class="help-block"> 
                                 <p:message for="inptValue"/>
                             </span>
@@ -140,7 +140,6 @@
                             <p:outputLabel value="Data da Compra *" for="inptDate"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <!-- <p:inputMask id="inptDate" mask="99/99/9999" value="#{actionFormView.date}" required="true"/> -->
                             <p:calendar id="inptDate" showOn="button" value="#{actionFormView.date}" required="true"/>
                             <span class="help-block">
                                 <p:message for="inptDate"/>
@@ -152,21 +151,18 @@
 
                     
                         <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
-                            <ui:repeat var="paymentType" value="#{actionFormView.listAllPaymentTypes()}" varStatus="count">
-                                <div class="ui-sm-12 ui-g-11">
-                                    <p:outputLabel value="Método de pagamento *" for="inptPayment_type"/>
-                                </div>
-                                <div class="ui-sm-12 ui-g-11">
-                                    <p:selectOneMenu id="inptPayment_type" value="#{actionFormView.payment_type}" required="true">
-                                        <f:selectItem itemLabel="Nenhum Selecionado" itemValue=""/>
-                                        <f:selectItem itemLabel="#{paymentType.paymentType_name}" itemValue="#{paymentType.paymentType_name}"/>
-                                    </p:selectOneMenu>
-                                    <!-- <p:spinner id="inptPayment_type" value="#{actionFormView.payment_type}" required="true"/> -->
-                                    <span class="help-block"> 
-                                        <p:message for="inptPayment_type"/>
-                                    </span>
-                                </div>
-                            </ui:repeat>
+                            <div class="ui-sm-12 ui-g-11">
+                                <p:outputLabel value="Método de pagamento *" for="inptPayment_type"/>
+                            </div>
+                            <div class="ui-sm-12 ui-g-11">
+                                <p:selectOneMenu id="inptPayment_type" value="#{actionFormView.idPaymentType}" required="true">
+                                    <f:selectItem itemLabel="Nenhum Selecionado" itemValue=""/>
+                                    <f:selectItems value="#{actionFormView.listAllPaymentTypes()}"/>
+                                </p:selectOneMenu>
+                                <span class="help-block"> 
+                                    <p:message for="inptPayment_type"/>
+                                </span>
+                            </div>
                         </div> 
 
 
@@ -175,7 +171,7 @@
                             <p:outputLabel value="Dividido em *" for="inptDivided"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:spinner id="inptDivided" value="#{actionFormView.divided}" required="true"/>
+                            <p:spinner id="inptDivided" value="#{actionFormView.divided}" min="0" max="24" required="true"/>
                             <span class="help-block"> 
                                 <p:message for="inptDivided"/>
                             </span>

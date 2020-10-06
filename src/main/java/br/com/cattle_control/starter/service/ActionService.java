@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
-import com.github.adminfaces.template.exception.BusinessException;
+// import com.github.adminfaces.template.exception.BusinessException;
 
 import lombok.RequiredArgsConstructor;
 
