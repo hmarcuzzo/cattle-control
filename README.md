@@ -14,9 +14,9 @@
     <img src="https://img.shields.io/badge/oracle--jdk-11.0.8-orange?style=for-the-badge&logo=java"
          alt="Java">
           </a>
-  <a href="https://www.eclipse.org/downloads/packages/">
-    <img src="https://img.shields.io/badge/eclipse--ide-2020%E2%80%9106-yellow?style=for-the-badge&logo=eclipse"
-         alt="Eclipse">
+  <a href="https://junit.org/junit5/">
+    <img src="https://img.shields.io/badge/junit 5-5.7.0-yellow?style=for-the-badge&logo=junit"
+         alt="JUnit 5">
           </a>
   <a href="https://spring.io/projects/spring-boot">
     <img src="https://img.shields.io/badge/spring--boot-2.3.3-brightgreen?style=for-the-badge&logo=spring"
@@ -62,13 +62,17 @@ Após a inicialização, é possível acessar a página atraves do link http://l
 
 * A [documentação de referência](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/) inclui [instruções de instalação](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-installing-spring-boot) detalhadas, bem como um [guia de primeiros passos](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application) que irá auxiliar na [execução](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application-run) do projeto .
 
+* A senha padrão é:
+  * ***User:*** admin 
+  * ***Password:*** admin
+
 
 ## Desenvolvedores
 
 * Matheus Batistela - [![Gmail Badge](https://img.shields.io/badge/-matheushenriquebatistela@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:matheushenriquebatistela@gmail.com)](mailto:matheushenriquebatistela@gmail.com)
 * Henrique Marcuzzo - [![Gmail Badge](https://img.shields.io/badge/-henrique.souza.m06@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:henrique.souza.m06@gmail.com)](mailto:henrique.souza.m06@gmail.com)
 
-## License
+## Licença
 
 [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.html)
 
