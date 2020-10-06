@@ -3,6 +3,16 @@ Todas as reuniões do projeto serão adicionadas neste arquivo.
 
 ## 2020-09-14
 ### Assuntos
+- Discussão sobre o que está sendo feito 
+- Refatoração de issues 
+
+### O que deveria ser feito
+- CRUD Boi, Fazenda, Local
+### O que será feito
+- CRUD Ação, Tarefas
+
+## 2020-09-14
+### Assuntos
 - Divisão das tarefas 
 
 ### O que deveria ser feito
