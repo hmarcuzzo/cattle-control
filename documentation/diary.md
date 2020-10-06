@@ -1,7 +1,7 @@
 # Diary
 Todas as reuniões do projeto serão adicionadas neste arquivo.
 
-## 2020-09-14
+## 2020-10-05
 ### Assuntos
 - Discussão sobre o que está sendo feito 
 - Refatoração de issues 
