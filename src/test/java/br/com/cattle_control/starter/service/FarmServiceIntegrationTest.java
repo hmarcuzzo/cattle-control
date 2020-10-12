@@ -88,7 +88,7 @@ public class FarmServiceIntegrationTest {
 
         farmService.create(farm);
 
-        assertThat(farmService.findByRegisterNumber("9999999-9").getName()).isEqualTo("Fazenda Teste");
+        assertThat(farmService.readById(farm.getId()).getName()).isEqualTo("Fazenda Teste");
     }
 
 
@@ -117,7 +117,7 @@ public class FarmServiceIntegrationTest {
         assertThat(farmService.findByRegisterNumber("9999999-9")).isEqualTo(farm);
     }
 
-    @DisplayName("Testar o update de um Local no BD.")
+    @DisplayName("Testar o update de uma Fazenda no BD.")
 	@Test
 	@Transactional
 	@Rollback

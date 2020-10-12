@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:adm="http://github.com/adminfaces"
+                template="#{layoutMB.template}">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{actionFormView.init}"/>
+        </f:metadata>
+        <ui:param name="renderAsterisks" value="true"/> 
+    </ui:define>
+    <ui:define name="title">
+        Formulário de ações de Compra e Venda
+    </ui:define>
+    <ui:define name="body">
+        <adm:breadcrumb title="#{empty actionFormView.id ? 'New Action' : 'Action '.concat(actionFormView.id)}" link="action-form.xhtml?id=#{actionFormView.id}"/>
+        <h:form id="form" prependId="false">
+            <p:focus context="@form"/>
+            <p:panel styleClass="box-primary card">
+                <div id="main-buttons" class="hidden-sm hidden-xs">
+                    <p:commandButton value="Salvar" action="#{actionFormView.save}" update="@form"
+                                     icon="fa fa-check" styleClass="btn-primary"/>
+                    <p:spacer width="5" rendered="#{actionFormView.isNew()}"/>
+
+                    <p:commandButton value="Limpar" action="#{actionFormView.clear}" process="@this"
+                                     icon="fa fa-refresh" styleClass="btn-success"
+                                     update="@form" resetValues="true" rendered="#{actionFormView.isNew()}"/>
+                    <p:spacer width="5"/>
+                    
+                    <p:commandButton value="Deletar" action="#{actionFormView.delete}" update="@form"
+                                        icon="fa fa-trash" styleClass="btn-danger">
+                        <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
+                    </p:commandButton>
+                    <p:spacer width="5"/>
+
+                    <p:commandButton value="Voltar" immediate="true"
+                                     action="action-list?faces-redirect=true"
+                                     process="@this"
+                                     icon="fa fa-reply"/>
+                </div>
+                <p:splitButton value="Salvar" action="#{actionFormView.save}" update="@form"
+                               icon="fa fa-check"
+                               styleClass="hidden-md hidden-lg btn-primary">
+                    <p:menuitem value="Resetar" action="#{actionFormView.clear}"
+                                process="@this" update="@form" rendered="#{actionFormView.isNew()}"
+                                resetValues="true" icon="fa fa-refresh"/>
+                    <p:menuitem value="Deletar" action="#{actionFormView.delete}" process="@this"
+                                rendered="#{not actionFormView.isNew()}" icon="fa fa-trash">
+                        <f:setPropertyActionListener value="true"
+                                                     target="#{facesContext.externalContext.flash.keepMessages}"/>
+                        <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
+                    </p:menuitem>
+                    <p:separator/>
+                    <p:menuitem value="Voltar" action="action-list?faces-redirect=true"
+                                process="@this" immediate="true"
+                                icon="fa fa-reply"/>
+                </p:splitButton>
+
+                <div class="ui-g ui-fluid">
+                    <!-- <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div> -->
+
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="CPF/CNPJ do Vendedor *" for="inptIdPeopleSeller"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:autoComplete id="inptIdPeopleSeller" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{actionFormView.completeIdTypeSeller}" maxResults="10" 
+                                                value="#{actionFormView.idPeople_seller}" required="true">
+                            </p:autoComplete>
+                            <span class="help-block"> 
+                                <p:message for="inptIdPeopleSeller"/>
+                            </span>
+                        </div>
+                    </div>  
+                    
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="CPF/CNPJ do Comprador *" for="inptIdPeopleBuyer"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:autoComplete id="inptIdPeopleBuyer" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{actionFormView.completeIdTypeBuyer}" maxResults="10" 
+                                                value="#{actionFormView.idPeople_buyer}" required="true">
+                            </p:autoComplete>
+                            <span class="help-block"> 
+                                <p:message for="inptIdPeopleBuyer"/>
+                            </span>
+                        </div>
+                    </div> 
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="CPF/CNPJ do Entregador *" for="inptIdPeopleDeliveryman"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:autoComplete id="inptIdPeopleDeliveryman" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{actionFormView.completeIdTypeDeliveryman}" maxResults="10" 
+                                                value="#{actionFormView.idPeople_deliveryman}" required="true">
+                            </p:autoComplete>
+                            <span class="help-block"> 
+                                <p:message for="inptIdPeopleDeliveryman"/>
+                            </span>
+                        </div>
+                    </div> 
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="Quantidade *" for="inptAmount"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:spinner id="inptAmount" value="#{actionFormView.amount}" min="0" required="true"/>
+                            <span class="help-block"> 
+                                <p:message for="inptAmount"/>
+                            </span>
+                        </div>
+                    </div>  
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="Valor Total *" for="inptValue"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:spinner id="inptValue" value="#{actionFormView.value}"  prefix="R$ " min="0.0" required="true"/>
+                            <span class="help-block"> 
+                                <p:message for="inptValue"/>
+                            </span>
+                        </div>
+                    </div> 
+                    
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="Data da Compra *" for="inptDate"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:calendar id="inptDate" showOn="button" value="#{actionFormView.date}" required="true"/>
+                            <span class="help-block">
+                                <p:message for="inptDate"/>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+
+                    
+                        <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                            <div class="ui-sm-12 ui-g-11">
+                                <p:outputLabel value="Método de pagamento *" for="inptPayment_type"/>
+                            </div>
+                            <div class="ui-sm-12 ui-g-11">
+                                <p:selectOneMenu id="inptPayment_type" value="#{actionFormView.idPaymentType}" required="true">
+                                    <f:selectItem itemLabel="Nenhum Selecionado" itemValue=""/>
+                                    <f:selectItems value="#{actionFormView.listAllPaymentTypes()}"/>
+                                </p:selectOneMenu>
+                                <span class="help-block"> 
+                                    <p:message for="inptPayment_type"/>
+                                </span>
+                            </div>
+                        </div> 
+
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="Dividido em *" for="inptDivided"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:spinner id="inptDivided" value="#{actionFormView.divided}" min="0" max="24" required="true"/>
+                            <span class="help-block"> 
+                                <p:message for="inptDivided"/>
+                            </span>
+                        </div>
+                    </div> 
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="Data Limite para Pagar *" for="inptDeadline"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:calendar id="inptDeadline" showOn="button" value="#{actionFormView.deadline}" required="true"/>
+                            <span class="help-block"> 
+                                <p:message for="inptDeadline"/>
+                            </span>
+                        </div>
+                    </div> 
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="CEP da cidade *" for="inptCep"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:autoComplete id="inptCep" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{actionFormView.completeCep}" maxResults="10" 
+                                                value="#{actionFormView.idPlace}" required="true">
+                            </p:autoComplete>
+                            <span class="help-block"> 
+                                <p:message for="inptCep"/>
+                            </span>
+                        </div>
+                    </div>  
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="Bairro/Nome da fazenda *" for="inptDistrict"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputText id="inptDistrict" value="#{actionFormView.district}" required="true"/>
+                            <span class="help-block"> 
+                                <p:message for="inptDistrict"/>
+                            </span>
+                        </div>
+                    </div>  
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel for="inptReference" value="Referência *"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputText id="inptReference" value="#{actionFormView.reference}" required="true"/>
+                            <span class="help-block"> 
+                                <p:message for="inptReference"/>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-sm-8 ui-g-3 ui-g-nopad">     
+                        <div class="ui-sm-8 ui-g-10">
+                            <p:outputLabel value="Número" for="inptNumber"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputText id="inptNumber" value="#{actionFormView.number}"/>
+                            <span class="help-block"> 
+                                <p:message for="inptNumber"/>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel for="inptInfo" value="Informações"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputTextarea id="inptInfo" value="#{actionFormView.info}"/>
+                            <span class="help-block"> 
+                                <p:message for="inptInfo"/>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"> 
+                        <div class="ui-sm-12 ui-g-11">
+                            <!-- <p:outputLabel for="id" value="ID"/> -->
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputText id="id" value="#{actionFormView.id}"
+                            styleClass="form-control ui-state-disabled" style="width: 100%" readonly="readonly" type="hidden"/>
+                            <span class="help-block">
+                                <p:message for="id"/>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <h:panelGroup id="footer" layout="block" styleClass="hidden-sm hidden-md hidden-lg">
+                    <hr/>
+                    <p:splitButton value="Salvar" action="#{farmFormView.save}" update="@form"
+                                   icon="fa fa-check"
+                                   styleClass="hidden-md hidden-lg btn-primary">
+                        <p:menuitem value="Resetar" action="#{farmFormView.clear}"
+                                    process="@this" update="@form" rendered="#{farmFormView.isNew()}"
+                                    resetValues="true" icon="fa fa-refresh"/>
+                        <p:menuitem value="Deletar" action="#{farmFormView.delete}" process="@this"
+                                    rendered="#{not farmFormView.isNew()}" icon="fa fa-trash">
+                            <f:setPropertyActionListener value="true"
+                                                         target="#{facesContext.externalContext.flash.keepMessages}"/>
+                            <p:confirm header="Confirmação" icon="ui-icon-danger" message="Você tem certeza? Esta ação não pode ser desfeita."/>
+                        </p:menuitem>
+                        <p:separator/>
+                        <p:menuitem value="Voltar" action="farm-list?faces-redirect=true"
+                                    process="@this" immediate="true"
+                                    icon="fa fa-reply"/>
+                    </p:splitButton>
+                </h:panelGroup>
+            </p:panel>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger box-solid">
+                <p:commandButton value="Sim" type="button" styleClass="btn-material btn-primary ui-confirmdialog-yes"
+                                 icon="fa fa-check"/>
+                <p:commandButton value="Não" type="button" styleClass="btn-material btn-danger ui-confirmdialog-no"
+                                 icon="fa fa-close"/>
+            </p:confirmDialog>
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>
