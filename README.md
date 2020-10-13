@@ -63,8 +63,8 @@ Após a inicialização, é possível acessar a página atraves do link http://l
 * A [documentação de referência](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/) inclui [instruções de instalação](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-installing-spring-boot) detalhadas, bem como um [guia de primeiros passos](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application) que irá auxiliar na [execução](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application-run) do projeto .
 
 * A senha padrão é:
-  * ***User:*** admin 
-  * ***Password:*** admin
+  * ***Usuário:*** admin 
+  * ***Senha:*** admin
 
 
 ## Desenvolvedores
