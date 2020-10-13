@@ -34,6 +34,9 @@ public class FakeData {
     @Autowired
     PaymentTypeService paymentTypeService;
 
+    @Autowired
+    RoleService roleService;
+
     @EventListener
     public void appReady(ApplicationReadyEvent event) throws EntityAlreadyExistsException, AnyPersistenceException,
              IOException, ParseException {        
@@ -103,6 +106,18 @@ public class FakeData {
     
             paymentTypeService.create(paymentType);
         }
+
+        String[] peopleRoles = {"Comprador", "Vendendor", "Freteiro", "Veterinário"};
+
+        for (String roleName : peopleRoles ){
+            Role role = Role.builder()
+            .name(roleName)
+            .deleted(false)
+            .build();
+    
+            roleService.create(role);
+        }
+
         
 
       
