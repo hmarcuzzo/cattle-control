@@ -6,7 +6,7 @@
                 template="#{layoutMB.template}">
 
     <ui:define name="metadata">
-        <ui:param name="title" value="Lista de ações"/> <!-- Automatic create breadCrumb and page title when param 'title' is provided. --> 
+        <ui:param name="title" value="Lista de gastos"/> <!-- Automatic create breadCrumb and page title when param 'title' is provided. --> 
         <style type="text/css">
             .ui-datatable .ui-datatable-header {
                 text-align: right !important;
@@ -16,7 +16,7 @@
     </ui:define>
 
     <ui:define name="description">
-        Ache ações de compra e venda por Número de Identificação
+        Ache gastos por Número de Identificação
     </ui:define>
 
     <ui:define name="body">
@@ -24,40 +24,40 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <div id="main-buttons" class="hidden-sm hidden-xs">
-                        <p:commandButton action="action-form?faces-redirect=true" icon="fa fa-plus"
+                        <p:commandButton action="expense-form?faces-redirect=true" icon="fa fa-plus"
                                          value="Novo" styleClass="btn-primary"/>
                         <p:spacer width="5"/>
                         <p:commandButton value="Deletar Selecionados" icon="fa fa-trash" styleClass="btn-danger"
-                                         action="#{actionListView.delete}"
+                                         action="#{expenseListView.delete}"
                                          update="@form">
                             <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
                         </p:commandButton>
                         <p:spacer width="5"/>
                         <p:commandButton value="Ver selecionados" update="@(.ui-dialog)" styleClass="btn-info"
-                                         disabled="#{empty actionListView.selectedActions or actionListView.selectedActions.size() == 0}"
-                                         oncomplete="PF('selectedActions').show()" icon="fa fa-search"/>
+                                         disabled="#{empty expenseListView.selectedExpenses or expenseListView.selectedExpenses.size() == 0}"
+                                         oncomplete="PF('selectedExpenses').show()" icon="fa fa-search"/>
                     </div>
 
-                    <p:splitButton value="Novo" action="action-form?faces-redirect=true"
+                    <p:splitButton value="Novo" action="expense-form?faces-redirect=true"
                                    icon="fa fa-plus"
                                    styleClass="hidden-md hidden-lg btn-primary">
-                        <p:menuitem value="Deletar Selecionados" action="#{actionListView.delete}"
+                        <p:menuitem value="Deletar Selecionados" action="#{expenseListView.delete}"
                                     process="@this" update="@form"
-                                    disabled="#{empty actionListView.selectedActions or actionListView.selectedActions.size() == 0}"
+                                    disabled="#{empty expenseListView.selectedExpenses or expenseListView.selectedExpenses.size() == 0}"
                                     icon="fa fa-trash">
                             <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
                         </p:menuitem>
                         <p:menuitem value="Ver selecionados" update="@(.ui-dialog)"
-                                    oncomplete="PF('selectedActions').show()"
-                                    disabled="#{empty actionListView.selectedActions or actionListView.selectedActions.size() == 0}"
+                                    oncomplete="PF('selectedExpenses').show()"
+                                    disabled="#{empty expenseListView.selectedExpenses or expenseListView.selectedExpenses.size() == 0}"
                                     icon="fa fa-search"/>
                     </p:splitButton>
 
                     <p:separator/>
-                    <p:dataTable widgetVar="actionsTable" var="p" value="#{actionListView.listAllAction()}" rows="10"
+                    <p:dataTable widgetVar="expensesTable" var="p" value="#{expenseListView.listAllExpense()}" rows="10"
                                  rowKey="#{p.id}" lazy="true" paginator="true"
-                                 filteredValue="#{actionListView.filteredValue}"
-                                 paginatorPosition="bottom" selection="#{actionListView.selectedActions}"
+                                 filteredValue="#{expenseListView.filteredValue}"
+                                 paginatorPosition="bottom" selection="#{expenseListView.selectedExpenses}"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {JumpToPageDropdown}"
                                  currentPageReportTemplate="[ {startRecord} to {endRecord} of {totalRecords} ]"
                                  rowsPerPageTemplate="5,10,15,20,30">
@@ -69,11 +69,11 @@
                         <p:ajax event="toggleSelect" update="@(.ui-button, .ui-confirm-dialog)"/>
 
                         <f:facet name="header">
-                            Procure ações de venda e compra por número de identificação: <p:inputText id="inptid" value="#{actionListView.id}"/>
+                            Procure gastos por número de identificação: <p:inputText id="inptid" value="#{expenseListView.id}"/>
                             <p:spacer height="5"/>
                             <p:commandButton id="brFind"
                                              value="Procurar"
-                                             action="#{actionListView.findActionById(actionListView.id)}"
+                                             action="#{expenseListView.findExpenseById(expenseListView.id)}"
                                              process="@form"
                                              update="@form"
                                              styleClass="btn-flat bg-black btn-states"
@@ -82,57 +82,25 @@
                         <p:column selectionMode="multiple" width="4%" styleClass="align-center"/>
 
                         <p:column headerText="Número de Identificação">
-                            <p:link value="#{p.id}" outcome="action-form.xhtml" >
+                            <p:link value="#{p.id}" outcome="expense-form.xhtml" >
                                 <f:param name="id" value="#{p.id}"/>
                             </p:link>
                         </p:column>
 
-                        <p:column headerText="CPF/CNPJ do Cliente">
-                            <p:link value="#{p.people_buyer.idType}" outcome="people-form.xhtml" >
-                                <f:param name="id" value="#{p.people_buyer.id}"/>
-                            </p:link>
+                        <p:column headerText="Tipo de gasto"> 
+                            #{p.typeExpense.typeExpense_name}
                         </p:column>
 
-                        <p:column headerText="CPF/CNPJ do Vendedor">
-                            <p:link value="#{p.people_seller.idType}" outcome="people-form.xhtml" >
-                                <f:param name="id" value="#{p.people_seller.id}"/>
-                            </p:link>
+                        <p:column headerText="Nome do gasto"> 
+                            #{p.expense_name}
                         </p:column>
 
-                        <p:column headerText="CPF/CNPJ do Entregador">
-                            <p:link value="#{p.people_deliveryman.idType}" outcome="people-form.xhtml" >
-                                <f:param name="id" value="#{p.people_deliveryman.id}"/>
-                            </p:link>
+                        <p:column headerText="Preço Unitário"> 
+                            #{p.expense_priceUnit}
                         </p:column>
 
-                        <p:column headerText="Quantidade"> 
-                            #{p.amount}
-                        </p:column>
-
-                        <p:column headerText="Valor"> 
-                            #{p.value}
-                        </p:column>
-
-                        <p:column headerText="Data da Compra"> 
-                            #{p.date}
-                        </p:column>
-
-                        <p:column headerText="Método de Pagamento"> 
-                            #{p.payment_type.paymentType_name}
-                        </p:column>
-
-                        <p:column headerText="Dividido em"> 
-                            #{p.divided}
-                        </p:column>
-
-                        <p:column headerText="Data Limite"> 
-                            #{p.deadline}
-                        </p:column>
-
-                        <p:column headerText="CEP da cidade">
-                            <p:link value="#{p.place.cep}" outcome="place-form.xhtml" >
-                                <f:param name="id" value="#{p.place.id}"/>
-                            </p:link>
+                        <p:column headerText="Rendimento"> 
+                            #{p.expense_yield}
                         </p:column>
                         
                     </p:dataTable>
@@ -149,10 +117,10 @@
 
 
 
-        <p:dialog header="Ações Selecionadas" widgetVar="selectedActions" height="400"
+        <p:dialog header="Gastos Selecionadas" widgetVar="selectedExpenses" height="400"
                   width="1100" responsive="true" styleClass="box-success">
-            <p:dataList id="selectedActionsList" value="#{actionListView.selectedActions}" var="action" type="definition">
-                Número de Identificação: #{action.id} - Cidade: #{action.place.city} - Bairro/Nome da Fazenda: #{action.district} - Referência: #{action.reference} - Número: #{action.number} - Informações: #{action.info}
+            <p:dataList id="selectedExpensesList" value="#{expenseListView.selectedExpenses}" var="expense" type="definition">
+                Número de Identificação: #{expense.id} - Tipo: #{expense.typeExpense.typeExpense_name} - Nome: #{expense.expense_name} - Preço Unit.: #{expense.expense_priceUnit} - Rendimento: #{expense.expense_yield}
             </p:dataList>
         </p:dialog>
 

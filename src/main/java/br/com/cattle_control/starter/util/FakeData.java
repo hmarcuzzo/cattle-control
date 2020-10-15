@@ -108,7 +108,7 @@ public class FakeData {
         }
 
 
-        String[] typesExpense = {"Vacina", "Ração", "Consulta Médica", "Outros"};
+        String[] typesExpense = {"Vacina", "Ração", "Veterinário", "Outros"};
 
         for (String type : typesExpense){
             TypeExpense typeExpense = TypeExpense.builder()
