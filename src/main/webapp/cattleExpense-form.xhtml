@@ -6,53 +6,53 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:event type="preRenderView" listener="#{expenseFormView.init}"/>
+            <f:event type="preRenderView" listener="#{cattleExpenseFormView.init}"/>
         </f:metadata>
         <ui:param name="renderAsterisks" value="true"/> 
     </ui:define>
     <ui:define name="title">
-        Formulário de gastos
+        Formulário de gastos de bois
     </ui:define>
     <ui:define name="body">
-        <adm:breadcrumb title="#{empty expenseFormView.id ? 'New Expense' : 'Expense '.concat(expenseFormView.id)}" link="expense-form.xhtml?id=#{expenseFormView.id}"/>
+        <adm:breadcrumb title="#{empty cattleExpenseFormView.id ? 'New CattleExpense' : 'CattleExpense '.concat(cattleExpenseFormView.id)}" link="cattleExpense-form.xhtml?id=#{cattleExpenseFormView.id}"/>
         <h:form id="form" prependId="false">
             <p:focus context="@form"/>
             <p:panel styleClass="box-primary card">
                 <div id="main-buttons" class="hidden-sm hidden-xs">
-                    <p:commandButton value="Salvar" action="#{expenseFormView.save}" update="@form"
+                    <p:commandButton value="Salvar" action="#{cattleExpenseFormView.save}" update="@form"
                                      icon="fa fa-check" styleClass="btn-primary"/>
-                    <p:spacer width="5" rendered="#{expenseFormView.isNew()}"/>
+                    <p:spacer width="5" rendered="#{cattleExpenseFormView.isNew()}"/>
 
-                    <p:commandButton value="Limpar" action="#{expenseFormView.clear}" process="@this"
+                    <p:commandButton value="Limpar" action="#{cattleExpenseFormView.clear}" process="@this"
                                      icon="fa fa-refresh" styleClass="btn-success"
-                                     update="@form" resetValues="true" rendered="#{expenseFormView.isNew()}"/>
+                                     update="@form" resetValues="true" rendered="#{cattleExpenseFormView.isNew()}"/>
                     <p:spacer width="5"/>
                     
-                    <p:commandButton value="Deletar" action="#{expenseFormView.delete}" update="@form"
+                    <p:commandButton value="Deletar" action="#{cattleExpenseFormView.delete}" update="@form"
                                         icon="fa fa-trash" styleClass="btn-danger">
                         <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
                     </p:commandButton>
                     <p:spacer width="5"/>
 
                     <p:commandButton value="Voltar" immediate="true"
-                                     action="expense-list?faces-redirect=true"
+                                     action="cattleExpense-list?faces-redirect=true"
                                      process="@this"
                                      icon="fa fa-reply"/>
                 </div>
-                <p:splitButton value="Salvar" action="#{expenseFormView.save}" update="@form"
+                <p:splitButton value="Salvar" action="#{cattleExpenseFormView.save}" update="@form"
                                icon="fa fa-check"
                                styleClass="hidden-md hidden-lg btn-primary">
-                    <p:menuitem value="Resetar" action="#{expenseFormView.clear}"
-                                process="@this" update="@form" rendered="#{expenseFormView.isNew()}"
+                    <p:menuitem value="Resetar" action="#{cattleExpenseFormView.clear}"
+                                process="@this" update="@form" rendered="#{cattleExpenseFormView.isNew()}"
                                 resetValues="true" icon="fa fa-refresh"/>
-                    <p:menuitem value="Deletar" action="#{expenseFormView.delete}" process="@this"
-                                rendered="#{not expenseFormView.isNew()}" icon="fa fa-trash">
+                    <p:menuitem value="Deletar" action="#{cattleExpenseFormView.delete}" process="@this"
+                                rendered="#{not cattleExpenseFormView.isNew()}" icon="fa fa-trash">
                         <f:setPropertyActionListener value="true"
                                                      target="#{facesContext.externalContext.flash.keepMessages}"/>
                         <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
                     </p:menuitem>
                     <p:separator/>
-                    <p:menuitem value="Voltar" action="expense-list?faces-redirect=true"
+                    <p:menuitem value="Voltar" action="cattleExpense-list?faces-redirect=true"
                                 process="@this" immediate="true"
                                 icon="fa fa-reply"/>
                 </p:splitButton>
@@ -62,54 +62,64 @@
 
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Tipo de Gasto *" for="inptTypeExpense"/>
+                            <p:outputLabel value="Número do Boi *" for="inptCattleOrFarm"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:selectOneMenu id="inptTypeExpense" value="#{expenseFormView.idTypeExpense}" required="true">
-                                <f:selectItem itemLabel="Nenhum Selecionado" itemValue=""/>
-                                <f:selectItems value="#{expenseFormView.listAllTypeExpenses()}"/>
-                            </p:selectOneMenu>
+                            <p:autoComplete id="inptCattleOrFarm" forceSelection="true"
+                                                minQueryLength="2" queryDelay="500"
+                                                completeMethod="#{cattleExpenseFormView.completeCattleNumbering}" maxResults="10" 
+                                                value="#{cattleExpenseFormView.idCattle}" required="true">
+                            </p:autoComplete>
                             <span class="help-block"> 
-                                <p:message for="inptTypeExpense"/>
-                            </span>
-                        </div>
-                    </div> 
-
-                    <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
-                        <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Nome do Produto *" for="inptExpenseName"/>
-                        </div>
-                        <div class="ui-sm-12 ui-g-11">
-                            <p:inputText id="inptExpenseName" value="#{expenseFormView.expense_name}" required="true"/>
-                            <span class="help-block"> 
-                                <p:message for="inptExpenseName"/>
+                                <p:message for="inptCattleOrFarm"/>
                             </span>
                         </div>
                     </div> 
 
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+
 
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Preço Unitário *" for="inptExpense_priceUnit"/>
+                            <p:outputLabel value="Nome do Gasto *" for="inptExpense"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:spinner id="inptExpense_priceUnit" value="#{expenseFormView.expense_priceUnit}"  prefix="R$ " min="0.0" required="true"/>
+                            <p:autoComplete id="inptExpense" forceSelection="true"
+                                            minQueryLength="2" queryDelay="500"
+                                            completeMethod="#{cattleExpenseFormView.completeExpenseNames}" maxResults="10"
+                                            value="#{cattleExpenseFormView.idExpense}" required="true">
+                            </p:autoComplete>
                             <span class="help-block"> 
-                                <p:message for="inptExpense_priceUnit"/>
+                                <p:message for="inptExpense"/>
                             </span>
                         </div>
                     </div> 
-
+                    
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
                         <div class="ui-sm-12 ui-g-11">
-                            <p:outputLabel value="Rendimento *" for="inptExpense_yield"/>
+                            <p:outputLabel value="Data *" for="inptDate"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:spinner id="inptExpense_yield" value="#{expenseFormView.expense_yield}" min="0" required="true"/>
+                            <p:calendar id="inptDate" showOn="button" value="#{cattleExpenseFormView.date}" required="true"/>
+                            <span class="help-block">
+                                <p:message for="inptDate"/>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+                    <div class="ui-sm-12 ui-g-3 ui-g-nopad"></div>
+
+                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">     
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="Informações" for="inptInfo"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:inputTextarea id="inptInfo" value="#{cattleExpenseFormView.info}"/>
                             <span class="help-block"> 
-                                <p:message for="inptExpense_yield"/>
+                                <p:message for="inptInfo"/>
                             </span>
                         </div>
                     </div>
@@ -119,7 +129,7 @@
                             <!-- <p:outputLabel for="id" value="ID"/> -->
                         </div>
                         <div class="ui-sm-12 ui-g-11">
-                            <p:inputText id="id" value="#{expenseFormView.id}"
+                            <p:inputText id="id" value="#{cattleExpenseFormView.id}"
                             styleClass="form-control ui-state-disabled" style="width: 100%" readonly="readonly" type="hidden"/>
                             <span class="help-block">
                                 <p:message for="id"/>
@@ -143,7 +153,7 @@
                             <p:confirm header="Confirmação" icon="ui-icon-danger" message="Você tem certeza? Esta ação não pode ser desfeita."/>
                         </p:menuitem>
                         <p:separator/>
-                        <p:menuitem value="Voltar" action="expense-list?faces-redirect=true"
+                        <p:menuitem value="Voltar" action="cattleExpense-list?faces-redirect=true"
                                     process="@this" immediate="true"
                                     icon="fa fa-reply"/>
                     </p:splitButton>

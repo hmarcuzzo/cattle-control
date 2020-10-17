@@ -78,7 +78,7 @@ public class ExpenseFormView {
     }
 
     public void setExpense_name(String expense_name) {
-        this.expense.setExpense_name(expense_name);;
+        this.expense.setExpense_name(expense_name);
     }
 
     public Double getExpense_priceUnit() {
@@ -86,7 +86,7 @@ public class ExpenseFormView {
     }
 
     public void setExpense_priceUnit(Double expense_priceUnit) {
-        this.expense.setExpense_priceUnit(expense_priceUnit);;
+        this.expense.setExpense_priceUnit(expense_priceUnit);
     }
 
     public Integer getExpense_yield() {
@@ -94,7 +94,7 @@ public class ExpenseFormView {
     }
 
     public void setExpense_yield(Integer expense_yield) {
-        this.expense.setExpense_yield(expense_yield);;
+        this.expense.setExpense_yield(expense_yield);
     }
 
     public String getIdTypeExpense() {
@@ -110,7 +110,7 @@ public class ExpenseFormView {
     }
 
     public void setTypeExpense(TypeExpense typeExpense) {
-        this.expense.setTypeExpense(typeExpense);;
+        this.expense.setTypeExpense(typeExpense);
     }
 
     public Boolean getDeleted() {

@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
-import com.github.adminfaces.template.exception.BusinessException;
+// import com.github.adminfaces.template.exception.BusinessException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,12 +30,12 @@ public class ExpenseService implements ICRUDService<Expense> {
                             .collect(Collectors.toList());
     }
 
-    public List<String> getNames(String query) {
+    public List<Integer> getIds(String query) {
         return expenseRepository
                             .findAll()
                             .stream()
-                            .filter(currentExpense -> currentExpense.getExpense_name().toLowerCase().contains(query.toLowerCase()) && currentExpense.getDeleted().equals(false))
-                            .map(Expense::getExpense_name)
+                            .filter(currentExpense -> Integer.toString(currentExpense.getId()).toLowerCase().contains(query.toLowerCase()) && currentExpense.getDeleted().equals(false))
+                            .map(Expense::getId)
                             .collect(Collectors.toList());
     }
 
@@ -48,10 +48,10 @@ public class ExpenseService implements ICRUDService<Expense> {
                         .orElseThrow(EntityNotFoundException::new);
     }
 
-    public Expense create(Expense anFarm) throws EntityAlreadyExistsException, AnyPersistenceException {
+    public Expense create(Expense anExpense) throws EntityAlreadyExistsException, AnyPersistenceException {
 
         try {
-            return expenseRepository.save(anFarm);
+            return expenseRepository.save(anExpense);
 
         } catch (Exception e) {
             throw new AnyPersistenceException();

@@ -98,4 +98,12 @@ public class CattleService implements ICRUDService<Cattle> {
                 .orElseThrow(() -> new BusinessException("Boi com numeração " + numbering + " não encontrado"));
     }
 
+    public List<Cattle> findAllCattleFromFarm(String anFarmId) {
+        return cattleRepository
+                    .findAll()
+                    .stream()
+                    .filter(currentCattle -> currentCattle.getFarm().getRegisterNumber().equals(anFarmId) && currentCattle.getDeleted().equals(false))
+                    .collect(Collectors.toList());
+    }
+
 }

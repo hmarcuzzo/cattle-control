@@ -161,6 +161,6 @@ public class ExpenseServiceIntegrationTest {
 
         expenseService.create(expense);
 
-        assertThat(expenseService.getNames("Vacina").get(0)).isEqualTo("Vacina do COVID-19");
+        assertThat(expenseService.getIds(Integer.toString(expense.getId())).get(0)).isEqualTo(expense.getId());
     }
 }

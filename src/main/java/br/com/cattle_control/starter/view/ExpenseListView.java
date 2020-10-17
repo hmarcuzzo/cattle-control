@@ -85,13 +85,13 @@ public class ExpenseListView {
 
     // Ações disponibilizadas na tela
     public void delete() {
-        int numActions = 0;
+        int numExpenses = 0;
         String msg = "";
         if (!selectedExpenses.isEmpty()) {
             for (Expense selectedExpense : selectedExpenses) {
 
                 try {
-                    numActions++;
+                    numExpenses++;
                     selectedExpense.setDeleted(true);
                     expenseService.update(selectedExpense);
     
@@ -108,9 +108,9 @@ public class ExpenseListView {
     
             selectedExpenses.clear();
             if (msg == "") {
-                addDetailMessage(numActions + " gastos foram deletados com sucesso!");
+                addDetailMessage(numExpenses + " gastos foram deletados com sucesso!");
             } else {
-                addDetailMessage(msg + " Apenas " + numActions + " gastos foram deletados com sucesso!");
+                addDetailMessage(msg + " Apenas " + numExpenses + " gastos foram deletados com sucesso!");
             }
         } else {
             throw new BusinessException("Selecione algum gasto para ser deletado!");
