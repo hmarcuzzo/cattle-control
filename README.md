@@ -3,7 +3,10 @@
   <br>
  	<img src="https://gartic.com.br/imgs/mural/os/osouza/nelore-3.png" alt="Markdownify" width="200"></a>
   <br>
-  Cattle-Control
+  Cattle-Control <a href="https://travis-ci.com/hmarcuzzo/cattle_control.svg?branch=master">
+    <img src="https://travis-ci.com/hmarcuzzo/cattle_control.svg?branch=master"
+        alt="build">
+          </a>
   <br>
 </h1>
 
@@ -26,6 +29,7 @@
     <img src="https://img.shields.io/badge/lombok-1.18.12-red?style=for-the-badge&logo=apache"
          alt="Lombok">
           </a>
+    
 </p>
 
 
