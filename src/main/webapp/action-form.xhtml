@@ -272,20 +272,20 @@
                 </div>
                 <h:panelGroup id="footer" layout="block" styleClass="hidden-sm hidden-md hidden-lg">
                     <hr/>
-                    <p:splitButton value="Salvar" action="#{farmFormView.save}" update="@form"
+                    <p:splitButton value="Salvar" action="#{actionFormView.save}" update="@form"
                                    icon="fa fa-check"
                                    styleClass="hidden-md hidden-lg btn-primary">
-                        <p:menuitem value="Resetar" action="#{farmFormView.clear}"
-                                    process="@this" update="@form" rendered="#{farmFormView.isNew()}"
+                        <p:menuitem value="Resetar" action="#{actionFormView.clear}"
+                                    process="@this" update="@form" rendered="#{actionFormView.isNew()}"
                                     resetValues="true" icon="fa fa-refresh"/>
-                        <p:menuitem value="Deletar" action="#{farmFormView.delete}" process="@this"
-                                    rendered="#{not farmFormView.isNew()}" icon="fa fa-trash">
+                        <p:menuitem value="Deletar" action="#{actionFormView.delete}" process="@this"
+                                    rendered="#{not actionFormView.isNew()}" icon="fa fa-trash">
                             <f:setPropertyActionListener value="true"
                                                          target="#{facesContext.externalContext.flash.keepMessages}"/>
                             <p:confirm header="Confirmação" icon="ui-icon-danger" message="Você tem certeza? Esta ação não pode ser desfeita."/>
                         </p:menuitem>
                         <p:separator/>
-                        <p:menuitem value="Voltar" action="farm-list?faces-redirect=true"
+                        <p:menuitem value="Voltar" action="action-list?faces-redirect=true"
                                     process="@this" immediate="true"
                                     icon="fa fa-reply"/>
                     </p:splitButton>

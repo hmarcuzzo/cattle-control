@@ -34,6 +34,9 @@ public class FakeData {
     @Autowired
     PaymentTypeService paymentTypeService;
 
+    @Autowired
+    TypeExpenseService typeExpenseService;
+
     @EventListener
     public void appReady(ApplicationReadyEvent event) throws EntityAlreadyExistsException, AnyPersistenceException,
              IOException, ParseException {        
@@ -102,6 +105,18 @@ public class FakeData {
             .build();
     
             paymentTypeService.create(paymentType);
+        }
+
+
+        String[] typesExpense = {"Vacina", "Ração", "Veterinário", "Outros"};
+
+        for (String type : typesExpense){
+            TypeExpense typeExpense = TypeExpense.builder()
+            .type_name(type)
+            .deleted(false)
+            .build();
+    
+            typeExpenseService.create(typeExpense);
         }
         
 

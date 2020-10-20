@@ -15,7 +15,7 @@
          alt="Java">
           </a>
   <a href="https://junit.org/junit5/">
-    <img src="https://img.shields.io/badge/junit 5-5.7.0-yellow?style=for-the-badge&logo=junit"
+    <img src="https://img.shields.io/badge/junit 5-5.5.2-yellow?style=for-the-badge&logo=junit"
          alt="JUnit 5">
           </a>
   <a href="https://spring.io/projects/spring-boot">
