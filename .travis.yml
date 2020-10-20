@@ -6,7 +6,10 @@ jdk:
 before_install:
   - chmod +x mvnw
 deploy:
+  skip_cleanup: true
   provider: heroku
   api-key: 
     secure: E05OfMIWKmogSkgcuE0kVYkdbSboicdE1JHCnY2qaf9AeDjzPyhTSnxW1G/Jao4UcO5uTCyJ2x0qqQxQLI2S0pj1bGr1Ru0lWbpJtYGyHC6aHJWdMCFV04HEp1WreYGudUPcm0nkwaorYKtL+gx/SVPnnRXCUeUYBmQrKS9gNZlpTFKTKuAZZ89qTptDPdxTIPXml5oFHTC2cGsn3poJ90NHWRQqxkVwE8hReewh7e86MV/majl44411ojdgx/CmDmO8aBYNTP+ETC3Xs4QSj3erFJljE2N442ScPAskoloQIGWPE+707rtP5zSNjyn4g9PU2acRb/CLXeAqw1B5wm9Y16RCYD5YYlI7alCY6CQDOw3tefwuS4RWA1jlCoxbri9w7l/QGYlA6CDwTc84H6syvLzUR89+Ju0a3e0kHDob4Bi2ZeQcxez8DZUok9vnzyEOdoAhbCA66AWSpsjtDvO2f0VrEUlxa/6+MCXyrKMdixN7el8qSzFPe+rHpP5nPs1hTFfDv99XPjVh8CstsmsC5OIxLMki/TVUhKs/P/Zm9pT2m4pG7RmUsQHTx6rQ4TuAfPDcdXKWK55PJP6WbBFom3EU0lBjQI3anRzLa1MzzzFrotux9EhwaZPb9j2bVE6cWbFvwNMpyM/3Uj5OzidxoMOvDwYL0qugSM/vY4I=
   app: cattle-control
+  on:
+    repo: hmarcuzzo/cattle_control
