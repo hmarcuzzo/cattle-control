@@ -3,7 +3,7 @@ package br.com.cattle_control.starter.service;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.jayway.jsonpath.internal.function.text.Length;
+// import com.jayway.jsonpath.internal.function.text.Length;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,6 +39,7 @@ public class CattleServiceIntegrationTest {
     @Autowired
     PlaceService placeService;
 
+    
 	@Transactional
     @Rollback
     People createPeople() throws Exception{
