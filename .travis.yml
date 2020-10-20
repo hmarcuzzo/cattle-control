@@ -1,8 +1,12 @@
 language: java
+sudo: true
+dist: trusty
 jdk:
- - oraclejdk11
+  - oraclejdk11
+before_install:
+  - chmod +x mvnw
  deploy:
- provider: heroku
- api-key: 
-  secure: $HEROKU_API_KEY
- app: cattle-control
+  provider: heroku
+  api-key: 
+    secure: $HEROKU_API_KEY
+  app: cattle-control
