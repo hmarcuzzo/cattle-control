@@ -39,7 +39,6 @@ public class CattleExpenseServiceIntegrationTest {
     @Autowired
     TypeExpenseService typeExpenseService;
 
-
     @Transactional
     @Rollback
     Cattle createCattle() throws Exception {
