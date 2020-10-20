@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.1] - 2020-09-29
 ### Adicionado
-- Entidade de Métodos de Pagamentos
+- Suporte a diferentes tipos de métodos de pagamentos
 - Interface para adicionar/editar ações de compra e venda.
 - Interface para listar e pesquisar todos as ações de compra e venda existentetes.
 
