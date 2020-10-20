@@ -1,3 +1,8 @@
 language: java
 jdk:
  - oraclejdk11
+ deploy:
+ provider: heroku
+ api-key: 
+  secure: $HEROKU_API_KEY
+ app: cattle-control
