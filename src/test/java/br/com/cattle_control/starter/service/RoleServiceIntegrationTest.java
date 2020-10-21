@@ -22,7 +22,7 @@ import br.com.cattle_control.starter.model.Role;
 @SpringBootTest
 public class RoleServiceIntegrationTest {
     @Autowired
-    RoleService paymentTypeService;
+    RoleService roleService;
 
 
     @DisplayName("Testar a criação de um papel no BD.")
@@ -31,14 +31,14 @@ public class RoleServiceIntegrationTest {
 	@Rollback
 	void testCreate() throws Exception{
 
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(false)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
 
-        assertThat(paymentTypeService.findByRoleName("Teste")).isEqualTo(paymentType);
+        assertThat(roleService.findByRoleName("Teste")).isEqualTo(role);
     }
 
     @DisplayName("Testar a procura de papel por Nome.")
@@ -47,14 +47,14 @@ public class RoleServiceIntegrationTest {
 	@Rollback
 	void testFindByRoleName() throws Exception{
 
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(false)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
         
-        assertThat(paymentTypeService.findByRoleName("Teste").getName()).isEqualTo("Teste");
+        assertThat(roleService.findByRoleName("Teste").getName()).isEqualTo("Teste");
     }
 
     @DisplayName("Testar a procura de papel por Nome com letras minusculas.")
@@ -63,14 +63,14 @@ public class RoleServiceIntegrationTest {
 	@Rollback
 	void testFindByRoleNameWithLowerCase() throws Exception{
 
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(false)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
    
-        assertThat(paymentTypeService.findByRoleName("teste").getName()).isEqualTo("Teste");
+        assertThat(roleService.findByRoleName("teste").getName()).isEqualTo("Teste");
     }
 
     @DisplayName("Testar a procura de papéis por Nome com letras maisculas.")
@@ -78,14 +78,14 @@ public class RoleServiceIntegrationTest {
 	@Transactional
 	@Rollback
 	void testFindByRoleNameWithUpperCase() throws Exception{
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(false)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
        
-        assertThat(paymentTypeService.findByRoleName("TESTE").getName()).isEqualTo("Teste");
+        assertThat(roleService.findByRoleName("TESTE").getName()).isEqualTo("Teste");
     }
 
     @DisplayName("Testar o update de um papel no BD.")
@@ -94,25 +94,25 @@ public class RoleServiceIntegrationTest {
 	@Rollback
 	void testUpdateRole () throws Exception{
 
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(false)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
        
-        Integer id = paymentTypeService.findByRoleName("Teste").getId();
+        Integer id = roleService.findByRoleName("Teste").getId();
 
-        paymentType = Role.builder()
+        role = Role.builder()
                             .id(id)
                             .name("Teste2")
                             .deleted(false)
                             .build();
 
-        paymentTypeService.update(paymentType);
+        roleService.update(role);
 
         
-        assertThat(paymentTypeService.findByRoleName("Teste2")).isEqualTo(paymentType);
+        assertThat(roleService.findByRoleName("Teste2")).isEqualTo(role);
     }
 
     @DisplayName("Testar a procura de um papel deletado por Nome.")
@@ -121,15 +121,15 @@ public class RoleServiceIntegrationTest {
 	@Rollback
 	void testFindByRoleNameDeleted() throws Exception {
 
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(true)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
 
         assertThrows(com.github.adminfaces.template.exception.BusinessException.class, () -> {
-            paymentTypeService.findByRoleName("Teste");
+            roleService.findByRoleName("Teste");
         });
     }
 
@@ -139,21 +139,21 @@ public class RoleServiceIntegrationTest {
 	@Rollback
 	void testCreateRoleNameEqualsDeleted() throws Exception{
 
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(true)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
         
-        paymentType = Role.builder()
+        role = Role.builder()
                     .name("Teste")
                     .deleted(false)
                     .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
 
-        assertThat(paymentTypeService.findByRoleName("Teste")).isEqualTo(paymentType);
+        assertThat(roleService.findByRoleName("Teste")).isEqualTo(role);
     }
 
 
@@ -162,14 +162,14 @@ public class RoleServiceIntegrationTest {
 	@Transactional
 	@Rollback
 	void testGetRoleNames() throws Exception{
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(false)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
 
-        assertThat(paymentTypeService.getRoleNames("Tes").get(0)).isEqualTo("Teste");
+        assertThat(roleService.getRoleNames("Tes").get(0)).isEqualTo("Teste");
     }
 
     @DisplayName("Testar a procura por nome de papéis existentes em UpperCase.")
@@ -178,14 +178,14 @@ public class RoleServiceIntegrationTest {
 	@Rollback
 	void testGetRoleNamesWithUpperCase() throws Exception{
 
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(false)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
 
-        assertThat(paymentTypeService.getRoleNames("TES").get(0)).isEqualTo("Teste");
+        assertThat(roleService.getRoleNames("TES").get(0)).isEqualTo("Teste");
     }
 
     @DisplayName("Testar a procura por nome de papéis existentes em LowerCase.")
@@ -194,14 +194,14 @@ public class RoleServiceIntegrationTest {
 	@Rollback
 	void testGetRoleNamesWithLowerCase() throws Exception{
 
-        Role paymentType = Role.builder()
+        Role role = Role.builder()
                             .name("Teste")
                             .deleted(false)
                             .build();
 
-        paymentTypeService.create(paymentType);
+        roleService.create(role);
 
-        assertThat(paymentTypeService.getRoleNames("tes").get(0)).isEqualTo("Teste");
+        assertThat(roleService.getRoleNames("tes").get(0)).isEqualTo("Teste");
     }
 
 }

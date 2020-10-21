@@ -2,39 +2,53 @@ package br.com.cattle_control.starter.service;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-// import org.junit.runner.RunWith;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mockito;
-// import org.mockito.Spy;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-// import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import br.com.cattle_control.starter.model.People;
-// import br.com.cattle_control.starter.exception.AnyPersistenceException;
-// import br.com.cattle_control.starter.exception.EntityAlreadyExistsException;
-// import br.com.cattle_control.starter.service.PeopleService;
+import br.com.cattle_control.starter.model.Role;
 
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-// @SpringBootTest(classes = {PeopleService.class})
-// @SpringJUnitConfig(PeopleService.class)
 public class PeopleServiceIntegrationTest {
     
     @Autowired
     PeopleService peopleService;
+
+    @Autowired
+    RoleService roleService;
+
+    @Transactional
+    @Rollback
+    List<Role> createRoleList() throws Exception{
+
+        Role role = Role.builder()
+                            .name("Teste")
+                            .deleted(false)
+                            .build();
+
+        roleService.create(role);
+
+        List<Role> roleList = new ArrayList<Role>();
+
+        roleList.add(role);
+
+        return roleList;
+    }
 
     @DisplayName("Testar a criação de uma Pessoa no BD.")
 	@Test
@@ -56,6 +70,107 @@ public class PeopleServiceIntegrationTest {
 
 
         assertThat(peopleService.findByIdType("41199288888").getName()).isEqualTo("Henrique");
+    }
+
+    @DisplayName("Testar a criação de uma Pessoa com um papel.")
+	@Test
+	@Transactional
+	@Rollback
+	void testCreateRole() throws Exception{
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("41199288888")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .deleted(false)
+                                .build();
+                                
+        peopleService.create(people);
+        
+        Role roleA = Role.builder()
+                                .name("Teste")
+                                .deleted(false)
+                                .build();
+    
+        roleService.create(roleA);
+
+        people.getRoles().add(roleA);
+
+        assertThat(((peopleService.findByIdType("41199288888").getRoles()).get(0)).getName()).isEqualTo("Teste");
+    }
+
+    @DisplayName("Testar a criação de uma Pessoa com mais de um papel.")
+	@Test
+	@Transactional
+	@Rollback
+	void testCreateRoles() throws Exception{
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("41199288888")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .deleted(false)
+                                .build();
+                                
+        peopleService.create(people);
+
+
+        String[] peopleRoles = {"Teste", "Teste1", "Teste2", "Teste3"};
+
+        for (String roleName : peopleRoles ){
+            Role role = Role.builder()
+            .name(roleName)
+            .deleted(false)
+            .build();
+    
+            roleService.create(role);
+            people.getRoles().add(role);
+        }
+
+
+        assertThat(((peopleService.findByIdType("41199288888").getRoles()).get(3)).getName()).isEqualTo("Teste3");
+    }
+
+    @DisplayName("Testar a criação de uma Pessoa com uma lista de papéis já existente.")
+	@Test
+	@Transactional
+	@Rollback
+	void testCreateRolesList() throws Exception{
+
+        List<Role> roleList = new ArrayList<>();
+
+        String[] peopleRoles = {"Teste", "Teste1", "Teste2", "Teste3"};
+
+        for (String roleName : peopleRoles ){
+            Role role = Role.builder()
+            .name(roleName)
+            .deleted(false)
+            .build();
+    
+            roleService.create(role);
+            roleList.add(role);
+        }
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .roles(roleList)
+                                .idType("41199288888")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .deleted(false)
+                                .build();
+                                
+        peopleService.create(people);
+
+        assertThat(((peopleService.findByIdType("41199288888").getRoles()).get(3)).getName()).isEqualTo("Teste3");
     }
 
     @DisplayName("Testar o update de uma Pessoa no BD.")

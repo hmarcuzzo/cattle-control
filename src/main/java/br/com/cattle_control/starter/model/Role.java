@@ -33,7 +33,6 @@ public class Role implements Serializable {
     @Column(name = "Role_Deleted")
     private Boolean deleted;
 
-
     @Builder 
 	public static Role create (
             Integer id,
