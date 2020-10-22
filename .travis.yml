@@ -13,4 +13,6 @@ deploy:
   app: cattle-control
   on:
     repo: hmarcuzzo/cattle_control
+after_success:
+- bash <(curl -s https://codecov.io/bash)
     
