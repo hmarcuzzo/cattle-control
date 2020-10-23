@@ -6,7 +6,11 @@
   Cattle-Control <a href="https://travis-ci.com/github/hmarcuzzo/cattle_control/builds/">
     <img src="https://travis-ci.com/hmarcuzzo/cattle_control.svg?branch=master"
         alt="build">
-          </a>
+          </a> 
+      <a href="https://codecov.io/gh/hmarcuzzo/cattle_control">
+        <img src="https://codecov.io/gh/hmarcuzzo/cattle_control/branch/master/graph/badge.svg?token=G024S0CXLT"/>
+      </a>
+    
   <br>
 </h1>
 
