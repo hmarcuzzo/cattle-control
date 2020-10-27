@@ -1,6 +1,26 @@
 # Diary
 Todas as reuniões do projeto serão adicionadas neste arquivo.
 
+## 2020-10-14
+### Assuntos
+- Testes com selenium jsf
+- CRUD's restantes
+### O que deveria ser feito
+- CRUD Ações, Papéis
+### O que será feito
+- Testes com selenium jsf
+- CRUD Gastos 
+
+## 2020-10-05
+### Assuntos
+- Discussão sobre o que está sendo feito 
+- Refatoração de issues 
+
+### O que deveria ser feito
+- CRUD Boi, Fazenda, Local
+### O que será feito
+- CRUD Ação, Papeis
+
 ## 2020-09-14
 ### Assuntos
 - Divisão das tarefas 
@@ -107,4 +127,3 @@ Todas as reuniões do projeto serão adicionadas neste arquivo.
 ### Dificuldades
 - Não conseguimos dividir as grandes histórias de usuários em e histórias melhores
 - Não conseguimor criar as issues no Zenhub
-

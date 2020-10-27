@@ -1,0 +1,18 @@
+language: java
+sudo: true
+dist: trusty
+jdk:
+- oraclejdk11
+before_install:
+- chmod +x mvnw
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  api_key:
+    secure: thoTTUtqSf8sVPE+rPO/TyagsS/gbowY003wszJeBpYBMeGi/ah/faLumb5ppDFyA+3hnraLqly5FXZm2081HRJ7+S6/ZkByTZw+3mh5z0lecL0bHmCvV5yrneVxqGPkTMPq/LCwkTVd3gXyqAuGiwu+xBIcRdIXaZRPazW+lVJZYAQ23C5KmvZmYI6eDVmbgiy2fXMXHKNwFU+Ef38J9O28T3QQS8hI/+dVU28LQZpWS/8dB726NoCZnzgGk9A00ENGWvTiMqyuz0NVoRNvDDT7/LS7adW73llCTiNvAyYiQ2+r6sWRA+reOhp6Qcm3Cm5zKIMY7uHzV7qRyAtP24M/rPsYt/BmFY99olMIol9dVCrhzvhhNHzo7kUFXuZnmqkBM5P4IM6TmhyJH2Kt82M0X3Drj/Qyi48Vu0QNCuHyrQ8O70WkfvVPCCF+VwAYZ/JkHYIVibSi3o03lLllT+fYBa50gtDV1xK39v+NBnOktjfLYQ+Bed56npPqFPvJLPN7aAPzsBIgRIRxHzuCvKXRMy4LYCeFyTY4iphy0KoGIfLtx6gKy45t6rGSpe5E/osdO53HDwwWfmoJXkfbfYPKNREhcigv1/CEP7SYDjoIHI//11wn/DXJglNamJfiNe9DFTaGOAVWkEiORbcZgh8W9DaPZbwYjzT4F0fRMv8=
+  app: cattle-control
+  on:
+    repo: hmarcuzzo/cattle_control
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+    

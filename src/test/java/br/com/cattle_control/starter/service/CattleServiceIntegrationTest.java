@@ -3,6 +3,8 @@ package br.com.cattle_control.starter.service;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+// import com.jayway.jsonpath.internal.function.text.Length;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +39,7 @@ public class CattleServiceIntegrationTest {
     @Autowired
     PlaceService placeService;
 
+    
 	@Transactional
     @Rollback
     People createPeople() throws Exception{
@@ -246,6 +249,39 @@ public class CattleServiceIntegrationTest {
         cattleService.create(cattle);
 
         assertThat(cattleService.getNumberings("123").get(0)).isEqualTo("123456");
+    }
+
+
+    @DisplayName("Testar listar todos os bois de uma fazenda.")
+	@Test
+	@Transactional
+	@Rollback
+	void testFindAllCattleFromFarm() throws Exception{
+        Farm farm = createFarm();
+
+        Cattle cattle = Cattle.builder()
+                                .numbering("123456")
+                                .info("Outra info")
+                                .weight(350.8)
+                                .price(128.50)
+                                .deleted(false)
+                                .farm(farm)
+                                .build();
+
+        cattleService.create(cattle);
+
+        cattle = Cattle.builder()
+                                .numbering("12345678")
+                                .info("Outra info")
+                                .weight(350.8)
+                                .price(128.50)
+                                .deleted(false)
+                                .farm(farm)
+                                .build();
+
+        cattleService.create(cattle);
+        
+        assertThat(cattleService.findAllCattleFromFarm(farm.getRegisterNumber()).size()).isEqualTo(2);
     }
 
 }

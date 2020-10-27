@@ -6,7 +6,7 @@
                 template="#{layoutMB.template}">
 
     <ui:define name="metadata">
-        <ui:param name="title" value="Lista de ações"/> <!-- Automatic create breadCrumb and page title when param 'title' is provided. --> 
+        <ui:param name="title" value="Lista de gastos de boi"/> <!-- Automatic create breadCrumb and page title when param 'title' is provided. --> 
         <style type="text/css">
             .ui-datatable .ui-datatable-header {
                 text-align: right !important;
@@ -16,7 +16,7 @@
     </ui:define>
 
     <ui:define name="description">
-        Ache ações de compra e venda por Número de Identificação
+        Ache gastos de bois por Número de Identificação
     </ui:define>
 
     <ui:define name="body">
@@ -24,40 +24,46 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <div id="main-buttons" class="hidden-sm hidden-xs">
-                        <p:commandButton action="action-form?faces-redirect=true" icon="fa fa-plus"
-                                         value="Novo" styleClass="btn-primary"/>
+                        <p:commandButton action="cattleExpense-form?faces-redirect=true" icon="fa fa-plus"
+                                         value="Novo Gasto Individual" styleClass="btn-primary"/>
+                        <p:spacer width="5"/>
+                        <p:commandButton action="cattleExpense-formFarm?faces-redirect=true" icon="fa fa-plus"
+                                         value="Novo Gasto por Fazenda" styleClass="btn-primary"/>
                         <p:spacer width="5"/>
                         <p:commandButton value="Deletar Selecionados" icon="fa fa-trash" styleClass="btn-danger"
-                                         action="#{actionListView.delete}"
+                                         action="#{cattleExpenseListView.delete}"
                                          update="@form">
                             <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
                         </p:commandButton>
                         <p:spacer width="5"/>
                         <p:commandButton value="Ver selecionados" update="@(.ui-dialog)" styleClass="btn-info"
-                                         disabled="#{empty actionListView.selectedActions or actionListView.selectedActions.size() == 0}"
-                                         oncomplete="PF('selectedActions').show()" icon="fa fa-search"/>
+                                         disabled="#{empty cattleExpenseListView.selectedCattleExpenses or cattleExpenseListView.selectedCattleExpenses.size() == 0}"
+                                         oncomplete="PF('selectedCattleExpenses').show()" icon="fa fa-search"/>
                     </div>
 
-                    <p:splitButton value="Novo" action="action-form?faces-redirect=true"
+                    <p:splitButton value="Novo Gasto Individual" action="cattleExpense-form?faces-redirect=true"
                                    icon="fa fa-plus"
                                    styleClass="hidden-md hidden-lg btn-primary">
-                        <p:menuitem value="Deletar Selecionados" action="#{actionListView.delete}"
+                        <p:menuitem value="Novo Gasto por Fazenda" action="cattleExpense-formFarm?faces-redirect=true"
+                                    icon="fa fa-plus"
+                                    styleClass="hidden-md hidden-lg btn-primary"/>
+                        <p:menuitem value="Deletar Selecionados" action="#{cattleExpenseListView.delete}"
                                     process="@this" update="@form"
-                                    disabled="#{empty actionListView.selectedActions or actionListView.selectedActions.size() == 0}"
+                                    disabled="#{empty cattleExpenseListView.selectedCattleExpenses or cattleExpenseListView.selectedCattleExpenses.size() == 0}"
                                     icon="fa fa-trash">
                             <p:confirm header="Confirmação" message="Você tem certeza? Esta ação não pode ser desfeita." icon="ui-icon-danger"/>
                         </p:menuitem>
                         <p:menuitem value="Ver selecionados" update="@(.ui-dialog)"
-                                    oncomplete="PF('selectedActions').show()"
-                                    disabled="#{empty actionListView.selectedActions or actionListView.selectedActions.size() == 0}"
+                                    oncomplete="PF('selectedCattleExpenses').show()"
+                                    disabled="#{empty cattleExpenseListView.selectedCattleExpenses or cattleExpenseListView.selectedCattleExpenses.size() == 0}"
                                     icon="fa fa-search"/>
                     </p:splitButton>
 
                     <p:separator/>
-                    <p:dataTable widgetVar="actionsTable" var="p" value="#{actionListView.listAllAction()}" rows="10"
+                    <p:dataTable widgetVar="cattlesExpensesTable" var="p" value="#{cattleExpenseListView.listAllCattleExpense()}" rows="10"
                                  rowKey="#{p.id}" lazy="true" paginator="true"
-                                 filteredValue="#{actionListView.filteredValue}"
-                                 paginatorPosition="bottom" selection="#{actionListView.selectedActions}"
+                                 filteredValue="#{cattleExpenseListView.filteredValue}"
+                                 paginatorPosition="bottom" selection="#{cattleExpenseListView.selectedCattleExpenses}"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {JumpToPageDropdown}"
                                  currentPageReportTemplate="[ {startRecord} to {endRecord} of {totalRecords} ]"
                                  rowsPerPageTemplate="5,10,15,20,30">
@@ -69,11 +75,11 @@
                         <p:ajax event="toggleSelect" update="@(.ui-button, .ui-confirm-dialog)"/>
 
                         <f:facet name="header">
-                            Procure ações de venda e compra por número de identificação: <p:inputText id="inptid" value="#{actionListView.id}"/>
+                            Procure gastos de boi por número de identificação: <p:inputText id="inptid" value="#{cattleExpenseListView.id}"/>
                             <p:spacer height="5"/>
                             <p:commandButton id="brFind"
                                              value="Procurar"
-                                             action="#{actionListView.findActionById(actionListView.id)}"
+                                             action="#{cattleExpenseListView.findCattleExpenseById(cattleExpenseListView.id)}"
                                              process="@form"
                                              update="@form"
                                              styleClass="btn-flat bg-black btn-states"
@@ -82,57 +88,29 @@
                         <p:column selectionMode="multiple" width="4%" styleClass="align-center"/>
 
                         <p:column headerText="Número de Identificação">
-                            <p:link value="#{p.id}" outcome="action-form.xhtml" >
+                            <p:link value="#{p.id}" outcome="cattleExpense-form.xhtml" >
                                 <f:param name="id" value="#{p.id}"/>
                             </p:link>
                         </p:column>
 
-                        <p:column headerText="CPF/CNPJ do Cliente">
-                            <p:link value="#{p.people_buyer.idType}" outcome="people-form.xhtml" >
-                                <f:param name="id" value="#{p.people_buyer.id}"/>
+                        <p:column headerText="Boi"> 
+                            <p:link value="#{p.cattle.numbering}" outcome="cattle-form.xhtml" >
+                                <f:param name="id" value="#{p.cattle.id}"/>
                             </p:link>
                         </p:column>
 
-                        <p:column headerText="CPF/CNPJ do Vendedor">
-                            <p:link value="#{p.people_seller.idType}" outcome="people-form.xhtml" >
-                                <f:param name="id" value="#{p.people_seller.id}"/>
+                        <p:column headerText="Gasto"> 
+                            <p:link value="#{p.expense.expense_name}" outcome="expense-form.xhtml" >
+                                <f:param name="id" value="#{p.expense.id}"/>
                             </p:link>
                         </p:column>
 
-                        <p:column headerText="CPF/CNPJ do Entregador">
-                            <p:link value="#{p.people_deliveryman.idType}" outcome="people-form.xhtml" >
-                                <f:param name="id" value="#{p.people_deliveryman.id}"/>
-                            </p:link>
-                        </p:column>
-
-                        <p:column headerText="Quantidade"> 
-                            #{p.amount}
-                        </p:column>
-
-                        <p:column headerText="Valor"> 
-                            #{p.value}
-                        </p:column>
-
-                        <p:column headerText="Data da Compra"> 
+                        <p:column headerText="Data"> 
                             #{p.date}
                         </p:column>
 
-                        <p:column headerText="Método de Pagamento"> 
-                            #{p.payment_type.paymentType_name}
-                        </p:column>
-
-                        <p:column headerText="Dividido em"> 
-                            #{p.divided}
-                        </p:column>
-
-                        <p:column headerText="Data Limite"> 
-                            #{p.deadline}
-                        </p:column>
-
-                        <p:column headerText="CEP da cidade">
-                            <p:link value="#{p.place.cep}" outcome="place-form.xhtml" >
-                                <f:param name="id" value="#{p.place.id}"/>
-                            </p:link>
+                        <p:column headerText="Informações"> 
+                            #{p.info}
                         </p:column>
                         
                     </p:dataTable>
@@ -149,10 +127,10 @@
 
 
 
-        <p:dialog header="Ações Selecionadas" widgetVar="selectedActions" height="400"
+        <p:dialog header="Gastos de bois Selecionados" widgetVar="selectedCattleExpenses" height="400"
                   width="1100" responsive="true" styleClass="box-success">
-            <p:dataList id="selectedActionsList" value="#{actionListView.selectedActions}" var="action" type="definition">
-                Número de Identificação: #{action.id} - Cidade: #{action.place.city} - Bairro/Nome da Fazenda: #{action.district} - Referência: #{action.reference} - Número: #{action.number} - Informações: #{action.info}
+            <p:dataList id="selectedCattleExpensesList" value="#{cattleExpenseListView.selectedCattleExpenses}" var="cattleExpense" type="definition">
+                Número de Identificação: #{cattleExpense.id} - Boi: #{cattleExpense.cattle.numbering} - Gasto: #{cattleExpense.expense.expense_name} - Data: #{cattleExpense.date} - Informações: #{cattleExpense.info}
             </p:dataList>
         </p:dialog>
 

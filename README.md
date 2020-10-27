@@ -3,7 +3,14 @@
   <br>
  	<img src="https://gartic.com.br/imgs/mural/os/osouza/nelore-3.png" alt="Markdownify" width="200"></a>
   <br>
-  Cattle-Control
+  Cattle-Control <a href="https://travis-ci.com/github/hmarcuzzo/cattle_control/builds/">
+    <img src="https://travis-ci.com/hmarcuzzo/cattle_control.svg?branch=master"
+        alt="build">
+          </a> 
+      <a href="https://codecov.io/gh/hmarcuzzo/cattle_control">
+        <img src="https://codecov.io/gh/hmarcuzzo/cattle_control/branch/master/graph/badge.svg?token=G024S0CXLT"/>
+      </a>
+    
   <br>
 </h1>
 
@@ -15,7 +22,7 @@
          alt="Java">
           </a>
   <a href="https://junit.org/junit5/">
-    <img src="https://img.shields.io/badge/junit 5-5.7.0-yellow?style=for-the-badge&logo=junit"
+    <img src="https://img.shields.io/badge/junit 5-5.5.2-yellow?style=for-the-badge&logo=junit"
          alt="JUnit 5">
           </a>
   <a href="https://spring.io/projects/spring-boot">
@@ -26,6 +33,7 @@
     <img src="https://img.shields.io/badge/lombok-1.18.12-red?style=for-the-badge&logo=apache"
          alt="Lombok">
           </a>
+    
 </p>
 
 
@@ -63,8 +71,8 @@ Após a inicialização, é possível acessar a página atraves do link http://l
 * A [documentação de referência](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/) inclui [instruções de instalação](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-installing-spring-boot) detalhadas, bem como um [guia de primeiros passos](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application) que irá auxiliar na [execução](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/getting-started.html#getting-started-first-application-run) do projeto .
 
 * A senha padrão é:
-  * ***User:*** admin 
-  * ***Password:*** admin
+  * ***Usuário:*** admin 
+  * ***Senha:*** admin
 
 
 ## Desenvolvedores

@@ -23,7 +23,7 @@ import br.com.cattle_control.starter.model.PaymentType;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class ActionServiceInegrationTest {
+public class ActionServiceIntegrationTest {
     @Autowired
     ActionService actionService;
 
