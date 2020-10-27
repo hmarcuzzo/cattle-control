@@ -1,20 +1,17 @@
 package br.com.cattle_control.starter.model;
 
 import java.io.Serializable;
+import java.util.*;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// import org.hibernate.annotations.OnDelete;
-// import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-// import javax.validation.constraints.NotEmpty;
-// import javax.validation.constraints.NotNull;
 import javax.persistence.Entity;
 
 
@@ -48,6 +45,10 @@ public class People implements Serializable {
     // @NotEmpty(message = "*Por favor forneça o nome")
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "People_ID")
+    private List<Role> roles;
+
     @Column(name = "People_Phone")
     // @NotEmpty(message = "*Por favor forneça o telefone")
     // @Length(min = 10, max= 25, message = "*Por favor forneça todos os dígitos do telefone")
@@ -70,6 +71,7 @@ public class People implements Serializable {
 			Integer type,
 			String  idType,
             String  name,
+            List<Role> roles,
 			String  phone,
 			String  email,
 			String  info,
@@ -81,7 +83,14 @@ public class People implements Serializable {
     	instance.setId(id);
         instance.setType(type);
         instance.setIdType(idType);
-    	instance.setName(name);
+        instance.setName(name);
+        if(roles == null){
+            roles = new ArrayList<>();
+            instance.setRoles(roles);
+        }
+        else{
+            instance.setRoles(roles);
+        } 
     	instance.setPhone(phone);
     	instance.setEmail(email);
     	instance.setInfo(info);
@@ -90,8 +99,5 @@ public class People implements Serializable {
         return instance;
     }
 
-    // @OneToMany
-    // @JoinTable(name = "People_Role", joinColumns = @JoinColumn(name = "People_ID"), inverseJoinColumns = @JoinColumn(name = "Role_ID"))
-    // private Set<Role> roles;
 
 }

@@ -3,6 +3,7 @@ package br.com.cattle_control.starter.util;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,40 +28,78 @@ public class FakeData {
 
     @Autowired
     PeopleService peopleService;
-
+    
     @Autowired
     PlaceService placeService;
 
     @Autowired
     PaymentTypeService paymentTypeService;
-
+    
+    @Autowired
+    RoleService roleService;
+    
     @Autowired
     TypeExpenseService typeExpenseService;
-
+  
     @EventListener
     public void appReady(ApplicationReadyEvent event) throws EntityAlreadyExistsException, AnyPersistenceException,
-             IOException, ParseException {        
+    IOException, ParseException {
+        
+        
+        String[] peopleRoles = {"Comprador", "Vendendor", "Freteiro", "Veterinário"};
+    
+        for (String roleName : peopleRoles ){
+            Role role = Role.builder()
+            .name(roleName)
+            .deleted(false)
+            .build();
+            
+            roleService.create(role);
+        }
+
+        String[] paymentTypes = {"Parcelado", "A vista", "Cheque", "Outros"};
+
+        for (String type : paymentTypes){
+            PaymentType paymentType = PaymentType.builder()
+            .type_name(type)
+            .deleted(false)
+            .build();
+    
+            paymentTypeService.create(paymentType);
+        }
+      
+        String[] typesExpense = {"Vacina", "Ração", "Veterinário", "Outros"};
+
+        for (String type : typesExpense){
+            TypeExpense typeExpense = TypeExpense.builder()
+            .type_name(type)
+            .deleted(false)
+            .build();
+    
+            typeExpenseService.create(typeExpense);
+        }
 
         JSONParser parser = new JSONParser();
-
+        
         try {
             JSONArray peopleArray = (JSONArray) parser.parse(new FileReader("src/main/resources/peopleData.json"));
             JSONArray placeArray = (JSONArray) parser.parse(new FileReader("src/main/resources/placeData.json"));
             JSONArray farmArray = (JSONArray) parser.parse(new FileReader("src/main/resources/farmData.json"));
-
+            
             for (int i = 0; i < peopleArray.size(); i++)
             {
                 JSONObject personObject = (JSONObject) peopleArray.get(i);
                 
                 People person = People.builder()
-                                .name((String) personObject.get("name"))
-                                .email((String) personObject.get("email"))
-                                .type(1)
-                                .idType((String) personObject.get("cpf"))
-                                .phone((String) personObject.get("phone"))
-                                .info("Uma informação qualquer")
-                                .deleted(false)
-                                .build();
+                .name((String) personObject.get("name"))
+                .email((String) personObject.get("email"))
+                .type(1)
+                .idType((String) personObject.get("cpf"))
+                .phone((String) personObject.get("phone"))
+                .info("Uma informação qualquer")
+                .deleted(false)
+                .build();
+
                 
                 peopleService.create(person);
                 
@@ -93,33 +132,6 @@ public class FakeData {
             
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException();
-        }
-
-
-        String[] paymentTypes = {"Parcelado", "A vista", "Cheque", "Outros"};
-
-        for (String type : paymentTypes){
-            PaymentType paymentType = PaymentType.builder()
-            .type_name(type)
-            .deleted(false)
-            .build();
-    
-            paymentTypeService.create(paymentType);
-        }
-
-
-        String[] typesExpense = {"Vacina", "Ração", "Veterinário", "Outros"};
-
-        for (String type : typesExpense){
-            TypeExpense typeExpense = TypeExpense.builder()
-            .type_name(type)
-            .deleted(false)
-            .build();
-    
-            typeExpenseService.create(typeExpense);
-        }
-        
-
-      
+        }     
     }    
 }

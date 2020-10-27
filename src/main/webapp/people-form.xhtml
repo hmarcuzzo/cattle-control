@@ -154,6 +154,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="ui-sm-12 ui-g-3 ui-g-nopad">     
+                    <div class="ui-sm-12 ui-g-11">
+                        <p:outputLabel value="Papéis *" for="inptRole"/>
+                    </div>
+                    <div class="ui-sm-12 ui-g-11">
+                        <p:selectCheckboxMenu id="inptRole" value="#{peopleFormView.selectedRolesList}" label="Papéis" multiple="true" 
+                        filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{peopleFormView.listAllRoleNames()}" />
+                        </p:selectCheckboxMenu>
+                        <span class="help-block"> 
+                            <p:message for="inptRole"/>
+                        </span>
+                    </div>
+                </div> 
                 <h:panelGroup id="footer" layout="block" styleClass="hidden-sm hidden-md hidden-lg">
                     <hr/>
                     <p:splitButton value="Salvar" action="#{peopleFormView.save}" update="@form"

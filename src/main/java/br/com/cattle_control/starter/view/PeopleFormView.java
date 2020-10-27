@@ -3,7 +3,7 @@ package br.com.cattle_control.starter.view;
 import org.omnifaces.util.Faces;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.*;
 
 import javax.faces.context.FacesContext;
 
@@ -16,9 +16,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 import br.com.cattle_control.starter.model.People;
+import br.com.cattle_control.starter.model.Role;
 import br.com.cattle_control.starter.exception.AnyPersistenceException;
 import br.com.cattle_control.starter.exception.EntityAlreadyExistsException;
 import br.com.cattle_control.starter.service.PeopleService;
+import br.com.cattle_control.starter.service.RoleService;
 
 import static br.com.cattle_control.starter.util.Utils.addDetailMessage;
 import static com.github.adminfaces.template.util.Assert.has;
@@ -35,6 +37,11 @@ public class PeopleFormView {
     @Autowired
     private final PeopleService peopleService;
 
+    @Autowired
+    private final RoleService roleService;
+
+    private String[] selectedRolesList;
+
     private People people = new People();
 
     FacesContext context = FacesContext.getCurrentInstance();
@@ -50,6 +57,11 @@ public class PeopleFormView {
 
             int id = Integer.parseInt(personId); 
             people = peopleService.readById(id);
+            List<Role> personRoles = people.getRoles(); 
+
+            String[] setedRoles = personRoles.stream().map(Role::getName).toArray(String[]::new);
+
+            setSelectedRolesList(setedRoles);
         } 
 
     }
@@ -62,6 +74,10 @@ public class PeopleFormView {
 
     public String getName() {
         return people.getName();
+    }
+
+    public List<Role> getRoles() {
+        return people.getRoles();
     }
 
     public String getEmail() {
@@ -96,6 +112,10 @@ public class PeopleFormView {
         people.setName(name);
     }
 
+    public void setRoles(List<Role> roles) {
+        people.setRoles(roles);
+    }
+
     public void setEmail(String email){
         people.setEmail(email);
     }
@@ -121,13 +141,36 @@ public class PeopleFormView {
         people.setDeleted(deleted);
     }
 
+    public String[] getSelectedRolesList() {
+        return selectedRolesList;
+    }
 
+    public void setSelectedRolesList(String[] selected) {
+        this.selectedRolesList = selected;
+    }
 
-    // Ações disponibilizadas na tela
+    public void setSelectedRoles(String[] selectedRoles) {
+
+        List<Role> allRoles = new ArrayList<>();
+        
+        for (String role : selectedRoles) {
+            allRoles.add(roleService.findByRoleName(role));
+        }
+        
+        people.setRoles(allRoles);
+    }
+    
+    public List<String> listAllRoleNames() {
+        List<String> a = roleService.readAllRoleName();
+        return a;
+    }
+
     public void save() {
+        setSelectedRoles(getSelectedRolesList());
         this.people = People.builder()
                             .id(getId())
                             .name(getName())
+                            .roles(getRoles())
                             .email(getEmail())
                             .type(getType())
                             .idType(getIdType())
@@ -135,7 +178,7 @@ public class PeopleFormView {
                             .info(getInfo())
                             .deleted(false)
         					.build();
-               
+                            
         String msg;
         try {
             if (getId() == null) {
@@ -193,6 +236,8 @@ public class PeopleFormView {
     public boolean isNew() {
         return people == null || getId() == null;
     }
+
+
 
     
 }
