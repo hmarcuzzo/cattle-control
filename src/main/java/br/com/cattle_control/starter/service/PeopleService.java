@@ -16,11 +16,14 @@ import br.com.cattle_control.starter.model.People;
 import br.com.cattle_control.starter.exception.AnyPersistenceException;
 import br.com.cattle_control.starter.exception.EntityAlreadyExistsException;
 import br.com.cattle_control.starter.repository.PeopleRepository;
+import br.com.cattle_control.starter.service.RoleService;
+
 
 @Service
 @RequiredArgsConstructor
 public class PeopleService implements ICRUDService<People> {
     private final PeopleRepository peopleRepository;
+    private final RoleService roleService;
 
     public List<People> readAll() {
         return peopleRepository
@@ -43,7 +46,7 @@ public class PeopleService implements ICRUDService<People> {
         return peopleRepository
                             .findAll()
                             .stream()
-                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false))
+                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false) && currentPeople.getRoles().contains(roleService.findByRoleName("Comprador")))
                             .map(People::getIdType)
                             .collect(Collectors.toList());
     }
@@ -52,7 +55,7 @@ public class PeopleService implements ICRUDService<People> {
         return peopleRepository
                             .findAll()
                             .stream()
-                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false))
+                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false) && currentPeople.getRoles().contains(roleService.findByRoleName("Vendedor")))
                             .map(People::getIdType)
                             .collect(Collectors.toList());
     }
@@ -61,7 +64,16 @@ public class PeopleService implements ICRUDService<People> {
         return peopleRepository
                             .findAll()
                             .stream()
-                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false))
+                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false) && currentPeople.getRoles().contains(roleService.findByRoleName("Freteiro")))
+                            .map(People::getIdType)
+                            .collect(Collectors.toList());
+    }
+
+    public List<String> getIDsTypeVet(String query) {
+        return peopleRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentPeople -> currentPeople.getIdType().toLowerCase().contains(query.toLowerCase()) && currentPeople.getDeleted().equals(false) && currentPeople.getRoles().contains(roleService.findByRoleName("Veterinário")))
                             .map(People::getIdType)
                             .collect(Collectors.toList());
     }

@@ -335,4 +335,213 @@ public class PeopleServiceIntegrationTest {
         assertThat(peopleService.getNames("henri").get(0)).isEqualTo("Henrique");
     }
 
+    @DisplayName("Testar a procura por Pessoa que é Vendedor.")
+	@Test
+	@Transactional
+	@Rollback
+	void testGetIDsTypeSeller() throws Exception{
+
+        List<Role> roleList = new ArrayList<Role>();
+
+        roleList.add(roleService.findByRoleName("Vendedor"));
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .roles(roleList)
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getIDsTypeSeller("888.888.888-88")).contains("888.888.888-88");
+    }
+
+    @DisplayName("Testar a procura por Pessoa que é não é Vendedor.")
+	@Test
+	@Transactional
+	@Rollback
+	void testNotGetIDsTypeSeller() throws Exception{
+
+        List<Role> roleList = new ArrayList<Role>();
+
+        roleList.add(roleService.findByRoleName("Comprador"));
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .roles(roleList)
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getIDsTypeSeller("888.888.888-88")).isEmpty();
+    }
+
+    @DisplayName("Testar a procura por Pessoa que é Comprador.")
+	@Test
+	@Transactional
+	@Rollback
+	void testGetIDsTypeBuyer() throws Exception{
+
+        List<Role> roleList = new ArrayList<Role>();
+
+        roleList.add(roleService.findByRoleName("Comprador"));
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .roles(roleList)
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getIDsTypeBuyer("888.888.888-88")).contains("888.888.888-88");
+    }
+
+    @DisplayName("Testar a procura por Pessoa que é não é Comprador.")
+	@Test
+	@Transactional
+	@Rollback
+	void testNotGetIDsTypeBuyer() throws Exception{
+
+        List<Role> roleList = new ArrayList<Role>();
+
+        roleList.add(roleService.findByRoleName("Vendedor"));
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .roles(roleList)
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getIDsTypeBuyer("888.888.888-88")).isEmpty();
+    }
+
+    @DisplayName("Testar a procura por Pessoa que é Freteiro.")
+	@Test
+	@Transactional
+	@Rollback
+	void testGetIDsTypeDeliveryman() throws Exception{
+
+        List<Role> roleList = new ArrayList<Role>();
+
+        roleList.add(roleService.findByRoleName("Freteiro"));
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .roles(roleList)
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getIDsTypeDeliveryman("888.888.888-88")).contains("888.888.888-88");
+    }
+
+    @DisplayName("Testar a procura por Pessoa que é não é Freteiro.")
+	@Test
+	@Transactional
+	@Rollback
+	void testNotGetIDsTypeDeliveryman() throws Exception{
+
+        List<Role> roleList = new ArrayList<Role>();
+
+        roleList.add(roleService.findByRoleName("Vendedor"));
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .roles(roleList)
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getIDsTypeDeliveryman("888.888.888-88")).isEmpty();
+    }
+
+    @DisplayName("Testar a procura por Pessoa que é Veterinário.")
+	@Test
+	@Transactional
+	@Rollback
+	void testGetIDsTypeVet() throws Exception{
+
+        List<Role> roleList = new ArrayList<Role>();
+
+        roleList.add(roleService.findByRoleName("Veterinário"));
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .roles(roleList)
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getIDsTypeVet("888.888.888-88")).contains("888.888.888-88");
+    }
+
+    @DisplayName("Testar a procura por Pessoa que é não é Veterinário.")
+	@Test
+	@Transactional
+	@Rollback
+	void testNotGetIDsTypeVet() throws Exception{
+
+        List<Role> roleList = new ArrayList<Role>();
+
+        roleList.add(roleService.findByRoleName("Vendedor"));
+
+        People people = People.builder()
+                                .name("Henrique")
+                                .email("henrique@hotmail.com")
+                                .type(1)
+                                .idType("888.888.888-88")
+                                .phone("18992686498")
+                                .info("Olá Mundo!")
+                                .roles(roleList)
+                                .deleted(false)
+                                .build();
+
+        peopleService.create(people);
+
+        assertThat(peopleService.getIDsTypeDeliveryman("888.888.888-88")).isEmpty();
+    }
+
+
 }

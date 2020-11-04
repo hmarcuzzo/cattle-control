@@ -46,7 +46,7 @@ public class FakeData {
     IOException, ParseException {
         
         
-        String[] peopleRoles = {"Comprador", "Vendendor", "Freteiro", "Veterinário"};
+        String[] peopleRoles = {"Comprador", "Vendedor", "Freteiro", "Veterinário"};
     
         for (String roleName : peopleRoles ){
             Role role = Role.builder()
