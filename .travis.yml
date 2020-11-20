@@ -5,6 +5,9 @@ jdk:
 - oraclejdk11
 before_install:
 - chmod +x mvnw
+plugins:
+  pmd:
+    enabled: true
 deploy:
   skip_cleanup: true
   provider: heroku
