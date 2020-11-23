@@ -11,7 +11,7 @@ addons:
     token:
       secure: 0pJnDshTRJQ3p0nejO40LGb+nR07RfH/PugMdxyJQ7VAY1ne76WGOY0Tn4EVGpFguYybAkiYJpsKLmD7/DbyoIjkBGY7+iIiMhq3xx24n8thYoYW2L0jg6NudhmLB7xkdktJOxskiQHVGKQj+H4+c/fCV+4TEq4mTiR1z04AOk0gYa1QN0Ogt+2znZjPr4VGxDDOGoi7WHS9sbJ51kGj8lT4X3oGciAD3aVwu4oVDCrMJxOaJOUpEPsaOSKeEr+DGVgkhxt+bAueQhHF1LUPMXflZnk1L28tf4WZv79KUCClhel7F+CU84OL9jQ2QqHXUsaqKAXIMk158Q4umLZ0FTbwCdL47V36gkIgR/RYKVg6XNuA5ULVR/Sq1Cycpbn+uZvWie47CKTkpWbvteWmWmzzu/GP0cM6ADnkxU/kqV5Ix8RlIBwMpC11hyzWUF4vixqEvoeWlKRNfK6Az5ZOcXVuJawwh7rHcW7Gc5T25Fy6owQsbEp48IeO9E7IIQS4VyqxUuoKzj9Abg3hoIyVIvQrqDN7bTFqtQu8MMvA1dB5p4fpQcyv+jG3g0ra6vQnuolvDroqPe+lCDSstUqdq6r7Se910S+HeMyNYErIx4sHFg0k2ImlqSvcvNQcmu/5BQwhBfKYtkR8jtOq4lIGge6DUn3qXL/idCJWufdnbGo=
 script:
-  - sonar-scanner
+  - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=cattle-control
 deploy:
   skip_cleanup: true
   provider: heroku
