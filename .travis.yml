@@ -5,9 +5,11 @@ jdk:
 - oraclejdk11
 before_install:
 - chmod +x mvnw
-plugins:
-  pmd:
-    enabled: true
+addons:
+  sonarcloud:
+    organization: "cattle-control"
+script:
+  - sonar-scanner
 deploy:
   skip_cleanup: true
   provider: heroku
