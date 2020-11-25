@@ -6,12 +6,17 @@ jdk:
 before_install:
 - chmod +x mvnw
 addons:
-  sonarcloud:
-    organization: cattle-control
-    token:
-      secure: 0pJnDshTRJQ3p0nejO40LGb+nR07RfH/PugMdxyJQ7VAY1ne76WGOY0Tn4EVGpFguYybAkiYJpsKLmD7/DbyoIjkBGY7+iIiMhq3xx24n8thYoYW2L0jg6NudhmLB7xkdktJOxskiQHVGKQj+H4+c/fCV+4TEq4mTiR1z04AOk0gYa1QN0Ogt+2znZjPr4VGxDDOGoi7WHS9sbJ51kGj8lT4X3oGciAD3aVwu4oVDCrMJxOaJOUpEPsaOSKeEr+DGVgkhxt+bAueQhHF1LUPMXflZnk1L28tf4WZv79KUCClhel7F+CU84OL9jQ2QqHXUsaqKAXIMk158Q4umLZ0FTbwCdL47V36gkIgR/RYKVg6XNuA5ULVR/Sq1Cycpbn+uZvWie47CKTkpWbvteWmWmzzu/GP0cM6ADnkxU/kqV5Ix8RlIBwMpC11hyzWUF4vixqEvoeWlKRNfK6Az5ZOcXVuJawwh7rHcW7Gc5T25Fy6owQsbEp48IeO9E7IIQS4VyqxUuoKzj9Abg3hoIyVIvQrqDN7bTFqtQu8MMvA1dB5p4fpQcyv+jG3g0ra6vQnuolvDroqPe+lCDSstUqdq6r7Se910S+HeMyNYErIx4sHFg0k2ImlqSvcvNQcmu/5BQwhBfKYtkR8jtOq4lIGge6DUn3qXL/idCJWufdnbGo=
+  code_climate:
+    repo_token:
+      secure: secure: "Cx1YVsgscSt/3veuGg2OACDkmeuXbqjke6V/CKftx+qn+5E1e1lRS5X+5wmKA1vO21gj9Ya8IHryIp7KajO+a5InVhpTXAZnxa4z+jgMvCBnrsF16XvPw3+RihMTR+KBJGsI3S6SHZsIn1hg+kCtXy5MjV+muVpmFAmIJrRp5KmQGecIbdNBK83GkvYwzwQeI2KNY+OqVDPjVqH8y3JwcB6KsCj7qdBY3mrMc/Uza1kFrYY/g2F50XAVqttRrf6Glu+qDCivXynPI/KpQBrSK8bmLB3ukO4MXjsxYyWdvJXVS+4u9HZyxO+y/6xnlwd2AOmghf+V6SfNzUL4XdOTcCcVMd27Sn/078jZqlimkpjtMEYt+5XpUQpoGDscK/+5iCO+cJWmfijqgcnUcxtTzRrzg7TnRjIUX5hkzIhHByMmGegjFQIrCyjruJ5kFN+A1UJVAMHP1lBltYGJcSvrRLL2Amhm0hAe6u9n0zVqY6Ku0hbeFeEa2Cj2TS7c1HAfLhakWaxdAeCBBuBwVv5zBkjUR6qfvaepDaIMvo1h4vlmsqvoHjQi7qrm2poPMCwQGucaiVPF/tWw8bicg7lG1XhA9B5gOkKBVx8Rn5UTf0HRfZhTkiTCu0oMGfjQy8z2zU6ZMV1Y7qJ28SXc3AnLXvu+b2b5OUONTVSOmu99w/I="
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
-  - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=cattle-control
+  - bundle exec rspec
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 deploy:
   skip_cleanup: true
   provider: heroku
