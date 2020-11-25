@@ -3,13 +3,18 @@
   <br>
  	<img src="https://gartic.com.br/imgs/mural/os/osouza/nelore-3.png" alt="Markdownify" width="200"></a>
   <br>
-  Cattle-Control <a href="https://travis-ci.com/github/hmarcuzzo/cattle_control/builds/">
-    <img src="https://travis-ci.com/hmarcuzzo/cattle_control.svg?branch=master"
-        alt="build">
-          </a> 
+  Cattle-Control <br> 
+      <a href="https://codeclimate.com/github/hmarcuzzo/cattle_control/maintainability">
+        <img src="https://api.codeclimate.com/v1/badges/5ff7eba0734be14dba05/maintainability" />
+      </a>
+      <a href="https://travis-ci.com/github/hmarcuzzo/cattle_control/builds/">
+        <img src="https://travis-ci.com/hmarcuzzo/cattle_control.svg?branch=master" alt="build">
+      </a> 
       <a href="https://codecov.io/gh/hmarcuzzo/cattle_control">
         <img src="https://codecov.io/gh/hmarcuzzo/cattle_control/branch/master/graph/badge.svg?token=G024S0CXLT"/>
       </a>
+      
+
     
   <br>
 </h1>
