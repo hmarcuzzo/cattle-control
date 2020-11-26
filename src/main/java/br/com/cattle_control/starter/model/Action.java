@@ -113,13 +113,7 @@ public class Action implements Serializable {
         instance.setAmount(amount);
         instance.setValue(value);
         instance.setDate(date);
-        if(cattle == null){
-            cattle = new ArrayList<>();
-            instance.setCattle(cattle);
-        }
-        else{
-            instance.setCattle(cattle);
-        } 
+        instance.setCattle(cattle);
         instance.setPayment_type(payment_type);
         instance.setDivided(divided);
         instance.setDeadline(deadline);

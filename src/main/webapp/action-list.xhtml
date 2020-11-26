@@ -36,6 +36,10 @@
                         <p:commandButton value="Ver selecionados" update="@(.ui-dialog)" styleClass="btn-info"
                                          disabled="#{empty actionListView.selectedActions or actionListView.selectedActions.size() == 0}"
                                          oncomplete="PF('selectedActions').show()" icon="fa fa-search"/>
+                        <p:commandButton value="    Ver Lucro   " icon="fa fa-dollar" style="color:white;background-color:rgb(110, 199, 110);"
+                                         action="#{actionListView.profit}"
+                                         update="@form">
+                        </p:commandButton>
                     </div>
 
                     <p:splitButton value="Novo" action="action-form?faces-redirect=true"
