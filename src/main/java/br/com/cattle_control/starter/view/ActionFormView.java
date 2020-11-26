@@ -4,6 +4,7 @@ import org.omnifaces.util.Faces;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 import br.com.cattle_control.starter.model.Action;
+import br.com.cattle_control.starter.model.Cattle;
 import br.com.cattle_control.starter.model.People;
 import br.com.cattle_control.starter.model.Place;
 import br.com.cattle_control.starter.model.PaymentType;
@@ -26,6 +28,7 @@ import br.com.cattle_control.starter.service.ActionService;
 import br.com.cattle_control.starter.service.PeopleService;
 import br.com.cattle_control.starter.service.PlaceService;
 import br.com.cattle_control.starter.service.PaymentTypeService;
+import br.com.cattle_control.starter.service.CattleService;
 
 
 import static br.com.cattle_control.starter.util.Utils.addDetailMessage;
@@ -49,6 +52,9 @@ public class ActionFormView {
     private final PlaceService placeService;
 
     @Autowired
+    private final CattleService cattleService;
+
+    @Autowired
     private final PaymentTypeService paymentTypeService;
 
     private Action action = new Action();
@@ -60,6 +66,8 @@ public class ActionFormView {
     private String idPlace;
 
     private String idPaymentType;
+
+    private String[] selectedCattleList;
 
     FacesContext context = FacesContext.getCurrentInstance();
     Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
@@ -78,13 +86,24 @@ public class ActionFormView {
             this.idPeople_buyer = action.getPeople_buyer().getIdType();
             this.idPeople_seller = action.getPeople_seller().getIdType();
             this.idPeople_deliveryman = action.getPeople_deliveryman().getIdType();
-
     
             this.idPlace = action.getPlace().getCep();
 
             this.idPaymentType = action.getPayment_type().getPaymentType_name();
 
-        } 
+            List<Cattle> actionCattle = action.getCattle(); 
+
+            String[] setedCattle = actionCattle.stream().map(Cattle::getNumbering).toArray(String[]::new);
+
+            setSelectedCattleList(setedCattle);
+
+            System.out.println("Oi");
+
+            for (String ox : this.getSelectedCattleList()){
+                System.out.println(ox);
+            }
+
+        }
     }
 
 
@@ -216,19 +235,51 @@ public class ActionFormView {
     public void setInfo(String info) {
         this.action.setInfo(info);
     }
-
+    
     public Boolean getDeleted() {
         return action.getDeleted();
     }
-
+    
     public void setDeleted(Boolean deleted) {
         this.action.setDeleted(deleted);
     }
+    
+    public void setCattle(List<Cattle> cattle) {
+        action.setCattle(cattle);
+    }
 
+    public List<Cattle> getCattle() {
+        return action.getCattle();
+    }
+
+    public String[] getSelectedCattleList() {
+        return selectedCattleList;
+    }
+
+    public void setSelectedCattleList(String[] selected) {
+        this.selectedCattleList = selected;
+    }
+
+    public void setSelectedCattle(String[] selectedCattle) {
+
+        List<Cattle> allCattle = new ArrayList<>();
+        
+        for (String cattle : selectedCattle) {
+            allCattle.add(cattleService.findByNumbering(cattle));
+        }
+        
+        action.setCattle(allCattle);
+    }
+    
+    public List<String> listAllCattleNumberings() {
+        List<String> a = cattleService.readAllNumberings();
+        return a;
+    }
 
 
     // Ações disponibilizadas na tela
     public void save() {
+        setSelectedCattle(getSelectedCattleList());
         People people_buyer = peopleService.findByIdType(this.idPeople_buyer);
         People people_seller = peopleService.findByIdType(this.idPeople_seller);
         People people_deliveryman = peopleService.findByIdType(this.idPeople_deliveryman);
@@ -247,6 +298,7 @@ public class ActionFormView {
                                     .amount(getAmount())
                                     .value(getValue())
                                     .date(dateFormat)
+                                    .cattle(getCattle())
                                     .payment_type(getPayment_type())
                                     .divided(getDivided())
                                     .deadline(deadlineFormat)

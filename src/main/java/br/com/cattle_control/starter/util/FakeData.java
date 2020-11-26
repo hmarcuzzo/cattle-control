@@ -39,6 +39,9 @@ public class FakeData {
     RoleService roleService;
     
     @Autowired
+    CattleService cattleService;
+    
+    @Autowired
     TypeExpenseService typeExpenseService;
   
     @EventListener
@@ -126,7 +129,24 @@ public class FakeData {
                                 .place(place)
                                 .build();
 
-                farmService.create(farm);          
+                farmService.create(farm);
+
+                for (int j = 0; j < 10; j++)
+                {
+                    int randomNumbering = (int)(Math.random() * (999999 - 1 + 1) + 1);
+                    double randomWeight = Math.random() * (400 - 300 + 1) + 300;
+                    double randomPrice = (randomWeight/15)*250;
+                    Cattle cattle = Cattle.builder()
+                                    .numbering(Integer.toString(randomNumbering))
+                                    .info("Nelore")
+                                    .weight((double) Math.round(randomWeight* 100) / 100)
+                                    .price((double) Math.round(randomPrice * 100) / 100)
+                                    .deleted(false)
+                                    .farm(farm)
+                                    .build();
+    
+                    cattleService.create(cattle);
+                }
          
             }
             
