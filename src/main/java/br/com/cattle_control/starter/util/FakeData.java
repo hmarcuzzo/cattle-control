@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -40,6 +41,9 @@ public class FakeData {
     
     @Autowired
     CattleService cattleService;
+
+    @Autowired
+    ActionService actionService;
 
     @Autowired
     ExpenseService expenseService;
@@ -174,6 +178,27 @@ public class FakeData {
                 }
          
             }
+    
+            Action action = Action.builder()
+                            .people_buyer(peopleService.readAll().get(0))
+                            .people_seller(peopleService.readAll().get(1))
+                            .people_deliveryman(peopleService.readAll().get(2))
+                            .amount(10)
+                            .value(60000.00)
+                            .date("26/11/2020")
+                            .payment_type(paymentTypeService.readAll().get(1))
+                            .divided(0)
+                            .deadline("26/12/2020")
+                            .place(placeService.readAll().get(0))
+                            .district("Córrego dos Patos")
+                            .reference("Síto Sta Luzia")
+                            .number(740)
+                            .info("Porteira Azul")
+                            .deleted(false)
+                            .build();
+
+            actionService.create(action);
+
             
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException();
