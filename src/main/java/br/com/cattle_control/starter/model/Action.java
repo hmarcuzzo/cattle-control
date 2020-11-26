@@ -1,6 +1,7 @@
 package br.com.cattle_control.starter.model;
 
 import java.io.Serializable;
+import java.util.*;
 
 import lombok.Builder;
 import lombok.Data;
@@ -47,6 +48,10 @@ public class Action implements Serializable {
     @Column(name = "Action_date")
     private String date;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "People_ID")
+    private List<Cattle> cattle;
+
     @ManyToOne
     @JoinColumn(name= "id_payment_type")
     private PaymentType payment_type;
@@ -86,6 +91,7 @@ public class Action implements Serializable {
             People  people_deliveryman,
 			Integer amount,
             Double  value,
+            List<Cattle> cattle,
             String  date,
             PaymentType payment_type,
             Integer divided,
@@ -107,6 +113,7 @@ public class Action implements Serializable {
         instance.setAmount(amount);
         instance.setValue(value);
         instance.setDate(date);
+        instance.setCattle(cattle);
         instance.setPayment_type(payment_type);
         instance.setDivided(divided);
         instance.setDeadline(deadline);

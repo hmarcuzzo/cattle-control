@@ -10,8 +10,8 @@ import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
- 
 
+import br.com.cattle_control.starter.model.Cattle;
 import br.com.cattle_control.starter.model.CattleExpense;
 import br.com.cattle_control.starter.exception.AnyPersistenceException;
 import br.com.cattle_control.starter.exception.EntityAlreadyExistsException;
@@ -37,6 +37,14 @@ public class CattleExpenseService implements ICRUDService<CattleExpense> {
                     .filter(currentCattleExpense -> currentCattleExpense.getDeleted().equals(false) && currentCattleExpense.getId().equals(anId))
                     .findFirst()
                     .orElseThrow(EntityNotFoundException::new);
+    }
+
+    public List<CattleExpense> readByCattle(Cattle anCattle) {
+        return cattleExpenseRepository
+                    .findAll()
+                    .stream()
+                    .filter(currentCattleExpense -> currentCattleExpense.getDeleted().equals(false) && currentCattleExpense.getCattle().getId().equals(anCattle.getId()))
+                    .collect(Collectors.toList());
     }
 
     public CattleExpense create(CattleExpense anCattleExpense) throws EntityAlreadyExistsException, AnyPersistenceException {

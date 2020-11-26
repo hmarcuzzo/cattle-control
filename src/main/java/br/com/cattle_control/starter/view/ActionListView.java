@@ -2,11 +2,12 @@ package br.com.cattle_control.starter.view;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.persistence.EntityNotFoundException;
 
 import lombok.RequiredArgsConstructor;
-	
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 import br.com.cattle_control.starter.model.Action;
+import br.com.cattle_control.starter.model.Cattle;
+import br.com.cattle_control.starter.model.CattleExpense;
 import br.com.cattle_control.starter.exception.AnyPersistenceException;
 import br.com.cattle_control.starter.exception.EntityAlreadyExistsException;
 import br.com.cattle_control.starter.service.ActionService;
+import br.com.cattle_control.starter.service.CattleExpenseService;
 import br.com.cattle_control.starter.infra.model.Filter;
 
 import com.github.adminfaces.template.exception.BusinessException;
@@ -30,6 +34,9 @@ import static br.com.cattle_control.starter.util.Utils.addDetailMessage;
 public class ActionListView {
     @Autowired
     private final ActionService actionService;
+
+    @Autowired
+    private final CattleExpenseService cattleExpenseService;
     
     private Action action = new Action();
 
@@ -40,6 +47,8 @@ public class ActionListView {
     List<Action> selectedActions;    //actions selected in checkbox column
 
     List<Action> filteredValue;     // datatable filteredValue attribute (column filters)
+
+    double totalExpenses = 0;
 
 
     public List<Action> getSelectedActions() {
@@ -115,6 +124,44 @@ public class ActionListView {
             }
         } else {
             throw new BusinessException("Selecione alguma ação de compra e venda para ser deletada!");
+        }
+        
+    }
+
+    public void profit() {
+        if (!selectedActions.isEmpty()){
+            if (selectedActions.size() > 1){
+                addDetailMessage("Por favor, selecione apenas uma venda!");
+            }
+            else {
+                Action selectedAction = selectedActions.get(0);
+
+                List<Cattle> cattleList = selectedAction.getCattle();
+
+                if (cattleList.isEmpty()){
+                    addDetailMessage("Erro: Compra/Venda sem bois");
+                }
+                else{
+                    
+                    for (Cattle ox: cattleList){
+
+                        List<CattleExpense> expenses = cattleExpenseService.readByCattle(ox);
+                         
+                        for (CattleExpense expense : expenses){
+
+                            this.totalExpenses += expense.getExpense().getExpense_priceUnit();
+                        } 
+                    }
+                    
+                    double profitValue = selectedAction.getValue() - this.totalExpenses;
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Lucro da compra/venda", "R$ " + profitValue);
+                    PrimeFaces.current().dialog().showMessageDynamic(message);
+                }
+
+            }
+            selectedActions.clear();        
+        } else {
+            throw new BusinessException("Selecione alguma ação para calcular o lucro!");
         }
         
     }

@@ -248,7 +248,7 @@ public class CattleServiceIntegrationTest {
 
         cattleService.create(cattle);
 
-        assertThat(cattleService.getNumberings("123").get(0)).isEqualTo("123456");
+        assertThat(cattleService.getNumberings("1234").get(0)).isEqualTo("123456");
     }
 
 

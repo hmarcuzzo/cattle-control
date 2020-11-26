@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -39,7 +40,19 @@ public class FakeData {
     RoleService roleService;
     
     @Autowired
+    CattleService cattleService;
+
+    @Autowired
+    ActionService actionService;
+
+    @Autowired
+    ExpenseService expenseService;
+    
+    @Autowired
     TypeExpenseService typeExpenseService;
+
+    @Autowired
+    CattleExpenseService cattleExpenseService;
   
     @EventListener
     public void appReady(ApplicationReadyEvent event) throws EntityAlreadyExistsException, AnyPersistenceException,
@@ -78,6 +91,15 @@ public class FakeData {
     
             typeExpenseService.create(typeExpense);
         }
+
+        Expense expense = Expense.builder()
+                                .expense_name("Velmec")
+                                .expense_priceUnit(8.90)
+                                .expense_yield(1)
+                                .deleted(false)
+                                .typeExpense(typeExpenseService.readAll().get(0))
+                                .build();
+        expenseService.create(expense);
 
         JSONParser parser = new JSONParser();
         
@@ -126,9 +148,57 @@ public class FakeData {
                                 .place(place)
                                 .build();
 
-                farmService.create(farm);          
+                farmService.create(farm);
+
+                for (int j = 0; j < 5; j++)
+                {
+                    int randomNumbering = (int)(Math.random() * (999999 - 1 + 1) + 1);
+                    double randomWeight = Math.random() * (400 - 300 + 1) + 300;
+                    double randomPrice = (randomWeight/15)*250;
+                    Cattle cattle = Cattle.builder()
+                                    .numbering(Integer.toString(randomNumbering))
+                                    .info("Nelore")
+                                    .weight((double) Math.round(randomWeight* 100) / 100)
+                                    .price((double) Math.round(randomPrice * 100) / 100)
+                                    .deleted(false)
+                                    .farm(farm)
+                                    .build();
+    
+                    cattleService.create(cattle);
+
+                    CattleExpense cattleExpense = CattleExpense.builder()
+                                                .date("26/11/2020")
+                                                .info("Vacinado")
+                                                .cattle(cattle)
+                                                .expense(expense)
+                                                .deleted(false)
+                                                .build();
+
+                    cattleExpenseService.create(cattleExpense);
+                }
          
             }
+    
+            Action action = Action.builder()
+                            .people_buyer(peopleService.readAll().get(0))
+                            .people_seller(peopleService.readAll().get(1))
+                            .people_deliveryman(peopleService.readAll().get(2))
+                            .amount(10)
+                            .value(60000.00)
+                            .date("26/11/2020")
+                            .payment_type(paymentTypeService.readAll().get(1))
+                            .divided(0)
+                            .deadline("26/12/2020")
+                            .place(placeService.readAll().get(0))
+                            .district("Córrego dos Patos")
+                            .reference("Síto Sta Luzia")
+                            .number(740)
+                            .info("Porteira Azul")
+                            .deleted(false)
+                            .build();
+
+            actionService.create(action);
+
             
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException();

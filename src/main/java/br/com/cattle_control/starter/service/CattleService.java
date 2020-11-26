@@ -39,6 +39,15 @@ public class CattleService implements ICRUDService<Cattle> {
                             .collect(Collectors.toList());
     }
 
+    public List<String> readAllNumberings() {
+        return cattleRepository
+                            .findAll()
+                            .stream()
+                            .filter(currentCattle -> currentCattle.getDeleted().equals(false))
+                            .map(Cattle::getNumbering)
+                            .collect(Collectors.toList());
+    }
+
 
     public Cattle readById(Integer anId) throws EntityNotFoundException {
         return cattleRepository

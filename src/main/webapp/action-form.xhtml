@@ -254,6 +254,19 @@
                                 <p:message for="inptInfo"/>
                             </span>
                         </div>
+
+                           <div class="ui-sm-12 ui-g-11">
+                            <p:outputLabel value="Bois *" for="inptCattle"/>
+                        </div>
+                        <div class="ui-sm-12 ui-g-11">
+                            <p:selectCheckboxMenu id="inptCattle" value="#{actionFormView.selectedCattleList}" label="Bois" multiple="true" 
+                            filter="true" filterMatchMode="startsWith">
+                                <f:selectItems value="#{actionFormView.listAllCattleNumberings()}" />
+                            </p:selectCheckboxMenu>
+                            <span class="help-block"> 
+                                <p:message for="inptCattle"/>
+                            </span>
+                        </div>
                     </div>
 
                     <div class="ui-sm-12 ui-g-3 ui-g-nopad"> 
