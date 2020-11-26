@@ -40,9 +40,15 @@ public class FakeData {
     
     @Autowired
     CattleService cattleService;
+
+    @Autowired
+    ExpenseService expenseService;
     
     @Autowired
     TypeExpenseService typeExpenseService;
+
+    @Autowired
+    CattleExpenseService cattleExpenseService;
   
     @EventListener
     public void appReady(ApplicationReadyEvent event) throws EntityAlreadyExistsException, AnyPersistenceException,
@@ -81,6 +87,15 @@ public class FakeData {
     
             typeExpenseService.create(typeExpense);
         }
+
+        Expense expense = Expense.builder()
+                                .expense_name("Velmec")
+                                .expense_priceUnit(8.90)
+                                .expense_yield(1)
+                                .deleted(false)
+                                .typeExpense(typeExpenseService.readAll().get(0))
+                                .build();
+        expenseService.create(expense);
 
         JSONParser parser = new JSONParser();
         
@@ -131,7 +146,7 @@ public class FakeData {
 
                 farmService.create(farm);
 
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 5; j++)
                 {
                     int randomNumbering = (int)(Math.random() * (999999 - 1 + 1) + 1);
                     double randomWeight = Math.random() * (400 - 300 + 1) + 300;
@@ -146,6 +161,16 @@ public class FakeData {
                                     .build();
     
                     cattleService.create(cattle);
+
+                    CattleExpense cattleExpense = CattleExpense.builder()
+                                                .date("26/11/2020")
+                                                .info("Vacinado")
+                                                .cattle(cattle)
+                                                .expense(expense)
+                                                .deleted(false)
+                                                .build();
+
+                    cattleExpenseService.create(cattleExpense);
                 }
          
             }
